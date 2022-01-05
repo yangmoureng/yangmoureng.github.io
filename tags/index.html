@@ -1,126 +1,72 @@
+extends _partial/layout.pug
 
-<!DOCTYPE html>
-<html lang="zh-CN" class="loading">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hexo</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="Fechin,"> 
-    
-    <meta name="author" content="John Doe"> 
-    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
-    
-    
-    
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="Hexo"/>
-    
-    
-    
-    
-    
-    <meta property="og:site_name" content="Hexo"/>
-    <meta property="og:type" content="object"/>
-    <meta property="og:title" content="Hexo"/>
-    
-    
-<link rel="stylesheet" href="/css/diaspora.css">
+block content
+  #page.hty-card
+    if page.type === 'tags'
+      +page_header(page.title, 'icon-price-tag-3-line')
+      .page-subtitle=_p('counter.tag_cloud', site.tags.length)
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+      if theme.wordcloud.enable
+        .wordcloud
+          canvas#wordcloud-canvas
+          #wordbox(hidden)
+        script(src=theme.vendors.wordcloud)
+        script.
+          function initWordCloud() {
+            const wordcloud_canvas = document.getElementById('wordcloud-canvas')
+            wordcloud_canvas.width = document.querySelector('#page').clientWidth - 16
+            wordcloud_canvas.height = !{theme.wordcloud.height}
+            let wordcloud_config = !{JSON.stringify(wordcloud_config('random-dark'))}
+            wordcloud_config.hover = function(item, dimension){
+              if (!dimension) {
+                wordbox.hidden = true
+                return;
+              }
+              wordbox.hidden = false
+              wordbox.setAttribute("style", `left:${dimension.x}px;top:${dimension.y}px;width:${dimension.w}px;height:${dimension.h}px;`)
+            }
+            wordcloud_config.click = function(tag){ window.location.href=tag[2] }
+            WordCloud(wordcloud_canvas, wordcloud_config);
+          }
 
-<body class="loading">
-    <span id="config-title" style="display:none">Hexo</span>
-    <div id="loader"></div>
-    <div id="single" class="page">
-    <div id="top">
-        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
-    </div>
-    <div class="section">
-        <div class="article">
-            <div class="main">
-                <div class="content">
-                
-                        
-                
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+          function loadWordcloud() {
+            const script = document.createElement('script')
+            script.src = "#{theme.vendors.wordcloud}"
+            document.body.appendChild(script)
+            script.onload = () => {
+              initWordCloud()
+            }
+          }
+          
+          loadWordcloud();
+      else
+        .tag-cloud
+          - var start_color = theme.colors.tag_start_color || '#333'
+          - var end_color = theme.colors.tag_end_color || theme.colors.primary
+          .tag-cloud-tags!= tagcloud({min_font: 12, max_font: 30, amount: 200, color: true, start_color, end_color})
 
-</body>
+    else if page.type === 'categories'
+      +page_header(page.title, 'icon-folder-2-line')
+      .page-subtitle=_p('counter.categories', site.categories.length)
+      .category-lists!= list_categories()
 
+    else if page.type === 'albums'
+      +page_header(page.title, theme.albums.icon)
+      .page-subtitle= _p('counter.albums', page.albums.length)
+      .album-list
+        for album in page.albums
+          a.album-list-item(href=url_for(album.url))
+            figure(title=album.desc)
+              img.album-list-cover(src=album.cover, loading="lazy", alt=album.caption, οnlοad="this.src=CONFIG.anonymous_image")
+              figcaption='「'+album.caption+'」'
 
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
+    else
+      +page_header(page.title, page.icon)
+      article#page
+        section.post-body(itemprop='articleBody')
+          .post-content.markdown-body!= page.content
 
+    //- default not display reward
+    if page.reward
+      include _partial/post/reward.pug
 
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-</html>
