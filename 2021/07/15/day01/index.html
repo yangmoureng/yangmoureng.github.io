@@ -1,34 +1,381 @@
-extends _partial/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="generator" content="Hexo 5.4.0"><meta name="theme" content="hexo-theme-yun"><title>day01 | Hexo</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/star-markdown-css@0.1.25/dist/yun/yun-markdown.min.css"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"hostname":"example.com","root":"/","title":"云游君的小站","version":"1.7.0","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/utils.js"></script><script src="/js/hexo-theme-yun.js"></script><meta name="description" content="Java能做什么  传统的项目 - 简单的,公司内部使用的,不会存在高并发的问题. 教务管理系统,OA自动化办公系统,CRM客户关系管理系统,ERP企业资源计划系统  B2C - 典型的电子商务模式,涉及到高并发的业务 企业2客户 - 企业卖自己的服务或者产品  C2B2C - 新型的模式 - 淘宝 平台 - 对双方进行监管 卖家 买家  大数据 - 一定是对业务非常熟悉[数据分析,数据非常敏感]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="day01">
+<meta property="og:url" content="http://example.com/2021/07/15/day01/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java能做什么  传统的项目 - 简单的,公司内部使用的,不会存在高并发的问题. 教务管理系统,OA自动化办公系统,CRM客户关系管理系统,ERP企业资源计划系统  B2C - 典型的电子商务模式,涉及到高并发的业务 企业2客户 - 企业卖自己的服务或者产品  C2B2C - 新型的模式 - 淘宝 平台 - 对双方进行监管 卖家 买家  大数据 - 一定是对业务非常熟悉[数据分析,数据非常敏感]">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/07/15/day01/Users/HP/Desktop/j03s_tech/note/imgs/jvm.png">
+<meta property="article:published_time" content="2021-07-15T09:54:17.000Z">
+<meta property="article:modified_time" content="2021-07-16T10:07:17.910Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="note">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/15/day01/Users/HP/Desktop/j03s_tech/note/imgs/jvm.png"><script src="/js/ui/mode.js"></script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title="John Doe"><img width="96" loading="lazy" src="/yun.png" alt="John Doe"></a><div class="site-author-name"><a href="/about/">John Doe</a></div><span class="site-name">Hexo</span><sub class="site-subtitle"></sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">6</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">2</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">3</span></a></div><a class="site-state-item hty-icon-button" target="_blank" rel="noopener" href="https://yun.yunyoujun.cn" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://qm.qq.com/cgi-bin/qm/qr?k=kZJzggTTCf4SpvEQ8lXWoi5ZjhAx0ILZ&amp;jump_from=webapi" title="QQ 群 1050458482" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/YunYouJun" title="GitHub" target="_blank" style="color:#6e5494"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/jizhideyunyoujun" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.douban.com/people/yunyoujun/" title="豆瓣" target="_blank" style="color:#007722"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-douban-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://music.163.com/#/user/home?id=247102977" title="网易云音乐" target="_blank" style="color:#C20C0C"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-netease-cloud-music-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://www.zhihu.com/people/yunyoujun/" title="知乎" target="_blank" style="color:#0084FF"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zhihu-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://space.bilibili.com/1579790" title="哔哩哔哩" target="_blank" style="color:#FF8EB3"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-bilibili-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/about/white-qrcode-and-search.jpg" title="微信公众号" target="_blank" style="color:#1AAD19"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-2-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://twitter.com/YunYouJun" title="Twitter" target="_blank" style="color:#1da1f2"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-twitter-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://t.me/elpsycn" title="Telegram Channel" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:me@yunyoujun.cn" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://travellings.link" title="Travelling" target="_blank" style="color:var(--hty-text-color)"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-train-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/links/" title="我的小伙伴们" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-genderless-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">Java能做什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E7%9A%84%E5%8E%86%E5%8F%B2"><span class="toc-number">2.</span> <span class="toc-text">Java的历史</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E6%94%AF%E6%8C%81%E7%9A%84%E4%B8%89%E4%B8%AA%E5%B9%B3%E5%8F%B0"><span class="toc-number">3.</span> <span class="toc-text">Java支持的三个平台</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E4%B8%80%E4%B8%8Bjdk%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%98%AF%E5%90%A6%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F"><span class="toc-number">4.</span> <span class="toc-text">检测一下jdk的环境变量是否配置成功</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">4.1.</span> <span class="toc-text">环境变量的配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E8%AF%AD%E8%A8%80%E7%89%B9%E7%82%B9"><span class="toc-number">5.</span> <span class="toc-text">Java语言特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JDK%E5%92%8CJRE%E5%92%8CJVM"><span class="toc-number">6.</span> <span class="toc-text">JDK和JRE和JVM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HelloWorld%E7%A8%8B%E5%BA%8F"><span class="toc-number">7.</span> <span class="toc-text">HelloWorld程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">7.1.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B"><span class="toc-number">7.2.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">7.3.</span> <span class="toc-text">Java程序的执行的原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E6%88%90%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">8.</span> <span class="toc-text">集成开发环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E4%B8%AD%E7%9A%84%E5%8C%85-package"><span class="toc-number">9.</span> <span class="toc-text">Java中的包-package</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#java%E4%B8%AD%E4%B8%89%E7%A7%8D%E6%B3%A8%E9%87%8A"><span class="toc-number">10.</span> <span class="toc-text">java中三种注释</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#main%E6%96%B9%E6%B3%95%E7%BB%86%E8%8A%82"><span class="toc-number">11.</span> <span class="toc-text">main方法细节</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E8%AF%AD%E5%8F%A5"><span class="toc-number">12.</span> <span class="toc-text">输出语句</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="toc-number">13.</span> <span class="toc-text">特殊字符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">14.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">14.1.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%E7%A7%8D%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">14.1.1.</span> <span class="toc-text">八种基本数据类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">14.2.</span> <span class="toc-text">变量的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%96%E6%9E%90%E5%8F%98%E9%87%8F%E7%9A%84%E8%83%8C%E5%90%8E"><span class="toc-number">14.3.</span> <span class="toc-text">剖析变量的背后</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">15.</span> <span class="toc-text">数据类型的转换</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://example.com/2021/07/15/day01/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="John Doe"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="Hexo"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">day01</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2021-07-15 17:54:17" itemprop="dateCreated datePublished" datetime="2021-07-15T17:54:17+08:00">2021-07-15</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2021-07-16 18:07:17" itemprop="dateModified" datetime="2021-07-16T18:07:17+08:00">2021-07-16</time></div><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/note/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">note</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/note/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">note</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body" style="--smc-primary:#0078E7;"><h1 id="Java能做什么"><a href="#Java能做什么" class="headerlink" title="Java能做什么"></a>Java能做什么</h1><blockquote>
+<ol>
+<li><p>传统的项目 - 简单的,公司内部使用的,不会存在高并发的问题.</p>
+<p>教务管理系统,OA自动化办公系统,CRM客户关系管理系统,ERP企业资源计划系统</p>
+</li>
+<li><p>B2C - 典型的电子商务模式,涉及到高并发的业务</p>
+<p>企业2客户 - 企业卖自己的服务或者产品</p>
+</li>
+<li><p>C2B2C - 新型的模式 - 淘宝</p>
+<p>平台 - 对双方进行监管</p>
+<p>卖家</p>
+<p>买家</p>
+</li>
+<li><p>大数据 - 一定是对业务非常熟悉[数据分析,数据非常敏感]</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="Java的历史"><a href="#Java的历史" class="headerlink" title="Java的历史"></a>Java的历史</h1><blockquote>
+<ol>
+<li><p>原先是属于SUN公司[Stanford University Network 斯坦福网络大学]</p>
+<p>Sun Microsystem - 太阳微电子公司</p>
+</li>
+<li><p>后来在2010年10月份被Oracle公司[出名的产品-oracle数据库 - NO.1]</p>
+<p>74亿美金收购 - <a target="_blank" rel="noopener" href="http://www.oracle.com/">www.oracle.com</a></p>
+</li>
+<li><p>前身Oak语言[橡树],印度尼西亚的<strong>爪哇</strong>岛[咖啡豆 - javabean]</p>
+</li>
+<li><p>诞生于1995年5月23日,96年正式推出jdk1.0版本.</p>
+</li>
+<li><p>商用的jdk版本 - <strong>jdk8.x</strong> , jdk11.x ,jdk16.x</p>
+</li>
+<li><p>java之父 - james gosling 詹姆斯 高斯林</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="Java支持的三个平台"><a href="#Java支持的三个平台" class="headerlink" title="Java支持的三个平台"></a>Java支持的三个平台</h1><blockquote>
+<p>原先的名称j2se , j2ee, j2me</p>
+<ol>
+<li><p>JavaSE - Java Standard Editional - Java标准版</p>
+<p>适合做<strong>桌面应用程序[维护比较麻烦,服务器端如果更新,客户端需要更新]</strong>,包含了java里面的基础的语法,核心</p>
+</li>
+<li><p>JavaEE - 2018年 - JakartaEE - 雅佳达EE - Java Enterprise Editional - Java企业版</p>
+<p>是一套技术的规范的体系.不是一门具体的技术.里面包含了13种核心技术</p>
+<p>比如jdbc,servlet等遵守javaee的规范.现在javaee里面的核心技术已经使用不多了</p>
+<p>现在普遍都在使用spring全家桶中的技术.</p>
+<p>适合做web应用程序[web网站]</p>
+</li>
+<li><p>JavaME - Java Micro Editional - Java微型版,适合做手持设备 - “不用”</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="检测一下jdk的环境变量是否配置成功"><a href="#检测一下jdk的环境变量是否配置成功" class="headerlink" title="检测一下jdk的环境变量是否配置成功"></a>检测一下jdk的环境变量是否配置成功</h1><blockquote>
+<p>打开终端,输入cmd - 输入java -version</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">admindeMacBook-Pro:Desktop admin$ java -version</span><br><span class="line">java version <span class="string">&quot;1.8.0_66&quot;</span></span><br><span class="line">Java(TM) <span class="function">SE Runtime <span class="title">Environment</span> <span class="params">(build <span class="number">1.8</span><span class="number">.0_66</span>-b17)</span></span></span><br><span class="line"><span class="function">Java <span class="title">HotSpot</span><span class="params">(TM)</span> 64-Bit Server <span class="title">VM</span> <span class="params">(build <span class="number">25.66</span>-b17, mixed mode)</span></span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="环境变量的配置"><a href="#环境变量的配置" class="headerlink" title="环境变量的配置"></a>环境变量的配置</h2><blockquote>
+<p>Java.zip - 解压缩 - 比如放在D盘</p>
+</blockquote>
+<blockquote>
+<p>所有的软件不要放在中文目录下,不要放在带有特殊符号的目录下[programe files(x86)]</p>
+<p>尽量不要放在C盘[权限的问题,拒绝你的访问的]</p>
+</blockquote>
+<blockquote>
+<p>桌面 - 右击计算机 - 属性 - 高级系统设置 - 环境变量(N) - 定位到系统变量</p>
+<ol>
+<li><p>新建</p>
+<p>变量名:JAVA_HOME</p>
+<p>变量值:jdk1.8.0_66的绝对路径</p>
+<p>确定</p>
+</li>
+<li><p>找到内置的变量名Path - 编辑 - 新建</p>
+<p>%JAVA_HOME%\bin</p>
+</li>
+<li><p>关闭刚所有打开的设置窗口,重新打开终端[黑窗口]</p>
+<p>win+r - cmd -&gt;输入  java -version</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="Java语言特点"><a href="#Java语言特点" class="headerlink" title="Java语言特点"></a>Java语言特点</h1><blockquote>
+<ol>
+<li>简单</li>
+<li>可移植性</li>
+<li>面向对象 - 核心</li>
+<li>与平台无关性[跨平台性,跨操作系统平台]</li>
+<li>安全性 - 本身是属于强类型的语言.在编译期间就要确定数据的类型.</li>
+</ol>
+</blockquote>
+<h1 id="JDK和JRE和JVM"><a href="#JDK和JRE和JVM" class="headerlink" title="JDK和JRE和JVM"></a>JDK和JRE和JVM</h1><blockquote>
+<p><strong>三者之间的区别</strong> -  简单题 - 笔试</p>
+<ol>
+<li><p>JDK - Java Development Kit - Java开发工具包,针对于开发者的.包含了很多开发工具</p>
+<p>比如java.exe , javac.exe, javadoc.exe , jar.exe等</p>
+<p><strong>JDK中是包含JRE的</strong></p>
+</li>
+<li><p>JRE - Java Runtime Enviroment - Java运行时环境,包含了很多核心的内库.</p>
+<p>针对于使用java语言开发出来软件的用户.如果一个用户仅仅想运行一个java程序的话</p>
+<p>那么计算机中只需要安装jre即可.</p>
+<p><strong>JRE包含JVM</strong></p>
+</li>
+<li><p>JVM - Java Virtual Machine - Java虚拟机 - 后期重点详细介绍jvm[笔试的大头 - 内存模型]</p>
+<p>jvm本身就是用C语言编写的 - jvm的源码通读一遍.</p>
+<p><strong>java程序并不是直接在计算机中进行跑的.而是在虚拟机上执行的.虚拟机是安装在操作系统上的.</strong></p>
+<p><strong>注意的是java语言是跨平台的[使用java语言编写的程序可以运行在不同的os上],但是jvm不是跨平台的</strong></p>
+<p><strong>不同的操作系统需要安装不同的jvm</strong></p>
+</li>
+</ol>
+</blockquote>
+<h1 id="HelloWorld程序"><a href="#HelloWorld程序" class="headerlink" title="HelloWorld程序"></a>HelloWorld程序</h1><blockquote>
+<p>java的基础单元是类class</p>
+<p><strong>类的命名</strong> - 标识符的命名</p>
+<ol>
+<li><p>只能由字母,数字,下划线,$符号组成,但是不能以数字开头</p>
+</li>
+<li><p>推荐使用”大驼峰”命名规则,单词首字母必须要大写.其余单词小写</p>
+</li>
+<li><p>不能是jdk中内置的对象类型[String,System]</p>
+</li>
+<li><p>不能是java中的一些关键字,关键字[java语言赋予了这些单词具备一定的语法含义]</p>
+<p>byte,short,int,long,float,double,char,boolean,if,for,else,while,break,continue,class,</p>
+<p>public,private,protected等</p>
+</li>
+<li><p>不能是java中的保留关键字 - goto,const</p>
+</li>
+<li><p>不推荐使用中文,防止出现乱码问题.</p>
+</li>
+<li><p>不推荐使用中文的拼音</p>
+</li>
+<li><p>推荐见名知意</p>
+</li>
+<li><p>不能是以下三个字面量 - true,false,null</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><blockquote>
+<ol>
+<li><p>在D盘根目下新建一个文件HelloWorld.java</p>
+<p>java的源文件就是以.java为后缀的文件</p>
+</li>
+<li><p>记事本打开HelloWorld.java文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编程语言中,只要出现了符号,一定必须都是英文输入法下的</span></span><br><span class="line"><span class="comment">//整体的结构</span></span><br><span class="line"><span class="comment">//java是以类作为基础的单位的 - 定义类</span></span><br><span class="line"><span class="comment">//关键是class</span></span><br><span class="line"><span class="comment">//类的名称要和文件的名称高度保持一致</span></span><br><span class="line"><span class="comment">//&#123;&#125; - block - 块 - 代码块</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;<span class="comment">//1. 类</span></span><br><span class="line">    <span class="comment">//规范 - 缩进四个空格</span></span><br><span class="line">    <span class="comment">//定义一个main方法 - 程序的&quot;大门&quot;</span></span><br><span class="line">    <span class="comment">//运行该程序的时候,jvm就会自动寻找main方法,然后进入到这个main</span></span><br><span class="line">    <span class="comment">//方法中去执行</span></span><br><span class="line">    <span class="comment">//今天先记住语法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;<span class="comment">//2. 方法</span></span><br><span class="line">       <span class="comment">//方法体,现阶段代码一定是放在方法体内部的.</span></span><br><span class="line">       <span class="comment">//jdk中提供了内置的对象[拥有一些功能],提供好了,开发者就可以直接使用</span></span><br><span class="line">       <span class="comment">//java.lang.System类 - 向控制台输出一句话</span></span><br><span class="line">       System.out.println(<span class="string">&quot;HelloWorld&quot;</span>);<span class="comment">//3. 具体的程序</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><p>java源代码是不能够直接执行的.因为计算机是不识别java语言程序的.</p>
+<p>需要对.java为后缀的源文件进行一个<strong>编译操作</strong>.如果一旦语法发生了问题,都会导致编译失败.</p>
+<p>假设HelloWorld.java文件是放在D盘根目录下,需要打开终端,然后通过dos命令进入到D盘</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">C:/<span class="title">User</span>/<span class="title">admin</span>&gt;<span class="title">d</span>:</span></span><br><span class="line"><span class="function"><span class="title">D</span>:/&gt;<span class="title">javac</span> <span class="title">HelloWorld.java</span></span></span><br></pre></td></tr></table></figure>
 
-block content
-  - var post = page
-  - var post_type = getPropertyByType(post.type)
+<p><code>效果,javac.exe工具其实就是在调用jdk中的编译器,作用:就是.java源文件编译成.class字节码文件</code></p>
+</li>
+<li><p>思考如何运行一个java程序呢?</p>
+<p>利用java.exe</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:/&gt;java HelloWorld</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><blockquote>
+<ol>
+<li>编写.java源代码</li>
+<li>javac.exe - 编译</li>
+<li>java.exe - 执行</li>
+</ol>
+</blockquote>
+<h2 id="Java程序的执行的原理"><a href="#Java程序的执行的原理" class="headerlink" title="Java程序的执行的原理"></a>Java程序的执行的原理</h2><p><img src="/2021/07/15/day01/Users\HP\Desktop\j03s_tech\note\imgs\jvm.png" loading="lazy">  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.java源文件 -&gt; 经过jdk中的编译器,成为.class字节码文件 -&gt; 经过jvm中的解释器[进行逐行翻译(解释)]</span><br><span class="line">-&gt; 机器能够识别的符号</span><br><span class="line"></span><br><span class="line">java属于解释型的语言,<span class="string">&quot;JVM把它YY成以.class字节码为指令的CPU&quot;</span></span><br><span class="line"></span><br><span class="line">编译型语言 - C语言,将这个语言编写的程序直接编译成计算机能够执行的程序.比如C语言写的代码可以直接编译成可执行文件 xx.exe</span><br><span class="line"></span><br><span class="line">C语言执行的性能高于java语言(每次执行都会经过jvm解释器进行解释)</span><br></pre></td></tr></table></figure>
 
-  #post
-    article.hty-card.post-block(itemscope, itemtype='https://schema.org/Article')
-      include _partial/post/post-schema.pug
-      header.post-header
-        h1.post-title(itemprop='name headline', style=post.type ? `color: ${post_type.color}` : '')
-          if post.type
-            +icon(post_type.icon)
-          | #{post.title}
+<h1 id="集成开发环境"><a href="#集成开发环境" class="headerlink" title="集成开发环境"></a>集成开发环境</h1><blockquote>
+<ol>
+<li><p>eclipse[日食] - 免费的,IBM公司的产品[收购SUN公司的] </p>
+</li>
+<li><p>idea - 最好的,收费的</p>
+<p>d:/aistar/j03s_student</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="Java中的包-package"><a href="#Java中的包-package" class="headerlink" title="Java中的包-package"></a>Java中的包-package</h1><blockquote>
+<ol>
+<li><p>包是用来管理类的.包的本质就是一个文件夹.包对于类的作用相当于文件夹对于文件的作用.</p>
+</li>
+<li><p>包的命名规则</p>
+<p>2-1. 推荐全部采用小写字母,如果出现多个单词,请你用.隔开,.隔开的每个部分都是一个目录</p>
+<p>2-2. 包的命名推荐采用公司的域名倒置[唯一性] + 项目代号</p>
+<p>​       com.baidu.car   tech.aistar</p>
+<p>2-3. 不用采用java或者javax开头 - 因为jdk中的内置的类和拓展的类都是在java或者javax包中.</p>
+</li>
+<li><p>一旦创建了package,需要在类文件的<strong>首行</strong>采用<strong>package关键字来声明包.</strong></p>
+</li>
+</ol>
+</blockquote>
+<h1 id="java中三种注释"><a href="#java中三种注释" class="headerlink" title="java中三种注释"></a>java中三种注释</h1><blockquote>
+<ol>
+<li><p>单行注释 //   ctrl+/  添加/取消注释</p>
+</li>
+<li><p>多行注释</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> *  多行注释的内容 - 注释的内容是不会经过jdk的编译器的</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure></li>
+<li><p>文档注释</p>
+<blockquote>
+<p>可以生成文档树</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 放在类上面</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">* 放在方法上</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></blockquote>
+</li>
+</ol>
+</blockquote>
+<h1 id="main方法细节"><a href="#main方法细节" class="headerlink" title="main方法细节"></a>main方法细节</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>[公开的,公共的] <span class="keyword">static</span>[静态的] - 都是属于后期学习OO中的修饰符</span><br><span class="line">修饰符在使用的时候,之间是没有顺序的.</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;...&#125;    <span class="comment">//ok</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;...&#125;   <span class="comment">//ok</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//jdk8中方法的参数支持可变长参数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String... args)</span></span>&#123;...&#125;  <span class="comment">//ok</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//args - 我们传给虚拟机的参数</span></span><br></pre></td></tr></table></figure>
 
-          if theme.post_edit.enable
-            include _partial/post/post-edit.pug
 
-        include _partial/post/post-meta.pug
 
-        if post.url
-          a.hty-button.hty-button--raised(href=url_for(post.url), style=`margin-top: 1rem;background-color:${post_type.color}`)=__('post.view_link')
+<h1 id="输出语句"><a href="#输出语句" class="headerlink" title="输出语句"></a>输出语句</h1><blockquote>
+<ol>
+<li><p>System.out.println(); // 换行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.print(<span class="string">&quot;\n&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p>\n和\r</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day01;<span class="comment">/** * 本类用来演示: \n \r * * <span class="doctag">@author</span>: success * <span class="doctag">@date</span>: 2021/7/15 3:18 下午 */</span><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NrDemo</span> </span>&#123;    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        <span class="comment">//相当于是System.out.println(&quot;hello&quot;);        System.out.print(&quot;hello\n&quot;);//输出之后不换行        System.out.println(&quot;world&quot;);        // \n - 当输出完毕之后,光标停在下一行的起始位置 - 换行        // \r - 当输出完毕之后,光标停在当前行的起始位置 回车        // \n\r 诞生的场景就是早期的打字机        //外面的终端执行的结果是 - veyy    √        //伪终端显示的结果是 - ve        System.out.println(&quot;Loyy\rve&quot;);    &#125;&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h1><blockquote>
+<p>\ 是代表转义字符</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>\n - 当输出完毕之后,光标停在下一行的起始位置 - 换行</p>
+</li>
+<li><p>\r - 当输出完毕之后,光标停在当前行的起始位置 回车</p>
+</li>
+<li><p>\b - 退格</p>
+</li>
+<li><p>\t - 制表符,相当于tab键,默认是空4格</p>
+</li>
+<li><p>双引号</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\<span class="string">&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>单引号</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\<span class="string">&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>单个\</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\\</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day01;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 特殊字符</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/7/15 3:35 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SignDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//\b - 退格</span></span><br><span class="line">        System.out.println(<span class="string">&quot;xxx\byy&quot;</span>);<span class="comment">//xxyy</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//\t - 制表符,相当于tab键,默认是空4格</span></span><br><span class="line">        System.out.println(<span class="string">&quot;hello\tworld&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//输出 james:&quot;success is good boy&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//双引号</span></span><br><span class="line">        System.out.println(<span class="string">&quot;james:\&quot;success is good boy\&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// \ 转义含义</span></span><br><span class="line">        <span class="comment">//单个\</span></span><br><span class="line">        System.out.println(<span class="string">&quot;D:\\temp\\news&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//输出\\</span></span><br><span class="line">        System.out.println(<span class="string">&quot;\\\\&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      section.post-body(itemprop='articleBody')
-        .post-content.markdown-body(style=`--smc-primary:${theme.colors.primary};`)!=post.content
 
-        if theme.reward.enable && page.reward !== false
-          include _partial/post/reward.pug
 
-        if theme.creative_commons.license && theme.creative_commons.post
-          include _partial/post/post-copyright.pug
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><blockquote>
+<p><strong>编程的核心就是从定义变量开始</strong></p>
+<p>java语言是一个<strong>强类型的语言</strong>[在编译期间必须要确定好数据的类型],javascript弱类型的语言</p>
+<p>变量的本质 - “内存中某块区域的名称”,编程的任务就是对数据进行crud+数据分析的操作.</p>
+<p>但是前提是数据需要先进行存储[内存,磁盘(文件,db数据库) - JVM内存</p>
+<p>“JVM对字节码文件进行解释的前奏工作 - 把这个字节码文件加载到自己的内存中,java只能操作内存中的数据”</p>
+<p>java中是如何定义和存储简单的这些数据呢?</p>
+<p><strong>就是通过数据类型以及变量来定义和存储的.</strong></p>
+</blockquote>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><blockquote>
+<p>java中的数据类型有两大块</p>
+<ol>
+<li><p><strong>基本数据类型(8种)</strong> - 编程思想中将void归纳为第9种</p>
+<p>数据类型决定了存储数据的这块空间的大小,并且这个大小一旦确定了,将不能够改变了.</p>
+</li>
+<li><p>对象类型(无数种)</p>
+<p>2-1. 内置对象类型 - System,String - Jdk中提供的类</p>
+<p>2-2. 自定义对象类型 - 自己定义的那些类HelloWorld,SignDemo</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="八种基本数据类型"><a href="#八种基本数据类型" class="headerlink" title="八种基本数据类型"></a>八种基本数据类型</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>名称</th>
+<th>大小</th>
+<th>范围</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>字节</td>
+<td>占1个字节8bit</td>
+<td>-128~127</td>
+<td>0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>短整型</td>
+<td>占2个字节16bit</td>
+<td>-2^15~2^15-1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>整型</td>
+<td>占4个字节32bit</td>
+<td>-2^31~2^31-1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>长整型</td>
+<td>占8个字节64bit</td>
+<td>-2^63~2^63-1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>单精度浮点数</td>
+<td>占4个字节32bit</td>
+<td>+-(3.4*10^38)</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点数</td>
+<td>占8个字节64bit</td>
+<td>+-(1.798*10^308)</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>char</td>
+<td>字符</td>
+<td>占2个字节16bit</td>
+<td>0~65535</td>
+<td>‘\u0000’空格</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>布尔类型</td>
+<td>占1个字节8bit</td>
+<td>true/false</td>
+<td>false</td>
+</tr>
+</tbody></table>
+<h2 id="变量的定义"><a href="#变量的定义" class="headerlink" title="变量的定义"></a>变量的定义</h2><blockquote>
+<p>变量的命名的规范请你参考类的命名规范,除了类的命名采用的”大驼峰”,而变量命名采用的是”小驼峰”</p>
+<p>“小驼峰” - 首字母小写,其余每个单词的首字母大写.比如<strong>studentAge</strong></p>
+</blockquote>
+<p><code>语法</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">数据类型 变量名 [= 变量值];</span><br></pre></td></tr></table></figure>
 
-    if post.prev || post.next
-      include _partial/post/post-nav.pug
+<h2 id="剖析变量的背后"><a href="#剖析变量的背后" class="headerlink" title="剖析变量的背后"></a>剖析变量的背后</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day01;<span class="comment">/** * 本类用来演示: 变量入门 * * <span class="doctag">@author</span>: success * <span class="doctag">@date</span>: 2021/7/15 3:43 下午 */</span><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VarDemo</span> </span>&#123;    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;        <span class="comment">//数据类型 变量名 [= 变量值];        byte b = 10;        //代码的背后 - 埋了个&quot;种子&quot;,&quot;发芽&quot;        //1. 数据肯定是存储在JVM内存中的        //2. 定义在方法内部的变量 - 局部变量[JVM的栈区]        //3. 局部变量的生命周期是伴随着方法(main)的调用的开始和结束        //讲解的本质        //流程        //1. JVM加载VarDemo.class到内存        //2. JVM找到main方法想要去执行里面的程序        //3. 此处需要申请一块区域来保存数据10        //   3-1. 区域的大小由前面的数据类型来决定的 - int类型 - 区域4个字节32bit的大小        //   3-2. 栈里面的区域的大小一旦被确定了,就不能改变 - 肯定有的时候会有内存的浪费        //   3-3. 虽然空间浪费了,但是读取的效率会提高 - 典型的&quot;以空间换时间&quot;        //4. 只要是内存中的空间,这个空间必然会有一个地址,所以变量的存在是为了给这个区域取了个名字        //   变量是为了方便用户来通过它访问到这个空间中存储的具体的那个值的        //把整数10赋值给一个int类型的变量a        int a = 10;        System.out.println(a);        // == 比较的就是&quot;坑 - 区域&quot;里面存储的数据        System.out.println(b == a);//true    &#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="数据类型的转换"><a href="#数据类型的转换" class="headerlink" title="数据类型的转换"></a>数据类型的转换</h1><blockquote>
+<p>常识规定</p>
+<p>a. java中看到一个整数,默认就是int类型</p>
+<p>b. java中看到一个小数,默认就是double类型</p>
+<p>c. 大的数据类型和小的数据类型进行计算的时候,计算得到的结果是偏向类型大的一方.</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>自动转换</p>
+<p>小的数据类型可以自动转换成大的数据类型.</p>
+<p><strong>byte-&gt;short-&gt;int-&gt;long</strong></p>
+<p><strong>char-&gt;int</strong></p>
+<p><strong>int-&gt;double</strong></p>
+</li>
+<li><p>强制类型转换</p>
+<p>大的数据类型转换成小的数据类型的时候,需要进行强制类型转换的操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MaxType 变量<span class="number">1</span> = 值<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">MinType 变量<span class="number">2</span> = (MinType)变量<span class="number">1</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>隐式转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>-&gt;<span class="keyword">long</span></span><br><span class="line">整数后面添加l/L</span><br><span class="line"></span><br><span class="line"><span class="keyword">double</span>-&gt;<span class="keyword">float</span></span><br><span class="line">小数后面加上f/F</span><br><span class="line"></span><br><span class="line">推荐在<span class="keyword">double</span>后面加上d/D - 提高语义</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+</div><div id="reward-container"><span class="hty-icon-button button-glow" id="reward-button" title="打赏" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === &quot;none&quot;) ? &quot;block&quot; : &quot;none&quot;;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hand-coin-line"></use></svg></span><div id="reward-comment">I'm so cute. Please give me money.</div><div id="qr" style="display:none;"><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/alipay-qrcode.jpg" alt="支付宝" title="支付宝"></a><div><span style="color:#00A3EE"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-alipay-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/qqpay-qrcode.png" alt="QQ 支付" title="QQ 支付"></a><div><span style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></div></div><div style="display:inline-block"><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg"><img loading="lazy" src="https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/donate/wechatpay-qrcode.jpg" alt="微信支付" title="微信支付"></a><div><span style="color:#2DC100"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wechat-pay-line"></use></svg></span></div></div></div></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>John Doe</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://example.com/2021/07/15/day01/" title="day01">http://example.com/2021/07/15/day01/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/07/16/day02/" rel="prev" title="day02"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">day02</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2021/07/13/hexoA/" rel="next" title="hexoA"><span class="post-nav-text">hexoA</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div class="comment-tooltip text-center"><span>要不要和我说些什么？</span><br></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> John Doe</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v5.4.0</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v1.7.0</span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div></body></html>
