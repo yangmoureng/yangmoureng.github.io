@@ -1,154 +1,217 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>hexoA | Hexo</title><meta name="keywords" content="springcloud"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="springcloud的组件哪些? Eureka,Ribbon,Feign  Eureka - 治理服务 -SOA架构 Eureka-server - 服务中心 - 可以做集群 - 降低各个服务之间耦合.服务于服务之间不需要关心具体怎么通信. Eureka-client - 服务客户端,每次启动客户端的时候,需要将客户端的信息[名称,网络信息]注册到eureka-server 每30s会向eu">
-<meta property="og:type" content="article">
-<meta property="og:title" content="hexoA">
-<meta property="og:url" content="http://example.com/2021/10/19/springclound/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="springcloud的组件哪些? Eureka,Ribbon,Feign  Eureka - 治理服务 -SOA架构 Eureka-server - 服务中心 - 可以做集群 - 降低各个服务之间耦合.服务于服务之间不需要关心具体怎么通信. Eureka-client - 服务客户端,每次启动客户端的时候,需要将客户端的信息[名称,网络信息]注册到eureka-server 每30s会向eu">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
-<meta property="article:published_time" content="2021-10-19T07:20:57.000Z">
-<meta property="article:modified_time" content="2021-10-20T05:28:04.560Z">
-<meta property="article:author" content="John Doe">
-<meta property="article:tag" content="springcloud">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/10/19/springclound/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
-    },
-    fancybox: {
-      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isanchor: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'hexoA',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2021-10-20 13:28:04'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
 
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
 
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>hexoA - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
   
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
+  <meta name="description" content="
+
+springcloud的组件哪些?
+Eureka,...">
+  <meta name="author" content="John Doe">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
   
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
     
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
         }
-      }
-    
-    const detectApple = () => {
-      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
       }
     }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">hexoA</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-19T07:20:57.000Z" title="发表于 2021-10-19 15:20:57">2021-10-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-20T05:28:04.560Z" title="更新于 2021-10-20 13:28:04">2021-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/note/">note</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="hexoA"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">hexoA</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">hexoA</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 19, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>40461</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <blockquote>
 <ol>
 <li><p>springcloud的组件哪些?</p>
 <p>Eureka,Ribbon,Feign</p>
@@ -195,7 +258,7 @@
 </ul>
 </li>
 <li><p>微服务架构图</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\small.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\small.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 </li>
 <li><p>微服务好处</p>
 <ul>
@@ -232,36 +295,36 @@
 <li><p>SpringCloud的组件相当繁杂，拥有诸多子项目。重点关注Netflix</p>
 </li>
 </ul>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\springcloud.jpg"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\springcloud.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>下面简单介绍下经常用的5个:</p>
 <p>服务发现——Netflix Eureka</p>
 <p>客服端负载均衡——Netflix Ribbon(<strong>重点掌握Netflix Feign</strong>)</p>
 <p>断路器——Netflix Hystrix</p>
 <p>服务网关——Netflix Zuul</p>
 <p>分布式配置——Spring Cloud Config</p>
-<h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\eureka.jpg"> </p>
+<h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\eureka.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>作用：实现服务治理（服务注册与发现）</p>
 <p>简介：Spring Cloud Eureka是Spring Cloud Netflix[停止更新]项目下的服务治理模块。</p>
 <p>由两个组件组成：Eureka服务端和Eureka客户端。</p>
 <p>Eureka服务端用作服务注册中心。支持集群部署。</p>
 <p>Eureka客户端是一个java客户端，用来处理服务注册与发现。</p>
 <p>在应用启动时，Eureka客户端向服务端注册自己的服务信息，同时将服务端的服务信息缓存到本地。客户端会和服务端周期性的进行心跳交互，以更新服务租约和服务信息。</p>
-<h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\ribbon.jpg"> </p>
+<h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\ribbon.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>作用：Ribbon，主要提供客户侧的软件负载均衡算法。</p>
 <p>简介：Spring Cloud Ribbon是一个基于HTTP和TCP的客户端负载均衡工具，它基于Netflix Ribbon实现。通过Spring Cloud的封装，可以让我们轻松地将面向服务的REST模版请求自动转换成客户端负载均衡的服务调用。</p>
 <p>注意看上图，关键点就是将外界的rest调用，根据负载均衡策略转换为微服务调用。Ribbon有比较多的负载均衡策略，以后专门讲解。</p>
-<h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\hystrix.jpg"> </p>
+<h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\hystrix.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>作用：断路器，保护系统，控制故障范围。</p>
 <p>简介：为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
-<h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\zuul.jpg">  </p>
+<h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\zuul.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
 <p>作用：api网关，路由，负载均衡等多种作用</p>
 <p>简介：类似nginx，反向代理的功能，不过netflix自己增加了一些配合其他组件的特性。</p>
 <p>在微服务架构中，后端服务往往不直接开放给调用端，而是通过一个API网关根据请求的url，路由到相应的服务。当添加API网关后，在第三方调用端和服务提供方之间就创建了一面墙，这面墙直接与调用方通信进行权限控制，后将请求均衡分发给后台服务端。</p>
-<h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\config.jpg"> </p>
+<h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\config.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>作用：配置管理</p>
 <p>简介：SpringCloud Config提供服务器端和客户端。服务器存储后端的默认实现使用git，因此它轻松支持标签版本的配置环境，以及可以访问用于管理内容的各种工具。</p>
 <p>这个还是静态的，得配合Spring Cloud Bus实现动态的配置更新。</p>
-<h2 id="相关组件架构图"><a href="#相关组件架构图" class="headerlink" title="相关组件架构图"></a>相关组件架构图</h2><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\all.png">  </p>
+<h2 id="相关组件架构图"><a href="#相关组件架构图" class="headerlink" title="相关组件架构图"></a>相关组件架构图</h2><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\all.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
 <p>从上图可以看出Spring Cloud各个组件相互配合，合作支持了一套完整的微服务架构。</p>
 <ul>
 <li>其中Eureka负责服务的注册与发现，很好将各服务连接起来</li>
@@ -329,7 +392,7 @@
 <ul>
 <li><p>自我保护</p>
 <p>本地调试Eureka的程序时，会出现：　</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\safe.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\safe.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>该警告是触发了Eureka Server的自我保护机制。</p>
 <p>Eureka Server在运行期间，会统计心跳失败的比例在15分钟之内是否低于85%，如果低于，就会将当前实例注册信息保护起来，让实例不会过期，尽可能保护这些注册信息。</p>
 <p>但是如果在保护期间，实例出现问题，那么客户端很容易拿到实际已经不存在的服务实例，会出现调用失败。这个时候客户端的容错机制就很重要了。（重新请求，断路器）</p>
@@ -353,7 +416,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="comment">//开启注册中心</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaDemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(EurekaDemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>访问网页,查看EurekaServer</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\server.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\server.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 </li>
 </ul>
 <h1 id="生产者和消费者注册及调用实战"><a href="#生产者和消费者注册及调用实战" class="headerlink" title="生产者和消费者注册及调用实战"></a>生产者和消费者注册及调用实战</h1><h2 id="生产者-user-demo"><a href="#生产者-user-demo" class="headerlink" title="生产者 - user-demo"></a>生产者 - user-demo</h2><ul>
@@ -373,7 +436,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderDemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(OrderDemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>最后,一次启动服务注册中心eureka-demo,user-demo和order-demo</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\user-order.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\user-order.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <h1 id="Feign介绍"><a href="#Feign介绍" class="headerlink" title="Feign介绍"></a>Feign介绍</h1><p>Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单。使用Feign，只需要创建一个接口并注解。Feign默认集成了Ribbon，并和Eureka结合，默认实现了<strong>负载均衡</strong>的效果</p>
 <p>简而言之：</p>
 <p>Feign 采用的是基于接口的注解</p>
@@ -393,7 +456,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaClient</span></span><br><span class="line"><span class="meta">@EnableFeignClients</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderDemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(OrderDemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>测试</p>
 <p>分别启动eureka-demo,user-demo,order-demo</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\order_invoke_user.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\order_invoke_user.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 </li>
 </ul>
 <h2 id="Feign负载均衡效果测试"><a href="#Feign负载均衡效果测试" class="headerlink" title="Feign负载均衡效果测试"></a>Feign负载均衡效果测试</h2><ul>
@@ -411,10 +474,10 @@
 <li><p>启动order-demo</p>
 </li>
 <li><p>测试1 - <a target="_blank" rel="noopener" href="http://localhost:8882/order?id=2&amp;name=tom">http://localhost:8882/order?id=2&amp;name=tom</a></p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\feign01.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\feign01.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 </li>
 <li><p>测试2 - <a target="_blank" rel="noopener" href="http://localhost:8882/order?id=2&amp;name=tom">http://localhost:8882/order?id=2&amp;name=tom</a></p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\feign02.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\feign02.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p><strong>采用”轮询”的方式进行调用!</strong></p>
 </li>
 <li><p>测试3 - 断掉其中一个user-demo的服务实例,再次输入上面的地址进行测试</p>
@@ -426,9 +489,9 @@
 <p>在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用，在Spring Cloud可以用RestTemplate+Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100%可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
 <p>为了解决这个问题，业界提出了断路器模型。</p>
 <h2 id="熔断器简介"><a href="#熔断器简介" class="headerlink" title="熔断器简介"></a>熔断器简介</h2><p>Netflix开源了Hystrix组件，实现了断路器模式，SpringCloud对这一组件进行了整合。 在微服务架构中，一个请求需要调用多个服务是非常常见的，如下图：</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\hystrix01.png">  </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\hystrix01.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
 <p>较底层的服务如果出现故障，会导致连锁故障。当对特定的服务的调用的不可用达到一个阀值（Hystric 是5秒20次） 断路器将会被打开。</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\hystrix02.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\hystrix02.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>断路打开后，可用避免连锁故障，fallback方法可以直接返回一个固定值。</p>
 <h2 id="hystrix特性"><a href="#hystrix特性" class="headerlink" title="hystrix特性"></a>hystrix特性</h2><ul>
 <li><p>请求熔断： 当Hystrix Command请求后端服务失败数量超过一定比例(默认50%), 断路器会切换到开路状态(Open). 这时所有请求会直接失败而不会发送到后端服务. 断路器保持在开路状态一段时间后(默认5秒), 自动切换到半开路状态(HALF-OPEN).</p>
@@ -446,7 +509,7 @@
 <li><p><strong>请求合并</strong>：我依赖于某一个服务，我要调用N次，比如说查数据库的时候，我发了N条请求发了N条SQL然后拿到一堆结果，这时候我们可以把多个请求合并成一个请求，发送一个查询多条数据的SQL的请求，这样我们只需查询一次数据库，提升了效率。</p>
 </li>
 </ul>
-<h2 id="hystrix流程结构解析"><a href="#hystrix流程结构解析" class="headerlink" title="hystrix流程结构解析"></a>hystrix流程结构解析</h2><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\hystrix03.png">  </p>
+<h2 id="hystrix流程结构解析"><a href="#hystrix流程结构解析" class="headerlink" title="hystrix流程结构解析"></a>hystrix流程结构解析</h2><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\hystrix03.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
 <p>流程说明:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>:每次调用创建一个新的HystrixCommand,把依赖调用封装在run()方法中.</span><br><span class="line"><span class="number">2</span>:执行execute()/queue做同步或异步调用.</span><br><span class="line"><span class="number">3</span>:判断熔断器(circuit-breaker)是否打开,如果打开跳到步骤<span class="number">8</span>,进行降级策略,如果关闭进入步骤.</span><br><span class="line"><span class="number">4</span>:判断线程池/队列/信号量是否跑满，如果跑满进入降级步骤<span class="number">8</span>,否则继续后续步骤.</span><br><span class="line"><span class="number">5</span>:调用HystrixCommand的run方法.运行依赖逻辑</span><br><span class="line">5a:依赖逻辑调用超时,进入步骤<span class="number">8.</span></span><br><span class="line"><span class="number">6</span>:判断逻辑是否调用成功</span><br><span class="line">6a:返回成功调用结果</span><br><span class="line">6b:调用出错，进入步骤<span class="number">8.</span></span><br><span class="line"><span class="number">7</span>:计算熔断器状态,所有的运行状态(成功, 失败, 拒绝,超时)上报给熔断器，用于统计从而判断熔断器状态.</span><br><span class="line"><span class="number">8</span>:getFallback()降级逻辑.</span><br><span class="line">  以下四种情况将触发getFallback调用：</span><br><span class="line"> (<span class="number">1</span>):run()方法抛出非HystrixBadRequestException异常。</span><br><span class="line"> (<span class="number">2</span>):run()方法调用超时</span><br><span class="line"> (<span class="number">3</span>):熔断器开启拦截调用</span><br><span class="line"> (<span class="number">4</span>):线程池/队列/信号量是否跑满</span><br><span class="line">8a:没有实现getFallback的Command将直接抛出异常</span><br><span class="line">8b:fallback降级逻辑调用成功直接返回</span><br><span class="line">8c:降级逻辑调用失败抛出异常</span><br><span class="line"><span class="number">9</span>:返回执行成功结果</span><br></pre></td></tr></table></figure>
 
@@ -479,11 +542,11 @@
 <li><p>测试:<a target="_blank" rel="noopener" href="http://localhost:8882/testpool">http://localhost:8882/testpool</a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val1=hystrix-UserPool-<span class="number">1</span> || 库里val2=hystrix-OrderPool-<span class="number">1</span> || 篮球val3=hystrix-OrderPool-<span class="number">2</span> || 足球</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="请求合并"><a href="#请求合并" class="headerlink" title="请求合并"></a>请求合并</h2><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\merge01.png"> </p>
+<h2 id="请求合并"><a href="#请求合并" class="headerlink" title="请求合并"></a>请求合并</h2><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\merge01.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>如图，多个客户端发送请求调用(消费者)项目中的findOne方法，这时候在这个项目中的线程池中会发申请与请求数量相同的线程数，对EurekaServiceProvider(服务提供者)的getUserById方法发起调用，每个线程都要调用一次，在高并发的场景下，这样势必会对服务提供者项目产生巨大的压力。</p>
 <p>请求合并就是将单个请求合并成一个请求，去调用服务提供者，从而降低服务提供者负载的，一种应对高并发的解决办法</p>
 <h3 id="请求合并的原理"><a href="#请求合并的原理" class="headerlink" title="请求合并的原理"></a>请求合并的原理</h3><p>NetFlix在Hystrix为我们提供了应对高并发的解决方案—-请求合并，如下图</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\merge02.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\merge02.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>通过请求合并器设置延迟时间，将时间内的，多个请求单个的对象的方法中的参数（id）取出来，拼成符合服务提供者的多个对象返回接口（getUsersByIds方法）的参数，指定调用这个接口（getUsersByIds方法），返回的对象List再通过一个方法（mapResponseToRequests方法），按照请求的次序将结果对象对应的装到Request对应的Response中返回结果。</p>
 <h3 id="请求合并适用场景"><a href="#请求合并适用场景" class="headerlink" title="请求合并适用场景"></a>请求合并适用场景</h3><p>在服务提供者提供了返回单个对象和多个对象的查询接口，并且单个对象的查询并发数很高，服务提供者负载较高的时候，我们就可以使用请求合并来降低服务提供者的负载</p>
 <h3 id="请求合并带来的问题"><a href="#请求合并带来的问题" class="headerlink" title="请求合并带来的问题"></a>请求合并带来的问题</h3><ol>
@@ -507,7 +570,7 @@
 <li><p>控制层</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 请求缓存</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@GetMapping(&quot;/getCache&quot;)</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getCache</span><span class="params">()</span></span>&#123;</span><br><span class="line">       HystrixRequestContext context = HystrixRequestContext.initializeContext();</span><br><span class="line">  </span><br><span class="line">       Long key = <span class="number">9999L</span>;</span><br><span class="line">       String u1 = orderService.getUser(<span class="number">1</span>,key);</span><br><span class="line">       String u2 = orderService.getUser(<span class="number">2</span>,<span class="number">9998L</span>);</span><br><span class="line">  </span><br><span class="line">       context.close();</span><br><span class="line">  </span><br><span class="line">       <span class="keyword">return</span> <span class="string">&quot;u1:&quot;</span>+u1+<span class="string">&quot;,u2:&quot;</span>+u2;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h1 id="路由网关zuul"><a href="#路由网关zuul" class="headerlink" title="路由网关zuul"></a>路由网关zuul</h1><h2 id="为什么需要服务网关"><a href="#为什么需要服务网关" class="headerlink" title="为什么需要服务网关"></a>为什么需要服务网关</h2><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\zuul01.webp"> </p>
+<h1 id="路由网关zuul"><a href="#路由网关zuul" class="headerlink" title="路由网关zuul"></a>路由网关zuul</h1><h2 id="为什么需要服务网关"><a href="#为什么需要服务网关" class="headerlink" title="为什么需要服务网关"></a>为什么需要服务网关</h2><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\zuul01.webp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>在分布式系统系统中，有商品、订单、用户、广告、支付等等一大批的服务，前端怎么调用呢？和每个服务一个个打交道？这显然是不可能的，这就需要有一个角色充当所有请求的入口，这个角色就是服务网关（API gateway）</p>
 <h2 id="客户端直接与微服务通讯的问题"><a href="#客户端直接与微服务通讯的问题" class="headerlink" title="客户端直接与微服务通讯的问题"></a>客户端直接与微服务通讯的问题</h2><ol>
 <li>客户端会多次请求不同的微服务，增加了客户端的复杂性。</li>
@@ -559,7 +622,7 @@
 
 
 <h1 id="高可用分布式配置中心"><a href="#高可用分布式配置中心" class="headerlink" title="高可用分布式配置中心"></a>高可用分布式配置中心</h1><p>在分布式系统中，由于服务数量巨多，为了方便服务配置文件统一管理，所以需要分布式配置中心组件。在Spring Cloud中，有分布式配置中心组件spring cloud config ，它支持配置服务放在配置服务的内存中（即本地），也支持放在远程Git仓库中。在spring cloud config 组件中，分两个角色，一是config server，二是config client。</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\config01.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\config01.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <h2 id="没有使用统一配置中心时，所存在的问题"><a href="#没有使用统一配置中心时，所存在的问题" class="headerlink" title="没有使用统一配置中心时，所存在的问题"></a>没有使用统一配置中心时，所存在的问题</h2><ul>
 <li>配置文件分散在各个项目里，不方便维护</li>
 <li>配置内容安全与权限，实际开发中，开发人员是不知道线上环境的配置的</li>
@@ -579,7 +642,7 @@
 <li><p>创建测试的配置文件</p>
 <ul>
 <li><p>文件名-环境名.后缀</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\dev.png"></p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\dev.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 </li>
 </ul>
 </li>
@@ -604,7 +667,7 @@
 <p><a target="_blank" rel="noopener" href="http://localhost:9201/value">http://localhost:9201/value</a></p>
 </li>
 </ul>
-<h1 id="Config-Bus-实现动态刷新"><a href="#Config-Bus-实现动态刷新" class="headerlink" title="Config+Bus : 实现动态刷新"></a>Config+Bus : 实现动态刷新</h1><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\bus.png"> </p>
+<h1 id="Config-Bus-实现动态刷新"><a href="#Config-Bus-实现动态刷新" class="headerlink" title="Config+Bus : 实现动态刷新"></a>Config+Bus : 实现动态刷新</h1><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\bus.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <ul>
 <li><p>config-client-demo模块添加依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--消息总件组件--&gt;</span><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-bus-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
@@ -633,7 +696,7 @@
 <li>跟踪机制(Tracing)：如果消息异常，RabbitMQ 提供了消息跟踪机制，使用者可以找出发生了什么。</li>
 <li>插件机制(Plugin System)：RabbitMQ 提供了许多插件，来从多方面进行扩展，也可以编写自己的插件</li>
 </ul>
-<h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\rbm.png"> </p>
+<h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\rbm.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <h2 id="主要概念"><a href="#主要概念" class="headerlink" title="主要概念"></a>主要概念</h2><p><strong>RabbitMQ Server</strong>： 也叫broker server，它是一种传输服务。 他的角色就是维护一条从Producer到Consumer的路线，保证数据能够按照指定的方式进行传输。</p>
 <p>Producer： 消息生产者，如图A、B、C，数据的发送方。消息生产者连接<strong>RabbitMQ</strong>服务器然后将消息投递到Exchange。</p>
 <p><strong>Consumer</strong>：消息消费者，如图1、2、3，数据的接收方。消息消费者订阅队列，RabbitMQ将Queue中的消息发送到消息消费者。</p>
@@ -644,7 +707,7 @@
 <p><strong>Channels</strong>： （信道）：它建立在上述的TCP连接中。数据流动都是在Channel中进行的。也就是说，一般情况是程序起始建立TCP连接，第二步就是建立这个Channel。</p>
 <p><strong>VirtualHost</strong>：权限控制的基本单位，一个VirtualHost里面有若干Exchange和MessageQueue，以及指定被哪些user使用.</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>自己搞定</p>
-<h2 id="RabbitMQ三种模式"><a href="#RabbitMQ三种模式" class="headerlink" title="RabbitMQ三种模式"></a>RabbitMQ三种模式</h2><h3 id="直接模式"><a href="#直接模式" class="headerlink" title="直接模式"></a>直接模式</h3><p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\direct.png"> </p>
+<h2 id="RabbitMQ三种模式"><a href="#RabbitMQ三种模式" class="headerlink" title="RabbitMQ三种模式"></a>RabbitMQ三种模式</h2><h3 id="直接模式"><a href="#直接模式" class="headerlink" title="直接模式"></a>直接模式</h3><p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\direct.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>我们需要将消息发给唯一一个节点时使用这种模式，这是最简单的一种形式。</p>
 <p>任何发送到Direct Exchange的消息都会被转发到RouteKey中指定的Queue。</p>
 <p>一般情况可以使用rabbitMQ自带的Exchange：””(该Exchange的名字为空字符串，下文称其为default Exchange)。</p>
@@ -652,7 +715,7 @@
 <ul>
 <li><p>创建队列</p>
 <p>首先在浏览器登录RabbitMQ：<a target="_blank" rel="noopener" href="http://192.168.228.129:15672/">http://192.168.2XX.129:15672</a> ，按照下图创建一个队列就可以了:</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\d00.png"></p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\d00.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
 </li>
 <li><p>代码</p>
 <ul>
@@ -679,7 +742,7 @@
 </li>
 </ul>
 <h2 id="分裂模式"><a href="#分裂模式" class="headerlink" title="分裂模式"></a>分裂模式</h2><p>当我们需要将消息一次发给多个队列时，需要使用这种模式。如下图：</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\exchange.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\exchange.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>任何发送到Fanout Exchange的消息都会被转发到与该Exchange绑定(Binding)的所有Queue上。</p>
 <ol>
 <li>可以理解为路由表的模式</li>
@@ -695,10 +758,10 @@
 <p><img src></p>
 </li>
 <li><p>创建j05_alls交换器</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\fadeout.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\fadeout.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 </li>
 <li><p>将j05_alls交换器和三个队列进行绑定</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\binding.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\binding.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>这样向j05_alls交换器里发消息，交换器就会向绑定的三个消息队列里面发消息（）。</p>
 </li>
 </ul>
@@ -720,15 +783,189 @@
 </li>
 </ul>
 <h3 id="主题模式"><a href="#主题模式" class="headerlink" title="主题模式"></a>主题模式</h3><p>任何发送到Topic Exchange的消息都会被转发到所有关心RouteKey中指定话题的Queue上</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\topic_exchange.png"> </p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\topic.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\topic_exchange.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\topic.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>如上图所示此类交换器使得来自不同的源头的消息可以到达一个对列，其实说的更明白一点就是模糊匹配的意思，例如：上图中红色对列的routekey为usa.#，#代表匹配任意字符，但是要想消息能到达此对列，usa.必须匹配后面的#好可以随意。图中usa.newsusa.weather,都能找到红色队列，符号 # 匹配一个或多个词，符号 * 匹配不多不少一个词。因此 usa.# 能够匹配到 usa.news.XXX ，但是 usa.* 只会匹配到 usa.XXX 。</p>
 <p>注：<br>交换器说到底是一个名称与队列绑定的列表。当消息发布到交换器时，实际上是由你所连接的信道，将消息路由键同交换器上绑定的列表进行比较，最后路由消息。任何发送到Topic Exchange的消息都会被转发到所有关心RouteKey中指定话题的Queue上</p>
 <p>这种模式较为复杂，简单来说，就是每个队列都有其关心的主题，所有的消息都带有一个“标题”(RouteKey)，Exchange会将消息转发到所有关注主题能与RouteKey模糊匹配的队列。<br>这种模式需要RouteKey，也许要提前绑定Exchange与Queue。<br>在进行绑定时，要提供一个该队列关心的主题，如“#.log.#”表示该队列关心所有涉及log的消息(一个RouteKey为”MQ.log.error”的消息会被转发到该队列)。<br>“#”表示0个或若干个关键字，“”表示一个关键字。如“log.”能与“log.warn”匹配，无法与“log.warn.timeout”匹配；但是“log.#”能与上述两者匹配。<br>同样，如果Exchange没有发现能够与RouteKey匹配的Queue，则会抛弃此消息</p>
 <h4 id="创建队列与绑定"><a href="#创建队列与绑定" class="headerlink" title="创建队列与绑定"></a>创建队列与绑定</h4><p>和分裂模式一样，只是在Exchanges设置里面添加Routing  Key</p>
-<p><img src="/2021/10/19/springclound/cloud-demo03s\note\imgs\topic_binding.png"> </p>
+<p><img   class="lazyload" data-original="/2021/10/19/springclound/cloud-demo03s\note\imgs\topic_binding.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
 <p>代码编写</p>
 <p>分裂模式一样，只需要在3个Customer类里面修改下convertAndSend的参数就可以了</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**	 * 主题模式	 */</span><span class="meta">@Testpublic</span> <span class="function"><span class="keyword">void</span> <span class="title">testTopic</span><span class="params">()</span></span>&#123;    <span class="comment">//分别测试    rabbitTemplate.convertAndSend(&quot;j05_topic&quot;,&quot;good.log&quot;,&quot;我是主题模式!&quot;);&#125;</span></span><br></pre></td></tr></table></figure>
 
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/10/19/springclound/">http://example.com/2021/10/19/springclound/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/springcloud/">springcloud</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/07/16/day02/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">day02</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.</span> <span class="toc-text">微服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringCloud%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.</span> <span class="toc-text">SpringCloud介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka"><span class="toc-number">3.1.</span> <span class="toc-text">Eureka</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ribbon"><span class="toc-number">3.2.</span> <span class="toc-text">Ribbon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hystrix"><span class="toc-number">3.3.</span> <span class="toc-text">Hystrix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Zuul"><span class="toc-number">3.4.</span> <span class="toc-text">Zuul</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#config"><span class="toc-number">3.5.</span> <span class="toc-text">config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E7%BB%84%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">3.6.</span> <span class="toc-text">相关组件架构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8springcloud"><span class="toc-number">3.7.</span> <span class="toc-text">为什么要使用springcloud</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8E%E6%B3%A8%E5%86%8C"><span class="toc-number">4.</span> <span class="toc-text">Eureka服务与注册</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%9C%8D%E5%8A%A1%E4%B8%AD%E5%BF%83"><span class="toc-number">4.1.</span> <span class="toc-text">为什么需要服务中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-number">4.2.</span> <span class="toc-text">Eureka的管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8"><span class="toc-number">4.3.</span> <span class="toc-text">Eureka如何管理服务调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka-Server%E5%92%8CEureka-Client"><span class="toc-number">4.4.</span> <span class="toc-text">Eureka Server和Eureka Client</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%BB%AD%E7%BA%A6%E3%80%81%E4%B8%8B%E7%BA%BF%E3%80%81%E5%89%94%E9%99%A4"><span class="toc-number">4.5.</span> <span class="toc-text">服务续约、下线、剔除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka%E5%92%8CZookeeper%E5%8C%BA%E5%88%AB"><span class="toc-number">4.6.</span> <span class="toc-text">Eureka和Zookeeper区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eidea%E5%A4%9A%E6%A8%A1%E5%9D%97%E6%90%AD%E5%BB%BAeureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">5.</span> <span class="toc-text">基于idea多模块搭建eureka注册中心</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E5%92%8C%E6%B6%88%E8%B4%B9%E8%80%85%E6%B3%A8%E5%86%8C%E5%8F%8A%E8%B0%83%E7%94%A8%E5%AE%9E%E6%88%98"><span class="toc-number">6.</span> <span class="toc-text">生产者和消费者注册及调用实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85-user-demo"><span class="toc-number">6.1.</span> <span class="toc-text">生产者 - user-demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85-order-demo"><span class="toc-number">6.2.</span> <span class="toc-text">消费者 - order-demo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Feign%E4%BB%8B%E7%BB%8D"><span class="toc-number">7.</span> <span class="toc-text">Feign介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RestTemplate%E5%92%8Cfeign%E5%8C%BA%E5%88%AB"><span class="toc-number">7.1.</span> <span class="toc-text">RestTemplate和feign区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-number">7.2.</span> <span class="toc-text">实战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Feign%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E6%95%88%E6%9E%9C%E6%B5%8B%E8%AF%95"><span class="toc-number">7.3.</span> <span class="toc-text">Feign负载均衡效果测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Eureka%E4%BC%9A%E5%B0%86%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF%E7%BC%93%E5%AD%98%E5%88%B0%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95"><span class="toc-number">8.</span> <span class="toc-text">Eureka会将服务端的服务信息缓存到本地测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hystrix%E7%86%94%E6%96%AD%E5%99%A8"><span class="toc-number">9.</span> <span class="toc-text">hystrix熔断器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E5%99%A8%E7%AE%80%E4%BB%8B"><span class="toc-number">9.1.</span> <span class="toc-text">熔断器简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hystrix%E7%89%B9%E6%80%A7"><span class="toc-number">9.2.</span> <span class="toc-text">hystrix特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hystrix%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90"><span class="toc-number">9.3.</span> <span class="toc-text">hystrix流程结构解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7%E5%AE%9E%E6%88%98"><span class="toc-number">9.4.</span> <span class="toc-text">服务降级实战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E9%9A%94%E7%A6%BB"><span class="toc-number">9.5.</span> <span class="toc-text">依赖隔离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%90%88%E5%B9%B6"><span class="toc-number">9.6.</span> <span class="toc-text">请求合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%90%88%E5%B9%B6%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">9.6.1.</span> <span class="toc-text">请求合并的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%90%88%E5%B9%B6%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">9.6.2.</span> <span class="toc-text">请求合并适用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%90%88%E5%B9%B6%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">9.6.3.</span> <span class="toc-text">请求合并带来的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE"><span class="toc-number">9.6.4.</span> <span class="toc-text">使用注解配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E7%BC%93%E5%AD%98"><span class="toc-number">9.7.</span> <span class="toc-text">请求缓存</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%BD%91%E5%85%B3zuul"><span class="toc-number">10.</span> <span class="toc-text">路由网关zuul</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3"><span class="toc-number">10.1.</span> <span class="toc-text">为什么需要服务网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9B%B4%E6%8E%A5%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%80%9A%E8%AE%AF%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">10.2.</span> <span class="toc-text">客户端直接与微服务通讯的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E5%85%B3%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">10.3.</span> <span class="toc-text">网关的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BD%91%E5%85%B3%EF%BC%9F"><span class="toc-number">10.4.</span> <span class="toc-text">什么是网关？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8zuul"><span class="toc-number">10.5.</span> <span class="toc-text">使用zuul</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zuul%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">10.6.</span> <span class="toc-text">zuul过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%87%E6%BB%A4%E5%99%A8%E7%B1%BB"><span class="toc-number">10.6.1.</span> <span class="toc-text">添加过滤器类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8%E5%88%86%E5%B8%83%E5%BC%8F%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">11.</span> <span class="toc-text">高可用分布式配置中心</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E7%BB%9F%E4%B8%80%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E6%97%B6%EF%BC%8C%E6%89%80%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">11.1.</span> <span class="toc-text">没有使用统一配置中心时，所存在的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BC%80%E6%BA%90%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">11.2.</span> <span class="toc-text">有哪些开源配置中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8config-server"><span class="toc-number">11.3.</span> <span class="toc-text">快速入门config-server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8config-client"><span class="toc-number">11.4.</span> <span class="toc-text">快速入门config-client</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Config-Bus-%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%88%B7%E6%96%B0"><span class="toc-number">12.</span> <span class="toc-text">Config+Bus : 实现动态刷新</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RabbitMQ%E7%AE%80%E4%BB%8B"><span class="toc-number">13.</span> <span class="toc-text">RabbitMQ简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">13.1.</span> <span class="toc-text">消息队列中间件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFRabbitMQ"><span class="toc-number">13.2.</span> <span class="toc-text">什么是RabbitMQ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">13.3.</span> <span class="toc-text">架构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="toc-number">13.4.</span> <span class="toc-text">主要概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">13.5.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RabbitMQ%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="toc-number">13.6.</span> <span class="toc-text">RabbitMQ三种模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="toc-number">13.6.1.</span> <span class="toc-text">直接模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E8%A3%82%E6%A8%A1%E5%BC%8F"><span class="toc-number">13.7.</span> <span class="toc-text">分裂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E5%99%A8%E7%BB%91%E5%AE%9A%E9%98%9F%E5%88%97"><span class="toc-number">13.7.1.</span> <span class="toc-text">交换器绑定队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">13.7.1.1.</span> <span class="toc-text">测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E6%A8%A1%E5%BC%8F"><span class="toc-number">13.7.2.</span> <span class="toc-text">主题模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%98%9F%E5%88%97%E4%B8%8E%E7%BB%91%E5%AE%9A"><span class="toc-number">13.7.2.1.</span> <span class="toc-text">创建队列与绑定</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/10/19/springclound/" title="hexoA"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexoA"/></a><div class="content"><a class="title" href="/2021/10/19/springclound/" title="hexoA">hexoA</a><time datetime="2021-10-19T07:20:57.000Z" title="发表于 2021-10-19 15:20:57">2021-10-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/16/day02/" title="day02"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="day02"/></a><div class="content"><a class="title" href="/2021/07/16/day02/" title="day02">day02</a><time datetime="2021-07-16T10:02:10.000Z" title="发表于 2021-07-16 18:02:10">2021-07-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/15/day01/" title="day01"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="day01"/></a><div class="content"><a class="title" href="/2021/07/15/day01/" title="day01">day01</a><time datetime="2021-07-15T09:54:17.000Z" title="发表于 2021-07-15 17:54:17">2021-07-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/13/hexoA/" title="hexoA"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexoA"/></a><div class="content"><a class="title" href="/2021/07/13/hexoA/" title="hexoA">hexoA</a><time datetime="2021-07-13T07:20:57.000Z" title="发表于 2021-07-13 15:20:57">2021-07-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/12/java/" title="Java"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java"/></a><div class="content"><a class="title" href="/2021/07/12/java/" title="Java">Java</a><time datetime="2021-07-12T08:51:44.000Z" title="发表于 2021-07-12 16:51:44">2021-07-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>John Doe</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/10/19/springclound/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;19&#x2F;springclound&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;10&#x2F;19&#x2F;springclound&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/springcloud/" rel="tag">springcloud</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/07/16/day02/">day02<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-text">微服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringCloud%E4%BB%8B%E7%BB%8D"><span class="toc-text">SpringCloud介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka"><span class="toc-text">Eureka</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ribbon"><span class="toc-text">Ribbon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hystrix"><span class="toc-text">Hystrix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Zuul"><span class="toc-text">Zuul</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#config"><span class="toc-text">config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E7%BB%84%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">相关组件架构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8springcloud"><span class="toc-text">为什么要使用springcloud</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Eureka%E6%9C%8D%E5%8A%A1%E4%B8%8E%E6%B3%A8%E5%86%8C"><span class="toc-text">Eureka服务与注册</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%9C%8D%E5%8A%A1%E4%B8%AD%E5%BF%83"><span class="toc-text">为什么需要服务中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka%E7%9A%84%E7%AE%A1%E7%90%86"><span class="toc-text">Eureka的管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8"><span class="toc-text">Eureka如何管理服务调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka-Server%E5%92%8CEureka-Client"><span class="toc-text">Eureka Server和Eureka Client</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%BB%AD%E7%BA%A6%E3%80%81%E4%B8%8B%E7%BA%BF%E3%80%81%E5%89%94%E9%99%A4"><span class="toc-text">服务续约、下线、剔除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka%E5%92%8CZookeeper%E5%8C%BA%E5%88%AB"><span class="toc-text">Eureka和Zookeeper区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eidea%E5%A4%9A%E6%A8%A1%E5%9D%97%E6%90%AD%E5%BB%BAeureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-text">基于idea多模块搭建eureka注册中心</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E5%92%8C%E6%B6%88%E8%B4%B9%E8%80%85%E6%B3%A8%E5%86%8C%E5%8F%8A%E8%B0%83%E7%94%A8%E5%AE%9E%E6%88%98"><span class="toc-text">生产者和消费者注册及调用实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85-user-demo"><span class="toc-text">生产者 - user-demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85-order-demo"><span class="toc-text">消费者 - order-demo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Feign%E4%BB%8B%E7%BB%8D"><span class="toc-text">Feign介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RestTemplate%E5%92%8Cfeign%E5%8C%BA%E5%88%AB"><span class="toc-text">RestTemplate和feign区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-text">实战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Feign%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E6%95%88%E6%9E%9C%E6%B5%8B%E8%AF%95"><span class="toc-text">Feign负载均衡效果测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Eureka%E4%BC%9A%E5%B0%86%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84%E6%9C%8D%E5%8A%A1%E4%BF%A1%E6%81%AF%E7%BC%93%E5%AD%98%E5%88%B0%E6%9C%AC%E5%9C%B0%E6%B5%8B%E8%AF%95"><span class="toc-text">Eureka会将服务端的服务信息缓存到本地测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hystrix%E7%86%94%E6%96%AD%E5%99%A8"><span class="toc-text">hystrix熔断器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E5%99%A8%E7%AE%80%E4%BB%8B"><span class="toc-text">熔断器简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hystrix%E7%89%B9%E6%80%A7"><span class="toc-text">hystrix特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hystrix%E6%B5%81%E7%A8%8B%E7%BB%93%E6%9E%84%E8%A7%A3%E6%9E%90"><span class="toc-text">hystrix流程结构解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7%E5%AE%9E%E6%88%98"><span class="toc-text">服务降级实战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E9%9A%94%E7%A6%BB"><span class="toc-text">依赖隔离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%90%88%E5%B9%B6"><span class="toc-text">请求合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%90%88%E5%B9%B6%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text">请求合并的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%90%88%E5%B9%B6%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">请求合并适用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%90%88%E5%B9%B6%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">请求合并带来的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B3%A8%E8%A7%A3%E9%85%8D%E7%BD%AE"><span class="toc-text">使用注解配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E7%BC%93%E5%AD%98"><span class="toc-text">请求缓存</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%BD%91%E5%85%B3zuul"><span class="toc-text">路由网关zuul</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%9C%8D%E5%8A%A1%E7%BD%91%E5%85%B3"><span class="toc-text">为什么需要服务网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9B%B4%E6%8E%A5%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%80%9A%E8%AE%AF%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">客户端直接与微服务通讯的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E5%85%B3%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-text">网关的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BD%91%E5%85%B3%EF%BC%9F"><span class="toc-text">什么是网关？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8zuul"><span class="toc-text">使用zuul</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zuul%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-text">zuul过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%87%E6%BB%A4%E5%99%A8%E7%B1%BB"><span class="toc-text">添加过滤器类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8%E5%88%86%E5%B8%83%E5%BC%8F%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-text">高可用分布式配置中心</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E7%BB%9F%E4%B8%80%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E6%97%B6%EF%BC%8C%E6%89%80%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">没有使用统一配置中心时，所存在的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%93%AA%E4%BA%9B%E5%BC%80%E6%BA%90%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-text">有哪些开源配置中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8config-server"><span class="toc-text">快速入门config-server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8config-client"><span class="toc-text">快速入门config-client</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Config-Bus-%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%88%B7%E6%96%B0"><span class="toc-text">Config+Bus : 实现动态刷新</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RabbitMQ%E7%AE%80%E4%BB%8B"><span class="toc-text">RabbitMQ简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">消息队列中间件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFRabbitMQ"><span class="toc-text">什么是RabbitMQ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">架构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="toc-text">主要概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RabbitMQ%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="toc-text">RabbitMQ三种模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="toc-text">直接模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E8%A3%82%E6%A8%A1%E5%BC%8F"><span class="toc-text">分裂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E5%99%A8%E7%BB%91%E5%AE%9A%E9%98%9F%E5%88%97"><span class="toc-text">交换器绑定队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E6%A8%A1%E5%BC%8F"><span class="toc-text">主题模式</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=894519210 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/izhaoo/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/zhaoo "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:izhaoo@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
