@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>day13 - YangBlog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="File
+java.io.File[C] - File...">
+  <meta name="author" content="yang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '树欲静而风不止，子欲养而亲不待。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YangBlog" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">day13</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 快乐</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/pg13.jfif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">day13</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>七月 27, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>15067</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="File"><a href="#File" class="headerlink" title="File"></a>File</h1><blockquote>
+<p>java.io.File[C] - File包含文件或者文件夹[目录directory]</p>
+<p>作用:它是用来操作File本身的<strong>元</strong>信息的[比如支持File的创建,删除,获取File的名称,获取File的路径等信息]</p>
+<p>它并不支持文件里面的内容的读写操作[文件内中的内容的读写操作是交给IO流去实现]</p>
+<p>支持本地File以及远程File的操作的.</p>
+<p>File对象 - Java程序将磁盘上的文件加载内存中然后映射到File对象上 - File是内存中的磁盘上的映射.</p>
+</blockquote>
+<h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><blockquote>
+<p>File(String path);//利用一个路径来构建一个File实例.这个路径可以是文件的路径,也可以是文件夹的路径</p>
+<p>路径分成相对路径和绝对路径.</p>
+<p>绝对路径 - windows操作系统是以盘符号开头的路径,Linux/mac以/开头的路径</p>
+<p>相对路径 - 不是以盘符或者/开头的路径</p>
+</blockquote>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><blockquote>
+<ol>
+<li><p>boolean createNewFile();//创建一个文件,该方法是要抓取异常的.</p>
+</li>
+<li><p>String getAbsolutePath();//获取该File的绝对路径</p>
+</li>
+<li><p>String getName();//获取File的名称</p>
+</li>
+<li><p>String getParent();//获取该File的父目录的绝对路径</p>
+</li>
+<li><p>boolean exists();//判断File是否存在</p>
+</li>
+<li><p>boolean delete();//删除文件或者文件夹</p>
+<p>6-1. 文件是否可以直接被删除的</p>
+<p>6-2. 如果是空目录 - 直接删除的</p>
+<p>6-2. <strong>如果是非空目录 - 将会删除失败 - 递归算法来实现的.</strong></p>
+</li>
+<li><p>boolean mkdir();//创建单层次的目录,一次只能创建一个目录</p>
+</li>
+<li><p>boolean mkdirs();//既可以创建单层次的目录,又可以同时创建多个不存在的目录.</p>
+</li>
+<li><p>boolean isFile();//判断File实例是否为文件的实例</p>
+</li>
+<li><p>boolean isDirectory();//判断file实例是否为文件夹的实例</p>
+</li>
+<li><p>String[] list();//返回的是File的名称,返回的是传入的路径下的第一层的内容.</p>
+</li>
+<li><p><strong>File[] listFiles();//返回的第一层的File实例</strong></p>
+</li>
+<li><p>File[] listFiles(FilenameFilter filter);//找到指定后缀/前缀/满足条件的这么一个File实例</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><blockquote>
+<ol>
+<li><p>传入一个目录,输出这个目录下的所有的内容.</p>
+<p>如果是文件 - 直接输出名称</p>
+<p>如果是文件夹 - 输出绝对路径</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><blockquote>
+<p>删除一个非空目录</p>
+</blockquote>
+<h1 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h1><blockquote>
+<p>流是一种抽象概念，它代表了数据的<strong>无结构化传递</strong>。<strong>按照流的方式[数据在传输之前,需要进行转换,转换成无结构的字节/字符序列]<strong>进行</strong>有序的</strong>输入输出，<strong>数据被当成无结构的字节序或字符序列</strong>。从流中取得数据的操作称为提取操作，而向流中添加数据的操作称为插入操作。用来进行输入输出操作的流就称为IO流。换句话说，IO流就是以流的方式进行输入(Input)输出(Output)</p>
+</blockquote>
+<p><img   class="lazyload" data-original="/2021/07/27/day13/io01.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+<p><code>流想象成是数据传输的那个管道</code></p>
+<p><code>磁盘中数据加载/读入到内存中 - 输入</code></p>
+<p><img   class="lazyload" data-original="/2021/07/27/day13/io02.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+<p><code>java内存中数据写出去到磁盘中 - 输出</code></p>
+<p><img   class="lazyload" data-original="/2021/07/27/day13/io03.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >  </p>
+<h2 id="流的分类"><a href="#流的分类" class="headerlink" title="流的分类"></a>流的分类</h2><blockquote>
+<ol>
+<li><p>按照流的方向 - 输入流和输出流</p>
+</li>
+<li><p>按照流的读取的单位不同 - 字节流[按照单个字节单个字节进行读写,文本文件或者二进制文件]和字符流[单个字符进行读写,只能操作文本字符文件]</p>
+</li>
+<li><p>按照流的功能 - 节点流[基础流]和拓展流[过滤流或者包装流] - 采用了”装饰器设计模式思想”</p>
+<p>**节点流才具备真正操作文件的能力.**拓展流只是让流的功能更加强大而已,拓展流脱离了节点流的话,那么是不允许的.</p>
+<p>拓展流的使用必须要建立在节点流的基础之上.</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h2><h3 id="字节输入流"><a href="#字节输入流" class="headerlink" title="字节输入流"></a>字节输入流</h3><blockquote>
+<ol>
+<li>java.io.InputStream[C] - 字节输入流的顶级的抽象的父类<ul>
+<li>java.io.FileInputStream[C] - 文件字节输入流 - 操作文件的读操作. - <strong>典型的节点流</strong></li>
+<li>java.io.ObjectInputStream[C] - 操作对象类型的字节输入流 - <strong>典型的包装流</strong></li>
+<li>java.io.FilterInputStream[C] - 过滤流<ul>
+<li>java.io.BufferedInputStream[C] - 带缓存功能的流 - 缓冲流</li>
+<li>java.io.DataInputStream[C] - 操作基本数据类型的字节输入流</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h3 id="字节输出流"><a href="#字节输出流" class="headerlink" title="字节输出流"></a>字节输出流</h3><blockquote>
+<p>java.io.OutputStream[C] - 字节输出流的顶级的抽象的父类</p>
+<ul>
+<li>java.io.<strong>FileOutputStream[C]</strong> - 文件字节输出流 - 操作文件的写操作. - <strong>典型的节点流</strong></li>
+<li>java.io.ObjectOutputStream[C] - 操作对象类型的字节输出流 - <strong>典型的包装流</strong></li>
+<li>java.io.FilterOutputStream[C] - 过滤流<ul>
+<li>java.io.<strong>BufferedOutputStream[C]</strong> - 带缓存功能的流 - 缓冲流</li>
+<li>java.io.DataOutputStream[C] - 操作基本数据类型的字节输出流</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h1 id="InputStream常用方法"><a href="#InputStream常用方法" class="headerlink" title="InputStream常用方法"></a>InputStream常用方法</h1><blockquote>
+<ol>
+<li>void close();//关闭流,流本身就是一个对象[占内存 - 昂贵的资源]</li>
+<li>abstract  int read();//单个字节单个字节的读取,如果读不到,返回-1</li>
+<li><strong>int read(byte[] b);//从输入流读取一些字节数，并将它们存储到缓冲区 b</strong> 。</li>
+</ol>
+</blockquote>
+<h1 id="OutputStream常用方法"><a href="#OutputStream常用方法" class="headerlink" title="OutputStream常用方法"></a>OutputStream常用方法</h1><blockquote>
+<ol>
+<li>void close();//关闭</li>
+<li>abstract void write(int b);将指定的字节写入此输出流。</li>
+<li><strong>void write(byte[] b, int off, int len);</strong></li>
+</ol>
+</blockquote>
+<h1 id="IO流的编程步骤"><a href="#IO流的编程步骤" class="headerlink" title="IO流的编程步骤"></a>IO流的编程步骤</h1><blockquote>
+<ol>
+<li>确定流 - 选什么流</li>
+<li>确定源头和目标</li>
+<li>循环读取,循环写出 - while</li>
+<li>关闭流</li>
+</ol>
+</blockquote>
+<h1 id="缓冲流BufferedInputStream"><a href="#缓冲流BufferedInputStream" class="headerlink" title="缓冲流BufferedInputStream"></a>缓冲流BufferedInputStream</h1><blockquote>
+<p>在它出来之前,可以可以单个字节单个字节进行读写操作 - 弊端:java程序和磁盘的IO交互比较频繁,性能就会低下.</p>
+<p>采取了自定义的数组的方式.从磁盘文件中读取一定数量的字节先放入到缓冲数组中.然后再从缓冲数组中一次性写出到磁盘中.</p>
+<p>减少了java程序和磁盘的IO交互 - 性能提高.</p>
+</blockquote>
+<blockquote>
+<p>JDK中发现了这点,提供了缓冲流BufferedInputStream</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> DEFAULT_BUFFER_SIZE = <span class="number">8192</span>;<span class="comment">//默认的容量8kb</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">volatile</span> <span class="keyword">byte</span> buf[];<span class="comment">//内置的缓冲区</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">BufferedInputStream</span><span class="params">(InputStream in)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>(in, DEFAULT_BUFFER_SIZE);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">BufferedInputStream</span><span class="params">(InputStream in, <span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">super</span>(in);</span><br><span class="line">  <span class="keyword">if</span> (size &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;Buffer size &lt;= 0&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  buf = <span class="keyword">new</span> <span class="keyword">byte</span>[size];<span class="comment">//初始化内置的缓冲区数组 - 大小是8kb</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>底层利用了”装饰器”思想.这个流属于包装流,拓展流,过滤流,本身不具备真正的文件的读写能力.</p>
+<p>构建带缓冲功能的流,必须要以节点流作为支撑</p>
+</blockquote>
+<blockquote>
+<p><code>构架一个带缓冲功能的能够读取文件的字节输入流</code></p>
+<p>BufferedInputStream in = new BufferedInputStream(new FileInputStream(“路径”));</p>
+<p>BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(“路径”));</p>
+</blockquote>
+<h2 id="缓冲数组"><a href="#缓冲数组" class="headerlink" title="缓冲数组"></a>缓冲数组</h2><blockquote>
+<p>BufferedInputStream本身已经在底层定义了8kb的字节数组,那么为什么程序中还自定义了一个3kb的字节数组[可以不定义,read()方法],自定义的byte[]和内置的byte[]各自的作用是什么?</p>
+</blockquote>
+<blockquote>
+<p><strong>内置的8kb的byte[] - 在一开始或者后面空闲的时候,由JVM去装载磁盘上的数据,提前放入到这个内置的byte[]中的.</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day13;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 缓冲流</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/5 2:18 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BufferDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BufferedInputStream in = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        BufferedOutputStream out = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//jvm加载磁盘上的数据到内置的byte[]中</span></span><br><span class="line">            in = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;src/tech/aistar/day13/fast.gif&quot;</span>));</span><br><span class="line">            out = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;src/tech/aistar/day13/fast_副本.gif&quot;</span>));</span><br><span class="line"></span><br><span class="line">            <span class="comment">//自定义一个byte[]</span></span><br><span class="line">            <span class="comment">//真正的读</span></span><br><span class="line">            <span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">3</span>*<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> len = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                len = in.read(buf);</span><br><span class="line">                <span class="keyword">if</span>(len==-<span class="number">1</span>)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                out.write(buf,<span class="number">0</span>,len);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;文件拷贝成功!&quot;</span>);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="读过程"><a href="#读过程" class="headerlink" title="读过程"></a>读过程</h2><blockquote>
+<ol>
+<li>当初始化好缓冲流之后,jvm会立即读取磁盘中的数据到内置的缓冲数组中</li>
+<li>当程序中循环读取到的时候 len = in.read(buf); = 程序是直接从内置的缓冲区[内置的缓冲数组中]</li>
+<li>一旦内置的数组中的8kb数据被取完,那么jvm在空闲的时候,继续加载文件中下一个8kb的字节到内置的缓冲区.</li>
+</ol>
+</blockquote>
+<h1 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h1><blockquote>
+<p>jdk7.0提供的写法</p>
+<p>作用 - 把流的关闭交给JVM</p>
+</blockquote>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>(资源对象的声明<span class="number">1</span>;资源对象的声明<span class="number">2</span>)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;<span class="keyword">catch</span>(..)&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day13;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 语法糖 - JVM去关闭流</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/5 2:39 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;all&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StreamAutoCloseDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//自动关闭这些资源</span></span><br><span class="line">        <span class="keyword">try</span>(BufferedInputStream in = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;src/tech/aistar/day13/fast.gif&quot;</span>));</span><br><span class="line">            BufferedOutputStream out = <span class="keyword">new</span> BufferedOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;src/tech/aistar/day13/fasts.gif&quot;</span>)))&#123;</span><br><span class="line">            <span class="comment">//自定义一个byte[]</span></span><br><span class="line">            <span class="keyword">byte</span>[] buf = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">3</span>*<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> len = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                len = in.read(buf);</span><br><span class="line">                <span class="keyword">if</span>(len==-<span class="number">1</span>)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                out.write(buf,<span class="number">0</span>,len);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;文件拷贝成功!&quot;</span>);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="ObjectInputStream-ObjectOutputStream"><a href="#ObjectInputStream-ObjectOutputStream" class="headerlink" title="ObjectInputStream/ObjectOutputStream"></a>ObjectInputStream/ObjectOutputStream</h1><blockquote>
+<p>操作对象类型的字节输入流和字节输出流,拓展流,必须要以节点流作为支撑</p>
+<p><code>构建一个能够读写对象类型的文件字节输入流/输出流</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;path&quot;</span>))</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>构建一个能够读写对象类型的并且带缓冲功能的文件字节输入流</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;path&quot;</span>)));</span><br></pre></td></tr></table></figure>
+
+<p>利用”装饰器”思想,我们构建出功能更加强大的流,但是又不会对原来的流的结构产生任何影响.</p>
+<h2 id="对象的序列化"><a href="#对象的序列化" class="headerlink" title="对象的序列化"></a>对象的序列化</h2><blockquote>
+<p>也叫做 - 数据的持久化的过程. - 把内存中的java对象存储到磁盘的文件的过程.</p>
+<p>注意点:</p>
+<ol>
+<li><p>如果保存的是单个对象,这个对象的实体类必须要实现java.io.Serializable序列化接口</p>
+<p>如果没有实现这个接口,进行序列化的时候,抛出一个java.io.NotSerializableException不可被序列化的异常</p>
+</li>
+<li><p>保存的是数组/集合,那么集合中的每个对象对应的实体类也是需要实现这个序列化的接口</p>
+</li>
+</ol>
+<p>关于追加写入,设置FileOutputStream(String path,boolean append);//append设置true,但是不支持分批次读取.</p>
+</blockquote>
+<h2 id="transient"><a href="#transient" class="headerlink" title="transient"></a>transient</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//有的属性比较敏感,比如员工的工资</span></span><br><span class="line"><span class="comment">//如果不希望持久化某个属性值 - 不希望这个属性的数据被写到磁盘中</span></span><br><span class="line"><span class="comment">//瞬态关键字</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">transient</span> <span class="keyword">double</span> price;</span><br></pre></td></tr></table></figure>
+
+<h2 id="对象的反序列化"><a href="#对象的反序列化" class="headerlink" title="对象的反序列化"></a>对象的反序列化</h2><blockquote>
+<p>java对象已经存储到磁盘的文件中,希望再从文件中将这些对象数据加载到内存中[映射到java对象上].</p>
+</blockquote>
+<h1 id="CURD操作①"><a href="#CURD操作①" class="headerlink" title="CURD操作①"></a>CURD操作①</h1><blockquote>
+<p>实体类 - 接口 - 实现类 - 单元测试</p>
+</blockquote>
+<blockquote>
+<p>操作文件中的数据</p>
+<ul>
+<li>tech.aistar.day13.prj<ul>
+<li>entity - Phone.java[id,name,price]</li>
+<li>dao - data access object [IPhoneDao.java]数据对象访问 - 数据持久层 - 和文件进行打交道的一层 - 接口<ul>
+<li>impl - 接口的实现类PhoneDaoImpl.java</li>
+</ul>
+</li>
+<li>test - 单元测试</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h1 id="笔试题"><a href="#笔试题" class="headerlink" title="笔试题"></a>笔试题</h1><blockquote>
+<p>文件夹的拷贝②</p>
+</blockquote>
+<h1 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h1><blockquote>
+<p>它和字节流的区别是读取的单位是不同的 .字节流是按照单个字节进行读写操作.</p>
+<p>字符流是按照单个字符的单位进行读写操作.字符流专门用来处理的文本字符文件的.字节流是用来处理文本文件或者二进制文件的.</p>
+</blockquote>
+<h2 id="字符输入流"><a href="#字符输入流" class="headerlink" title="字符输入流"></a>字符输入流</h2><blockquote>
+<p>java.io.Reader[C] - 顶级的字符输入流 - 抽象类</p>
+<ul>
+<li><p>BufferedReader[C] - 带缓冲功能的字符流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">BufferedReader</span><span class="params">(Reader in)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>(in, defaultCharBufferSize);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">提供的方法</span><br><span class="line"><span class="function">String <span class="title">readLine</span><span class="params">()</span></span>;<span class="comment">//每次读取文本文件的一整行的数据,如果读取不到[到达文件的末尾了],返回false</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>FileReader[C] - 字符流中的节点流 - 具备真正的字符文件的读写操作的.</strong></p>
+</li>
+</ul>
+</blockquote>
+<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day13;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.FileNotFoundException;</span><br><span class="line"><span class="keyword">import</span> java.io.FileReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 字符输入流</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/6 1:40 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReaderHelloDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 确定流</span></span><br><span class="line">        <span class="comment">//2. 确定源头</span></span><br><span class="line">        <span class="comment">//3. 循环读取</span></span><br><span class="line">        <span class="comment">//4. 关闭流 - 可以采取语法糖 - JVM去自行关闭</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//demo - 用来读取文本文件,然后将内容输出到控制台上去</span></span><br><span class="line">        <span class="keyword">try</span>(BufferedReader in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">&quot;src/tech/aistar/day13/Book.java&quot;</span>)))&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//一行一行进行读取</span></span><br><span class="line">            String line = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//循环读取</span></span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                line = in.readLine();<span class="comment">//读取一整行的数据,若读取不到,则返回false</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">//循环退出的条件</span></span><br><span class="line">                <span class="keyword">if</span>(line == <span class="keyword">null</span>)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                System.out.println(line);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="字符输出流"><a href="#字符输出流" class="headerlink" title="字符输出流"></a>字符输出流</h2><blockquote>
+<p>java.io.Writer[C] - 顶级的字符输出流 - 抽象类</p>
+<ul>
+<li><p>PrintWriter[C] - 自带缓存功能</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PrintWriter(Writer out);</span><br><span class="line"></span><br><span class="line"><span class="comment">//第二个参数是是否自动刷新缓存</span></span><br><span class="line"><span class="comment">//缓存里面的数据什么时候会被同步到磁盘上</span></span><br><span class="line"><span class="comment">//1. 缓存中的数据满的时候 - 会自动刷新</span></span><br><span class="line"><span class="comment">//2. 缓存中的数据还不足以撑满这个缓存 - close或者flush - 强制刷新缓存</span></span><br><span class="line">PrintWriter(Writer out, <span class="keyword">boolean</span> autoFlush);</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>FileWriter[C] -字符流中的节点流 - 具备真正的字符文件的读写操作的.</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">构造方法:</span><br><span class="line"><span class="number">1.</span> FileWriter(String path);<span class="comment">//写到哪里去,目标的绝对/相对路径</span></span><br><span class="line"><span class="number">2.</span> FileWriter(String path,<span class="keyword">boolean</span> append);<span class="comment">//第二个参数代表的是是否追加写入.如果append设置成true.支持分批次的写</span></span><br><span class="line">   和分批次的读 - 都是字符串</span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<h3 id="demo-1"><a href="#demo-1" class="headerlink" title="demo"></a>demo</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day13;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 字符输出流</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/6 1:57 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WriterHelloDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        test02();</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test03</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1. 构建一个自动刷新,但是能够实现追加写入的功能.</span></span><br><span class="line">        <span class="comment">//第一个true - 代表的是是否追加写入 - true</span></span><br><span class="line">        <span class="comment">//第二个true - 是否自动刷新缓存,设置成true之后,那么就不需要在程序代码中手动刷新,不需要再去写out.flush();</span></span><br><span class="line">        <span class="comment">//            推荐 - 1. 构建一个自动刷新的输出流 2. 程序代码的之后还是推荐手动刷新out.flush()3. 依然需要关闭流 - jvm</span></span><br><span class="line">        <span class="keyword">try</span>(PrintWriter out =</span><br><span class="line">                    <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> FileWriter(<span class="string">&quot;src/tech/aistar/day13/writer.txt&quot;</span>,<span class="keyword">true</span>),<span class="keyword">true</span>))&#123;</span><br><span class="line">            <span class="comment">//因为语法糖 - close()操作 - 底层就是关闭流之前,会强制刷新缓存.</span></span><br><span class="line">            <span class="comment">//有可能有部分学生的计算机,它没有达到强制刷新缓存的效果</span></span><br><span class="line">            <span class="comment">//场景 - 内存中的数据不能写入到磁盘上的这文件中的[文件中的内容是空的]</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//print方法以及println方法</span></span><br><span class="line">            <span class="comment">//print方法写入之后,后面是没有加一个\n</span></span><br><span class="line">            <span class="comment">//println方法写入之后,后面是有一个\n</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//把内存中的数据持久化到磁盘中的文件中.</span></span><br><span class="line">            <span class="comment">//out.print(&quot;web前端很好玩!&quot;);</span></span><br><span class="line"></span><br><span class="line">            out.println(<span class="string">&quot;c不好玩!&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//推荐在结束的时候,手动刷新一下缓存</span></span><br><span class="line">            out.flush();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1. 构建一个不自动刷新,但是能够实现追加写入的功能.</span></span><br><span class="line">        <span class="keyword">try</span>(PrintWriter out = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> FileWriter(<span class="string">&quot;src/tech/aistar/day13/writer.txt&quot;</span>,<span class="keyword">true</span>)))&#123;</span><br><span class="line">            <span class="comment">//因为语法糖 - close()操作 - 底层就是关闭流之前,会强制刷新缓存.</span></span><br><span class="line">            <span class="comment">//有可能有部分学生的计算机,它没有达到强制刷新缓存的效果</span></span><br><span class="line">            <span class="comment">//场景 - 内存中的数据不能写入到磁盘上的这文件中的[文件中的内容是空的]</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//print方法以及println方法</span></span><br><span class="line">            <span class="comment">//print方法写入之后,后面是没有加一个\n</span></span><br><span class="line">            <span class="comment">//println方法写入之后,后面是有一个\n</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//把内存中的数据持久化到磁盘中的文件中.</span></span><br><span class="line">            <span class="comment">//out.print(&quot;web前端很好玩!&quot;);</span></span><br><span class="line"></span><br><span class="line">            out.println(<span class="string">&quot;c不好玩!&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//推荐在结束的时候,手动刷新一下缓存</span></span><br><span class="line">            out.flush();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//1. 构建的是一个不自动刷新,不追加写入的字符输出流</span></span><br><span class="line">        <span class="comment">//每次都会覆盖原来的文件,并且在第一次写入的时候,会自动创建这个文件的.</span></span><br><span class="line">        <span class="keyword">try</span>(PrintWriter out = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> FileWriter(<span class="string">&quot;src/tech/aistar/day13/writer.txt&quot;</span>)))&#123;</span><br><span class="line">            <span class="comment">//因为语法糖 - close()操作 - 底层就是关闭流之前,会强制刷新缓存.</span></span><br><span class="line">            <span class="comment">//有可能有部分学生的计算机,它没有达到强制刷新缓存的效果</span></span><br><span class="line">            <span class="comment">//场景 - 内存中的数据不能写入到磁盘上的这文件中的[文件中的内容是空的]</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//print方法以及println方法</span></span><br><span class="line">            <span class="comment">//print方法写入之后,后面是没有加一个\n</span></span><br><span class="line">            <span class="comment">//println方法写入之后,后面是有一个\n</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//把内存中的数据持久化到磁盘中的文件中.</span></span><br><span class="line">            out.print(<span class="string">&quot;python很好玩!&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//推荐在结束的时候,手动刷新一下缓存</span></span><br><span class="line">            out.flush();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="文件的拷贝"><a href="#文件的拷贝" class="headerlink" title="文件的拷贝"></a>文件的拷贝</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day13;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 字符流来实现文件的拷贝操作</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/6 2:37 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileCopyReaderDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        copyFile(<span class="string">&quot;src/tech/aistar/day13/FileDemo.java&quot;</span>,<span class="string">&quot;src/tech/aistar/day13/FileDemo_副本.java&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 文件的拷贝</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> src 原文件的路径</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> target 目标文件的路径</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copyFile</span><span class="params">(String src,String target)</span></span>&#123;</span><br><span class="line">        <span class="comment">//1. 构建流 - 源头和目标的确定</span></span><br><span class="line">        <span class="keyword">try</span>(BufferedReader in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(src));</span><br><span class="line">            PrintWriter out = <span class="keyword">new</span> PrintWriter(<span class="keyword">new</span> FileWriter(target),<span class="keyword">true</span>))&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//2. 定义一个变量 - 用来保存每次读取到的一行数据</span></span><br><span class="line">            String line = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//3. 循环读取</span></span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                line = in.readLine();<span class="comment">//读取一整行,读不到,则返回null</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">//循环退出的条件</span></span><br><span class="line">                <span class="keyword">if</span>(line == <span class="keyword">null</span>)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//写一行出去</span></span><br><span class="line">                out.println(line);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;文件拷贝成功!&quot;</span>);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结笔试"><a href="#总结笔试" class="headerlink" title="总结笔试"></a>总结笔试</h1><blockquote>
+<ol>
+<li>常见的字节流和字符流</li>
+<li>装饰器的设计模式</li>
+<li>难一点的知识点 - <strong>同步[打电话]IO/异步[发短信]IO区别,阻塞IO/非阻塞IO区别</strong></li>
+<li>BufferedInputStream - 内置的缓冲数组 - 8kb</li>
+</ol>
+</blockquote>
+<h1 id="补充-破坏单例"><a href="#补充-破坏单例" class="headerlink" title="补充 - 破坏单例"></a>补充 - 破坏单例</h1><blockquote>
+<p><strong>单例设计模式 - 保证在整个应用程序中,某个类的具体的实例永远只有1个 - 多线程下也是一个 - 双重锁检测</strong></p>
+<p>对象的序列化和反序列化可以破坏这种单例,如何破坏?</p>
+<p><strong>解决方案: 单例的第四个版本 - 枚举类型来实现单例模式</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day13;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tech.aistar.design.singleton.version03.Singleton03;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 对象的序列化和反序列化可以破坏单例的</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/6 3:06 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObjectSingletonDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Singleton03 s1 = Singleton03.getInstance();</span><br><span class="line"></span><br><span class="line">        String path = <span class="string">&quot;src/tech/aistar/day13/singleton.txt&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//把这个对象写入到文件中</span></span><br><span class="line">        writeObject(s1,path);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//读</span></span><br><span class="line">        Singleton03 s2 = readObject(path);<span class="comment">//反序列化之后,并没有走构造,直接操作的内存</span></span><br><span class="line"></span><br><span class="line">        System.out.println(s1 == s2);<span class="comment">//false</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//对象的序列化</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeObject</span><span class="params">(Singleton03 s,String path)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>(ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(path)))&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//写</span></span><br><span class="line">            out.writeObject(s);</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//对象的反序列化</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton03 <span class="title">readObject</span><span class="params">(String path)</span></span>&#123;</span><br><span class="line">        Singleton03 s = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>(ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(path)))&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//读</span></span><br><span class="line">            s = (Singleton03) in.readObject();</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>yang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/07/27/day13/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;27&#x2F;day13&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;27&#x2F;day13&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreJava/" rel="tag">coreJava</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/07/28/day14/"><i class="iconfont iconleft"></i>day14</a>
+    <a href="/2021/07/26/day12/">day12<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#File"><span class="toc-text">File</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0"><span class="toc-text">练习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A"><span class="toc-text">作业</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IO%E6%B5%81"><span class="toc-text">IO流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">流的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E6%B5%81"><span class="toc-text">字节流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E8%BE%93%E5%85%A5%E6%B5%81"><span class="toc-text">字节输入流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-text">字节输出流</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#InputStream%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">InputStream常用方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OutputStream%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">OutputStream常用方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IO%E6%B5%81%E7%9A%84%E7%BC%96%E7%A8%8B%E6%AD%A5%E9%AA%A4"><span class="toc-text">IO流的编程步骤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E6%B5%81BufferedInputStream"><span class="toc-text">缓冲流BufferedInputStream</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%86%B2%E6%95%B0%E7%BB%84"><span class="toc-text">缓冲数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E8%BF%87%E7%A8%8B"><span class="toc-text">读过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E7%B3%96"><span class="toc-text">语法糖</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ObjectInputStream-ObjectOutputStream"><span class="toc-text">ObjectInputStream&#x2F;ObjectOutputStream</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">对象的序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transient"><span class="toc-text">transient</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-text">对象的反序列化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CURD%E6%93%8D%E4%BD%9C%E2%91%A0"><span class="toc-text">CURD操作①</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%94%E8%AF%95%E9%A2%98"><span class="toc-text">笔试题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%B5%81"><span class="toc-text">字符流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E8%BE%93%E5%85%A5%E6%B5%81"><span class="toc-text">字符输入流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#demo"><span class="toc-text">demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E8%BE%93%E5%87%BA%E6%B5%81"><span class="toc-text">字符输出流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-1"><span class="toc-text">demo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%8B%B7%E8%B4%9D"><span class="toc-text">文件的拷贝</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E7%AC%94%E8%AF%95"><span class="toc-text">总结笔试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A5%E5%85%85-%E7%A0%B4%E5%9D%8F%E5%8D%95%E4%BE%8B"><span class="toc-text">补充 - 破坏单例</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2376754897 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.baidu.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/yangmoureng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:18687993885@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,735 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>day16 - YangBlog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="反射定义
+
+反射式编程（英语：reflective p...">
+  <meta name="author" content="yang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '树欲静而风不止，子欲养而亲不待。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YangBlog" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">day16</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 快乐</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/pg8.jfif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">day16</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 01, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>19894</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="反射定义"><a href="#反射定义" class="headerlink" title="反射定义"></a>反射定义</h1><blockquote>
+<ol>
+<li><p><strong>反射式编程</strong>（英语：reflective programming）或<strong>反射</strong>（英语：reflection)或者<strong>内省</strong></p>
+</li>
+<li><p>是指计算机程序在运行时可以访问、检测和修改它本身状态或行为的一种能力。[<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%B0%84%E5%BC%8F%E7%BC%96%E7%A8%8B#cite_note-Forman_p8-1">1]</a>用比喻来说，反射就是程序在运行的时候能够“观察”并且修改自己的行为。</p>
+<p>“通俗讲” - 通过反射技术在程序的运行过程中,来获取类/接口的信息[修饰符,类的名称,父类],属性的信息[修饰符,数据类型,属性名],方法的信息[修饰符,数据类型,名称]等.</p>
+<p><strong>在运行的时候才知道我操作的是哪个类</strong></p>
+</li>
+<li><p>掌握目标:</p>
+<p>3-1. <strong>通过反射技术来动态获取属性的信息</strong>以及<strong>操作属性</strong>[反射的技术来对属性的值进行设置和获取]</p>
+<p>3-2. 通过<strong>反射技术来动态调用类中的构造方法</strong>以及<strong>获取构造方法的信息</strong>[修饰符,方法名,参数列表]</p>
+<p>3-3. 通过反射技术来动态获取类里面的<strong>方法的信息</strong>[修饰符,数据类型,方法名以及方法参数列表]以及反射<strong>调用方法</strong></p>
+</li>
+<li><p>api包 - java.lang.reflect</p>
+</li>
+<li><p>反射优势 - “很流氓” - 破坏封装性.</p>
+</li>
+<li><p><strong>学好反射和设计模式 - 帮助我们未来来读懂一些框架源码的.所有的框架的底层都是基于反射技术来实现的.</strong></p>
+</li>
+</ol>
+</blockquote>
+<h1 id="java-lang-Class"><a href="#java-lang-Class" class="headerlink" title="java.lang.Class"></a>java.lang.Class<T></T></h1><blockquote>
+<ol>
+<li><p>class实例 - 一个类无论被实例化多少次,那么它在JVM中的class实例永远只有1个.</p>
+</li>
+<li><p>它是学习反射技术的必备的类 - 提供了很多api来完成掌握目标中的动作.</p>
+</li>
+<li><p><strong>所有被类加载器加载到内存中的类都是属于Class的对象</strong> - Class类是用来描述类的类[用来描述类的元信息]</p>
+<p><strong>我们的类在Class面前,就是一个Class的对象而已</strong></p>
+</li>
+</ol>
+</blockquote>
+<h2 id="反射相关api"><a href="#反射相关api" class="headerlink" title="反射相关api"></a>反射相关api</h2><blockquote>
+<ol>
+<li><p><strong>Field getDeclaredField(String name);//根据属性的名称来得到Field对象</strong></p>
+</li>
+<li><p><strong>Field[] getDeclaredFields();//获取类里面所有的[包括私有的]声明的属性对应的Field数组</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">只能获取到非私有的</span><br><span class="line"><span class="number">1.</span> <span class="function">Field <span class="title">getField</span><span class="params">(String name)</span></span>;</span><br><span class="line"><span class="number">2.</span> Field[] getFields();</span><br></pre></td></tr></table></figure></li>
+<li><p>String getName();//获取类的全限定名</p>
+</li>
+<li><p>String getSimpleName();//获取类的简称</p>
+</li>
+<li><p><strong>T newInstance();//调用空参构造</strong></p>
+</li>
+<li><p><strong>Constructor<T>    getDeclaredConstructor(Class&lt;?&gt;…  parameterTypes);</T></strong></p>
+<p><strong>根据指定的参数类型来得到指定的构造对应的实例Constructor对象.</strong></p>
+<p>如果什么参数都不传入,拿到的就是空参构造对应的Constructor对应的实例.</p>
+</li>
+<li><p><strong>Constructor&lt;?&gt;[]    getDeclaredConstructors();</strong></p>
+<p><strong>直接获取类中的所有的构造,每个构造对应一个Constructor.</strong></p>
+</li>
+<li><p><strong>Method    getDeclaredMethod(String methodName,Class&lt;?&gt;…  parameterTypes);</strong></p>
+</li>
+<li><p><strong>Method][]    getDeclaredMethods();</strong></p>
+</li>
+</ol>
+</blockquote>
+<h2 id="获取类的Class实例的方式"><a href="#获取类的Class实例的方式" class="headerlink" title="获取类的Class实例的方式"></a>获取类的Class实例的方式</h2><blockquote>
+<ol>
+<li><p>类名.class</p>
+</li>
+<li><p>调用java.lang.Object类提供的方法Class&lt;?&gt; getClass();</p>
+</li>
+<li><p>框架底层喜欢的使用一种,更加灵活</p>
+<p>Class类中提供的static Class&lt;?&gt; forName(“类的全限定名”);//需要抓取一个非运行时异常java.lang.ClassNotFoundException类型找不到异常</p>
+</li>
+<li><p>基本类型.class</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day16;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: java.lang.Class&lt;T&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/12 10:26 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取类的class实例的方式</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//每个类在JVM中的class实例永远只有1个 - 无论构建了多少个对象</span></span><br><span class="line">        <span class="comment">//1. 类名.class</span></span><br><span class="line">        Class&lt;?&gt; c1 = Point.class;</span><br><span class="line">        Class&lt;?&gt; c2 = Point.class;</span><br><span class="line">        System.out.println(c1);<span class="comment">//class tech.aistar.day16.Point</span></span><br><span class="line">        System.out.println(c1 == c2);</span><br><span class="line"></span><br><span class="line">        Class&lt;?&gt; c3 = String.class;</span><br><span class="line">        System.out.println(c3);<span class="comment">//class java.lang.String</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 对象.getClass();</span></span><br><span class="line">        Point p1 = <span class="keyword">new</span> Point();</span><br><span class="line">        Point p2 = <span class="keyword">new</span> Point();</span><br><span class="line"></span><br><span class="line">        Class&lt;?&gt; c4 = p1.getClass();<span class="comment">//对象的类型</span></span><br><span class="line">        Class&lt;?&gt; c5 = p2.getClass();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 类型判断    对象 instanceof 类</span></span><br><span class="line">        System.out.println(c4);<span class="comment">//class tech.aistar.day16.Point</span></span><br><span class="line">        System.out.println(c4 == c5);<span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. Class类中提供的static Class&lt;?&gt; forName(&quot;类的全限定名&quot;);</span></span><br><span class="line">        <span class="comment">//TODO... 为甚鼓励使用这种 ???</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class&lt;?&gt; c6 = Class.forName(<span class="string">&quot;tech.aistar.day16.Point&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;c6:&quot;</span>+c6);<span class="comment">//c6:class tech.aistar.day16.Point</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 基本类型.class</span></span><br><span class="line">        Class&lt;?&gt; c7 = <span class="keyword">int</span>.class;</span><br><span class="line">        System.out.println(c7);<span class="comment">//int</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Field字段实例"><a href="#Field字段实例" class="headerlink" title="Field字段实例"></a>Field字段实例</h1><blockquote>
+<p>java.lang.reflect.Field</p>
+</blockquote>
+<h2 id="api"><a href="#api" class="headerlink" title="api"></a>api</h2><blockquote>
+<ol>
+<li><p>int getModifiers();<br>返回由该 Field对象表示的字段的Java语言修饰符，作为整数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认的 - 0</span></span><br><span class="line"><span class="comment">//public  -1</span></span><br><span class="line"><span class="comment">//private - 2</span></span><br><span class="line"><span class="comment">//protected - 4</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Class&lt;?&gt; getType();//返回属性的数据类型</p>
+</li>
+<li><p>String getName();//属性的名称</p>
+</li>
+<li><p>void set(Object obj,Object value);//通过属性对应的Field对象来告知JVM,应该把value设置到哪个obj对象上去.</p>
+</li>
+<li><p>void setAccessible(boolean on);//反射操作私有属性,必须要设置为true,否则会抛出-java.lang.IllegalAccessException</p>
+</li>
+<li><p>Object get(Object obj);//返回obj中属性字段的对应的属性值.</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="Constructor构造实例"><a href="#Constructor构造实例" class="headerlink" title="Constructor构造实例"></a>Constructor构造实例</h1><h2 id="调用空参构造"><a href="#调用空参构造" class="headerlink" title="调用空参构造"></a>调用空参构造</h2><blockquote>
+<ol>
+<li><p>直接调用java.lang.Class<T>提供的方法T newsIntance();</T></p>
+</li>
+<li><p>java.lang.reflect.Constructor提供了方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">newInstance</span><span class="params">(Object... initargs)</span></span></span><br><span class="line"><span class="function">        </span></span><br><span class="line"><span class="function">Constructor&lt;?&gt; c1 </span>= c.getDeclaredConstructor();</span><br><span class="line">Point p2 = (Point) c1.newInstance();<span class="comment">//可变长列表的方法</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="调用带参构造"><a href="#调用带参构造" class="headerlink" title="调用带参构造"></a>调用带参构造</h2><blockquote>
+<ol>
+<li><p>java.lang.reflect.Constructor - 提供的方法</p>
+<p>public T newInstance(Object … initargs)</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><blockquote>
+<ol>
+<li><p>int getModifiers();//获取修饰符对应的数字</p>
+</li>
+<li><p>String getName();//构造方法的名称 - [类的全限定名]</p>
+</li>
+<li><p><strong>void setAccessible(boolean on);//如果设置true,直接调用私有的的构造方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">反射可以破坏单例</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="Modifier"><a href="#Modifier" class="headerlink" title="Modifier"></a>Modifier</h1><blockquote>
+<p>java.lang.reflect</p>
+<ol>
+<li><p>传入一个修饰符对应的数字,来返回修饰的具体的中文的名称</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toString</span><span class="params">(<span class="keyword">int</span> mod)</span> </span>&#123;</span><br><span class="line">  StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">  <span class="keyword">int</span> len;</span><br><span class="line">         </span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; PUBLIC) != <span class="number">0</span>)        sb.append(<span class="string">&quot;public &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; PROTECTED) != <span class="number">0</span>)     sb.append(<span class="string">&quot;protected &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; PRIVATE) != <span class="number">0</span>)       sb.append(<span class="string">&quot;private &quot;</span>);</span><br><span class="line">         </span><br><span class="line">  <span class="comment">/* Canonical order */</span></span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; ABSTRACT) != <span class="number">0</span>)      sb.append(<span class="string">&quot;abstract &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; STATIC) != <span class="number">0</span>)        sb.append(<span class="string">&quot;static &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; FINAL) != <span class="number">0</span>)         sb.append(<span class="string">&quot;final &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; TRANSIENT) != <span class="number">0</span>)     sb.append(<span class="string">&quot;transient &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; VOLATILE) != <span class="number">0</span>)      sb.append(<span class="string">&quot;volatile &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; SYNCHRONIZED) != <span class="number">0</span>)  sb.append(<span class="string">&quot;synchronized &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; NATIVE) != <span class="number">0</span>)        sb.append(<span class="string">&quot;native &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; STRICT) != <span class="number">0</span>)        sb.append(<span class="string">&quot;strictfp &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ((mod &amp; INTERFACE) != <span class="number">0</span>)     sb.append(<span class="string">&quot;interface &quot;</span>);</span><br><span class="line">         </span><br><span class="line">  <span class="keyword">if</span> ((len = sb.length()) &gt; <span class="number">0</span>)    <span class="comment">/* trim trailing space */</span></span><br><span class="line">    <span class="keyword">return</span> sb.toString().substring(<span class="number">0</span>, len-<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="拓展应用"><a href="#拓展应用" class="headerlink" title="拓展应用"></a>拓展应用</h1><h2 id="反射可以破坏单例"><a href="#反射可以破坏单例" class="headerlink" title="反射可以破坏单例"></a>反射可以破坏单例</h2><blockquote>
+<p>反射破坏不了枚举单例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day16;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tech.aistar.design.singleton.version03.Singleton03;</span><br><span class="line"><span class="keyword">import</span> tech.aistar.design.singleton.version04.Singleton04;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 反射可以破坏单例</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/12 2:25 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectPoSingleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 获取单例的Class实例</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class&lt;?&gt; c = Class.forName(<span class="string">&quot;tech.aistar.design.singleton.version03.Singleton03&quot;</span>);</span><br><span class="line">            <span class="comment">//2. 获取空参构造对应的Constructor实例</span></span><br><span class="line">            Constructor&lt;?&gt; c1 = c.getDeclaredConstructor();</span><br><span class="line">            <span class="comment">//3. 调用私有的空参构造</span></span><br><span class="line">            c1.setAccessible(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//4. 调用</span></span><br><span class="line">            Singleton03 s1 = (Singleton03) c1.newInstance();</span><br><span class="line">            <span class="comment">//反射连续调用俩次私有的空参构造</span></span><br><span class="line">            Singleton03 s2 = (Singleton03) c1.newInstance();</span><br><span class="line"></span><br><span class="line">            System.out.println(s1 == s2);<span class="comment">//false</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvocationTargetException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="为何破坏不了枚举类型单例"><a href="#为何破坏不了枚举类型单例" class="headerlink" title="为何破坏不了枚举类型单例"></a>为何破坏不了枚举类型单例</h2><h2 id="分析-NoSuchMethodException"><a href="#分析-NoSuchMethodException" class="headerlink" title="分析-NoSuchMethodException"></a>分析-NoSuchMethodException</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//记载类,初始化静态属性,调用空参构造 </span></span><br><span class="line">Class&lt;?&gt; c5 = Class.forName(<span class="string">&quot;tech.aistar.design.singleton.version05.Singleton05&quot;</span>);</span><br><span class="line">Constructor&lt;?&gt; cc = c5.getDeclaredConstructor();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">控制台效果</span><br><span class="line">比较繁琐的操作的事情,费时费力的事情</span><br><span class="line"></span><br><span class="line"><span class="comment">//不存在一个空参构造的方法让我们去调用</span></span><br><span class="line">java.lang.NoSuchMethodException: tech.aistar.design.singleton.version05.Singleton05.&lt;init&gt;()</span><br><span class="line">	at java.lang.Class.getConstructor0(Class.java:<span class="number">3082</span>)</span><br><span class="line">	at java.lang.Class.getDeclaredConstructor(Class.java:<span class="number">2178</span>)</span><br><span class="line">	at tech.aistar.day16.ReflectPoSingleton.main(ReflectPoSingleton.java:<span class="number">36</span>)</span><br></pre></td></tr></table></figure>
+
+<p>控制台</p>
+<p>hello.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">hello</span></span>&#123;</span><br><span class="line">  INSTANCE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">确认jdk-bin-jad.exe - 没有下载 - http:<span class="comment">//varaneckas.com/jad/</span></span><br><span class="line">javac hello</span><br><span class="line">jad -s java hello</span><br><span class="line">反编译之后出来之后 hello(String.class,<span class="keyword">int</span>.class)</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Constructor&lt;?&gt; cc = c5.getDeclaredConstructor(String.class,<span class="keyword">int</span>.class);</span><br></pre></td></tr></table></figure>
+
+<h2 id="分析-IllegalArgumentException"><a href="#分析-IllegalArgumentException" class="headerlink" title="分析 - IllegalArgumentException"></a>分析 - IllegalArgumentException</h2><blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加载这个类</span></span><br><span class="line">Class&lt;?&gt; c5 = Class.forName(<span class="string">&quot;tech.aistar.design.singleton.version05.Singleton05&quot;</span>);</span><br><span class="line">Constructor&lt;?&gt; cc = c5.getDeclaredConstructor(String.class,<span class="keyword">int</span>.class);</span><br><span class="line"><span class="comment">//java.lang.NoSuchMethodException - 抛出一个不存在这个方法</span></span><br><span class="line"></span><br><span class="line">cc.setAccessible(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//Exception in thread &quot;main&quot; java.lang.IllegalArgumentException: </span></span><br><span class="line"><span class="comment">// Cannot reflectively create enum objects</span></span><br><span class="line">Singleton05 s05 = (Singleton05) cc.newInstance();</span><br></pre></td></tr></table></figure>
+
+<p><code>原因剖析newInstance方法</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@CallerSensitive</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> T <span class="title">newInstance</span><span class="params">(Object ... initargs)</span></span></span><br><span class="line"><span class="function">  <span class="keyword">throws</span> InstantiationException, IllegalAccessException,</span></span><br><span class="line"><span class="function">IllegalArgumentException, InvocationTargetException</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">//判断是否为枚举类型,如果是枚举类型直接抛出了这个异常了.</span></span><br><span class="line">  <span class="keyword">if</span> ((clazz.getModifiers() &amp; Modifier.ENUM) != <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;Cannot reflectively create enum objects&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> inst;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>结论 - 不允许我们用反射的技术来构建枚举类型的实例,底层会进行类型的判断,发现如果是枚举类型对应的class实例,直接抛出异常</code></p>
+</blockquote>
+<h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><blockquote>
+<p>一个对象的中的所有String类型的成员变量所对应的字符串内容中的”b”改为”a”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Obj</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> age = <span class="number">10</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> String s2 = <span class="string">&quot;b&quot;</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> String name = <span class="string">&quot;tbm&quot;</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> String s1 = <span class="string">&quot;adminb&quot;</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//反射技术 - 所有字段拿出来 - Field数组中 </span></span><br><span class="line"><span class="comment">//获取到Field的类型,判断是不是String类型</span></span><br><span class="line"><span class="comment">//如果是String-&quot;b&quot;改为&quot;a&quot;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="反射工厂"><a href="#反射工厂" class="headerlink" title="反射工厂"></a>反射工厂</h1><blockquote>
+<p>回忆工厂设计模式[GOF]</p>
+<ol>
+<li>简单工厂方法,多方法工厂,静态方法工厂 - 本质上不属于GOF</li>
+<li>工厂方法设计模式以及抽象工厂[专注于产品族] - 属于GOF</li>
+<li>反射工厂 - 工厂类中利用反射技术来构建某个类的/接口的具体的实例.</li>
+</ol>
+</blockquote>
+<h2 id="补充Properties"><a href="#补充Properties" class="headerlink" title="补充Properties"></a>补充Properties</h2><blockquote>
+<ol>
+<li><p>属于集合框架的类 - 属于Map[I]</p>
+</li>
+<li><p><strong>java.util.Properties extends java.util.Hashtable</strong>[哈希表,多线程安全的]</p>
+</li>
+<li><p>作用:通过io流把本地的.properties文件读取到内存中,然后映射到Properties对象</p>
+<p><strong>Properties对象就是.properties属性文件[encoding=utf-8]在内存中的映射.</strong></p>
+<p>File - 本地磁盘的文件在java内存中的映射的那个对象.</p>
+</li>
+<li><p>存储数据的格式然后是一个键值对的形式</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># key=value - key也是不要重复的.</span></span><br><span class="line"><span class="attr">username</span>=<span class="string">tom</span></span><br><span class="line"><span class="attr">password</span>=<span class="string">123</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="5">
+<li><p>根据key来获取value的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">getProperty</span><span class="params">(String key)</span></span>;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="6">
+<li><p>demo</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day16.prop;</span><br><span class="line">   </span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line">   </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 读取Properties文件</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/13 8:41 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">ReadPropDemo</span> </span>&#123;</span><br><span class="line">    INSTANCE;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">// 定义一个Properties属性</span></span><br><span class="line">    <span class="keyword">private</span> Properties properties;</span><br><span class="line">   </span><br><span class="line">    ReadPropDemo()&#123;</span><br><span class="line">        <span class="comment">//可以在构造方法 - 初始化的</span></span><br><span class="line">        <span class="comment">//Properties对象就是.properties属性文件[encoding=utf-8]在内存中的映射.</span></span><br><span class="line">        properties = <span class="keyword">new</span> Properties();</span><br><span class="line">   </span><br><span class="line">        <span class="comment">//读取属性文件</span></span><br><span class="line">        <span class="comment">//InputStream in = new FileInputStream(&quot;src/tech/aistar/day16/prop.bean.properties&quot;);</span></span><br><span class="line">   </span><br><span class="line">        <span class="comment">//固定的语法 - 死记住</span></span><br><span class="line">        <span class="comment">//获取属性文件字节输入流</span></span><br><span class="line">        InputStream in = Thread.currentThread()</span><br><span class="line">                                .getContextClassLoader()</span><br><span class="line">                                .getResourceAsStream(<span class="string">&quot;tech/aistar/day16/prop/bean.properties&quot;</span>);</span><br><span class="line">   </span><br><span class="line">        <span class="comment">//加载</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//Properties对象就是.properties属性文件[encoding=utf-8]在内存中的映射.</span></span><br><span class="line">            properties.load(in);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">//普通方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getValue</span><span class="params">(String key)</span></span>&#123;</span><br><span class="line">        <span class="comment">//确认properties不为null</span></span><br><span class="line">        <span class="keyword">return</span> properties == <span class="keyword">null</span>?<span class="keyword">null</span>:properties.getProperty(key);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="6">
+<li><p>单元测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day16.prop;</span><br><span class="line">   </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/13 8:47 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadPropDemoTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String value = ReadPropDemo.INSTANCE.getValue(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">        System.out.println(value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="反射工厂demo"><a href="#反射工厂demo" class="headerlink" title="反射工厂demo"></a>反射工厂demo</h2><blockquote>
+<ol>
+<li><p>简单工厂的缺点 - 如果有新的产品的加入,需要修改工厂类的 - 违背了软件开发的设计原则 - “开闭原则”</p>
+<p>优点 - 够简单</p>
+</li>
+<li><p>工厂方法设计模式 - 优点:一个工厂类只负责生产一个产品,如果有新的产品的加入.不需要修改工厂类,只需要增加一个工厂类</p>
+<p>缺点 - 项目中会存在很多的工厂类.</p>
+</li>
+<li><p>抽象工厂 - 负责创建一个产品族.</p>
+</li>
+<li><p><strong>反射工厂既能够保证在新增一个产品的时候,能够遵守”开闭原则”,又能够保证始终仅仅只有一个工厂类.</strong></p>
+</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.design.factory.reflect;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 反射工厂 - 反射工厂既能够保证在新增一个产品的时候,能够遵守&quot;开闭原则&quot;,</span></span><br><span class="line"><span class="comment"> *                      又能够保证始终仅仅只有一个工厂类.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *             Properties + 反射 + 泛型方法/泛型类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/13 9:13 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseFactory</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//面向接口编程</span></span><br><span class="line">    <span class="comment">//泛型方法 - 静态方法&lt;T&gt;,同时也要设置泛型类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span>&lt;T&gt; T <span class="title">getInstance</span><span class="params">(String type)</span></span>&#123;</span><br><span class="line">        T t = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//如果传入进来的是type - 是某个类的全限定名,比如</span></span><br><span class="line">        <span class="comment">//tech.aistar.design.factory.reflect.TeacherDaoImpl</span></span><br><span class="line">        <span class="comment">//获取class实例的方式</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class&lt;?&gt; c = Class.forName(type);</span><br><span class="line">            <span class="comment">//反射调用空参构造</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">//Point p = (Point) c.newInstance();</span></span><br><span class="line">                t = (T) c.newInstance();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InstantiationException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><blockquote>
+<p>java.lang.reflect.Method</p>
+</blockquote>
+<h2 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h2><blockquote>
+<ol>
+<li><p>int getModifiers();<br>返回由该 method对象表示的字段的Java语言修饰符，作为整数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认的 - 0</span></span><br><span class="line"><span class="comment">//public  -1</span></span><br><span class="line"><span class="comment">//private - 2</span></span><br><span class="line"><span class="comment">//protected - 4</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Class&lt;?&gt; getReturnType();//返回方法的返回类型</p>
+</li>
+<li><p>String getName();//方法的名称</p>
+</li>
+<li><p>Class&lt;?&gt;[] getParameterTypes();//返回方法的参数列表.</p>
+</li>
+<li><p>Object invoke(Object obj,Object… args);//反射调用方法</p>
+</li>
+<li><p>void setAccessible(boolean on);//调用私有方法需要调用之前来设置可见性 - true</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h1><blockquote>
+<p>java.lang.reflect.Array - <code>Array</code>类提供静态方法来动态创建和访问Java数组 - <strong>反射技术操作java数组</strong></p>
+<p>面试题 - <strong>Arrays和Array的区别!</strong></p>
+<p>java.util.Arrays - 数组工具类.</p>
+</blockquote>
+<h2 id="常用用法"><a href="#常用用法" class="headerlink" title="常用用法"></a>常用用法</h2><blockquote>
+<ol>
+<li><p>static int getLength(Object array)<br>返回指定数组对象的长度，如 int 。</p>
+</li>
+<li><p>static Object get(Object array, int index)<br>返回指定数组对象中的索引组件的值。</p>
+</li>
+<li><p>static Object newInstance(Class&lt;?&gt; componentType, int length)<br>创建具有指定组件类型和长度的新数组。</p>
+</li>
+<li><p>static void set(Object array, int index, Object value)<br>将指定数组对象的索引组件的值设置为指定的新值。</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="demo-1"><a href="#demo-1" class="headerlink" title="demo"></a>demo</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day16;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Array;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 反射操作java数组</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/13 1:32 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Integer[] arr1 = &#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>&#125;;</span><br><span class="line"></span><br><span class="line">        String[] arr2 = &#123;<span class="string">&quot;java&quot;</span>,<span class="string">&quot;python&quot;</span>,<span class="string">&quot;db&quot;</span>,<span class="string">&quot;web&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//用一个方法,来遍历上面俩个不同元素类型数组</span></span><br><span class="line">        <span class="comment">//反射技术来遍历数组</span></span><br><span class="line">        printArr(arr1);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;====华丽丽的分割线====&quot;</span>);</span><br><span class="line"></span><br><span class="line">        printArr(arr2);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;===反射动态创建数组===&quot;</span>);</span><br><span class="line">        <span class="comment">//对任何元素类型的数组,都可以进行扩容操作</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//1. 确定新的数组的长度 - 原来数组的长度+扩容长度[反射创建新的数组]</span></span><br><span class="line">        <span class="comment">//2. 读取原来数组中的每个下标的数据[反射读取]一一复制到新的数组中[反射设置值]</span></span><br><span class="line">        <span class="comment">//3. 返回类型确定[扩容之后的] - Object</span></span><br><span class="line">        Integer[] temp = (Integer[]) extendsArr(arr1);</span><br><span class="line">        printArr(temp);</span><br><span class="line">        System.out.println(<span class="string">&quot;---&quot;</span>);</span><br><span class="line">        String[] strTemp = (String[]) extendsArr(arr2);</span><br><span class="line">        printArr(strTemp);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//数组的扩容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">extendsArr</span><span class="params">(Object arr)</span></span>&#123;</span><br><span class="line">        <span class="comment">//1. 创建数组必不可少的俩个条件.a. 数组的元素类型  b.数组的长度</span></span><br><span class="line">        <span class="comment">//获取旧数组长度</span></span><br><span class="line">        <span class="keyword">int</span> len = Array.getLength(arr);</span><br><span class="line">        <span class="comment">//确定新的数组的长度</span></span><br><span class="line">        <span class="keyword">int</span> newLen = len*<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 获取原来数组的组件的类型 - 数组的元素类型</span></span><br><span class="line">        Class&lt;?&gt; type = arr.getClass().getComponentType();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3. 反射创建新的数组了</span></span><br><span class="line">        Object newArr = Array.newInstance(type,newLen);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4. 把arr旧数组中的元素拷贝新的数组中去</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="comment">//根据下标获取值</span></span><br><span class="line">            Object o = Array.get(arr,i);</span><br><span class="line">            <span class="comment">//把o设置到newArr数组的下标i处</span></span><br><span class="line">            Array.set(newArr,i,o);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newArr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//反射访问</span></span><br><span class="line">    <span class="comment">//Integer[] String[] - 数组 - extends Object</span></span><br><span class="line">    <span class="comment">//并不是extends Object[]</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printArr</span><span class="params">(Object arr)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 数组的长度</span></span><br><span class="line">        <span class="keyword">int</span> len = Array.getLength(arr);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2. 遍历这个数组</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="comment">//反射的技术通过下标去取元素</span></span><br><span class="line">            Object obj = Array.get(arr,i);</span><br><span class="line"></span><br><span class="line">            System.out.println(obj);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><blockquote>
+<p>只要了解即可.jdk5.0开始引入了注解的机制.</p>
+<p>现在框架的配置,框架的使用 - 1. 基于xml的配置方式 2. 基于注解的配置/开发方式 - 简洁</p>
+<p>学习注解的目的是为了以后能够知道我们框架的使用中遇到注解,知道这个注解背后是个大概什么底层即可.</p>
+</blockquote>
+<h2 id="内置注解"><a href="#内置注解" class="headerlink" title="内置注解"></a>内置注解</h2><blockquote>
+<ul>
+<li><p>@Override - 检查该方法是否是重写方法。如果发现其父类，或者是引用的接口中并没有该方法时，会报编译错误。</p>
+</li>
+<li><p>@Deprecated - 标记过时方法。如果使用该方法，会报编译警告。</p>
+</li>
+<li><p>@SuppressWarnings - 指示编译器去忽略注解中声明的警告。</p>
+<p>@SuppressWarnings(“all”) - 抑制所有的警告</p>
+</li>
+<li><p>@FunctionalInterface - Java 8 开始支持，标识一个匿名函数或函数式接口。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><blockquote>
+<ol>
+<li><p>使用@interface来修饰注解,自定义的注解默认都会继承java.lang.Annotation</p>
+</li>
+<li><p><strong>@Target - 指定你这个注解可以在什么地方被使用</strong></p>
+<p>哪些地方 - 类,方法,参数,接口,局部变量上,属性,构造</p>
+<p>值可以设置成枚举类型java.lang.annotation.ElementType中的枚举常量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">ElementType</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** Class, interface (including annotation type), or enum declaration */</span></span><br><span class="line">    TYPE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Field declaration (includes enum constants) */</span></span><br><span class="line">    FIELD,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Method declaration */</span></span><br><span class="line">    METHOD,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Formal parameter declaration */</span></span><br><span class="line">    PARAMETER,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Constructor declaration */</span></span><br><span class="line">    CONSTRUCTOR,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Local variable declaration */</span></span><br><span class="line">    LOCAL_VARIABLE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Annotation type declaration */</span></span><br><span class="line">    ANNOTATION_TYPE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Package declaration */</span></span><br><span class="line">    PACKAGE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Type parameter declaration</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TYPE_PARAMETER,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Use of a type</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TYPE_USE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>@Retention(RetentionPolicy.RUNTIME)</p>
+<p>可以在程序的运行过程中,通过反射的技术来得到注解的信息.</p>
+</li>
+<li><p><strong>注解中只有方法的概念,没有的属性的概念</strong></p>
+</li>
+</ol>
+</blockquote>
+<h2 id="反射获取注解的值"><a href="#反射获取注解的值" class="headerlink" title="反射获取注解的值"></a>反射获取注解的值</h2><blockquote>
+<p><strong>有办法来判断类或者方法是否加入了注解</strong></p>
+<p><strong>有办法通过反射技术来获取类/方法上加入注解的属性值</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day16.anno;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 反射获取注解的值</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/13 2:39 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAnnoTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 判断某个类或者某个方法上是否有注解</span></span><br><span class="line">        <span class="comment">//有注解 - 标志 - 对这个有注解的类该干嘛干嘛...</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//注解还配置了属性值 - 需要取出属性值,然后再进行进一步的处理...</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//类</span></span><br><span class="line">        Class&lt;?&gt; c = UseMyAnno.class;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//1. 判断类上是否加入了MyAnno注解</span></span><br><span class="line">        <span class="keyword">boolean</span> flag = c.isAnnotationPresent(MyAnno.class);</span><br><span class="line">        <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">            System.out.println(c.getSimpleName()+<span class="string">&quot;加入了注解!&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//获取注解的属性值 - 前提是有</span></span><br><span class="line">            MyAnno myAnno = c.getAnnotation(MyAnno.class);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//获取属性值</span></span><br><span class="line">            String[] arr = myAnno.value();</span><br><span class="line"></span><br><span class="line">            System.out.println(Arrays.toString(arr));</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(c.getSimpleName()+<span class="string">&quot;上没有加入注解!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;====方法上的注解的信息 - 反射技术===&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Method m = c.getDeclaredMethod(<span class="string">&quot;add&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span>(m.isAnnotationPresent(MyAnno.class))&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;方法上有注解!&quot;</span>);</span><br><span class="line"></span><br><span class="line">                MyAnno myAnno = m.getAnnotation(MyAnno.class);</span><br><span class="line"></span><br><span class="line">                String[] arr = myAnno.value();</span><br><span class="line">                System.out.println(Arrays.toString(arr));</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;方法上没有注解...&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="mybatis注解开发方法"><a href="#mybatis注解开发方法" class="headerlink" title="mybatis注解开发方法"></a>mybatis注解开发方法</h2><blockquote>
+<p>mybatis底层使用到的是jdbc技术 - 和数据库打交道的技术</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">jdbc步骤很繁琐,步骤比较多~</span><br><span class="line">打开</span><br><span class="line">Connection con = DriverManager.getConnection(url,<span class="string">&quot;root&quot;</span>,<span class="string">&quot;root&quot;</span>);</span><br><span class="line">String sql=<span class="string">&quot;delete from user&quot;</span>;</span><br><span class="line">PreparedStatement pstmt = con.prepareStatement(sql);</span><br><span class="line"> ResultSet rs = pstmt.executeQuery();</span><br><span class="line">关闭</span><br><span class="line">rs.close();</span><br><span class="line">pstmt.close();</span><br><span class="line">con.close();</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>mybatis就是会对jdbc的代码进行一个封装</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IUserDao</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 查询所有用户</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Select(&quot;select * from user&quot;)</span></span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><code>尝试走一遍mybatis作者的路线</code></p>
+<p><code>自定义一个注解</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Select&#123;</span><br><span class="line">   <span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>注解本身是不会完成任何的业务逻辑的.</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">通过反射的技术-&gt;select * from user</span><br><span class="line">  </span><br><span class="line">工具类&#123;</span><br><span class="line">  	Connection con = DriverManager.getConnection(url,<span class="string">&quot;root&quot;</span>,<span class="string">&quot;root&quot;</span>);</span><br><span class="line">    String sql=<span class="string">&quot;反射技术获取的&quot;</span>;</span><br><span class="line">    PreparedStatement pstmt = con.prepareStatement(sql);</span><br><span class="line">     ResultSet rs = pstmt.executeQuery();</span><br><span class="line">    关闭</span><br><span class="line">    rs.close();</span><br><span class="line">    pstmt.close();</span><br><span class="line">    con.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第一阶段corejava总结"><a href="#第一阶段corejava总结" class="headerlink" title="第一阶段corejava总结"></a>第一阶段corejava总结</h1><blockquote>
+<ol>
+<li>JVM内存模型+<strong>GC算法</strong> - 面试必问</li>
+<li><strong>静态代理和动态代理 - 设计模式</strong></li>
+</ol>
+</blockquote>
+<h2 id="体系回顾"><a href="#体系回顾" class="headerlink" title="体系回顾"></a>体系回顾</h2><blockquote>
+<ol>
+<li><strong>part01-基础语法-数组的排重/排序算法/递归算[阶乘,杨辉,斐波那契数列]</strong></li>
+<li><strong>part02</strong><ul>
+<li><strong>封装,继承,多态</strong></li>
+<li><strong>四种访问修饰符</strong></li>
+<li><strong>static关键字,final,abstract修饰符</strong></li>
+<li><strong>String,StringBuffer,StringBuilder</strong></li>
+<li><strong>包装类型Integer - [IntegerCache缓冲区,-128~127]</strong></li>
+<li><strong>设计模式 - 单例[双重锁检测]+工厂+模板+装饰器</strong></li>
+<li><strong>Object - equals&amp;hashcode,clone,toString,wait,notify,notifyAll,finalize,getClass()</strong></li>
+<li><strong>Date&amp;Calendar&amp;SimpleDateFormat&amp;BigInteger - 常用的内置的api</strong></li>
+</ul>
+</li>
+<li><strong>part03 - 集合框架</strong><ul>
+<li><strong>ArrayList&amp;LinkedList&amp;Vector</strong></li>
+<li><strong>HashSet&amp;TreeSet</strong></li>
+<li><strong>HashMap&amp;Properties</strong></li>
+</ul>
+</li>
+<li><strong>多线程体系</strong></li>
+<li><strong>反射+注解</strong></li>
+</ol>
+</blockquote>
+<h1 id="第二阶段的知识点"><a href="#第二阶段的知识点" class="headerlink" title="第二阶段的知识点"></a>第二阶段的知识点</h1><blockquote>
+<p><strong>周一之前 - mysql环境装好</strong></p>
+</blockquote>
+<blockquote>
+<p>围绕数据库</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>mysql学习 - 关系型数据</li>
+<li>jdbc学习 - java和db进行交互的技术</li>
+<li>myabtis框架学习 - 持久层技术,对jdbc的封装</li>
+</ol>
+</blockquote>
+<blockquote>
+<p> <em><strong>相关知识点 - mybatis-plus框架,redis - 非关系型数据</strong></em></p>
+</blockquote>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>yang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/08/01/day16/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;01&#x2F;day16&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;01&#x2F;day16&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreJava/" rel="tag">coreJava</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/10/19/springclound/"><i class="iconfont iconleft"></i>SpringClound</a>
+    <a href="/2021/07/29/day15/">day15<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%AE%9A%E4%B9%89"><span class="toc-text">反射定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#java-lang-Class"><span class="toc-text">java.lang.Class</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3api"><span class="toc-text">反射相关api</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%B1%BB%E7%9A%84Class%E5%AE%9E%E4%BE%8B%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-text">获取类的Class实例的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#demo"><span class="toc-text">demo</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Field%E5%AD%97%E6%AE%B5%E5%AE%9E%E4%BE%8B"><span class="toc-text">Field字段实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#api"><span class="toc-text">api</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Constructor%E6%9E%84%E9%80%A0%E5%AE%9E%E4%BE%8B"><span class="toc-text">Constructor构造实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E7%A9%BA%E5%8F%82%E6%9E%84%E9%80%A0"><span class="toc-text">调用空参构造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E5%B8%A6%E5%8F%82%E6%9E%84%E9%80%A0"><span class="toc-text">调用带参构造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Modifier"><span class="toc-text">Modifier</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%93%E5%B1%95%E5%BA%94%E7%94%A8"><span class="toc-text">拓展应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%8F%AF%E4%BB%A5%E7%A0%B4%E5%9D%8F%E5%8D%95%E4%BE%8B"><span class="toc-text">反射可以破坏单例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BD%95%E7%A0%B4%E5%9D%8F%E4%B8%8D%E4%BA%86%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E5%8D%95%E4%BE%8B"><span class="toc-text">为何破坏不了枚举类型单例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90-NoSuchMethodException"><span class="toc-text">分析-NoSuchMethodException</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90-IllegalArgumentException"><span class="toc-text">分析 - IllegalArgumentException</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A"><span class="toc-text">作业</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%B7%A5%E5%8E%82"><span class="toc-text">反射工厂</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85Properties"><span class="toc-text">补充Properties</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E5%B7%A5%E5%8E%82demo"><span class="toc-text">反射工厂demo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Method"><span class="toc-text">Method</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Array"><span class="toc-text">Array</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%94%A8%E6%B3%95"><span class="toc-text">常用用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#demo-1"><span class="toc-text">demo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3"><span class="toc-text">注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E6%B3%A8%E8%A7%A3"><span class="toc-text">内置注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3"><span class="toc-text">自定义注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%B0%84%E8%8E%B7%E5%8F%96%E6%B3%A8%E8%A7%A3%E7%9A%84%E5%80%BC"><span class="toc-text">反射获取注解的值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mybatis%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95"><span class="toc-text">mybatis注解开发方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5corejava%E6%80%BB%E7%BB%93"><span class="toc-text">第一阶段corejava总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%93%E7%B3%BB%E5%9B%9E%E9%A1%BE"><span class="toc-text">体系回顾</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-text">第二阶段的知识点</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2376754897 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.baidu.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/yangmoureng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:18687993885@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

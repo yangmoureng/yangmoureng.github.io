@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>day12 - YangBlog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="SimpleDateFormat
+
+java.text...">
+  <meta name="author" content="yang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '树欲静而风不止，子欲养而亲不待。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YangBlog" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">day12</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 快乐</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/pg7.jfif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">day12</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>七月 26, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>10008</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="SimpleDateFormat"><a href="#SimpleDateFormat" class="headerlink" title="SimpleDateFormat"></a>SimpleDateFormat</h1><blockquote>
+<ol>
+<li>java.text.SimpleDateFormat - 日期格式处理类</li>
+<li>线程不安全的类.</li>
+</ol>
+</blockquote>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><blockquote>
+<ol>
+<li><p>Date类型转换成String类型 - 按照指定的日期格式.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//pattern必须是一个有效的格式化模板,如果传入了一个非法模板</span></span><br><span class="line"><span class="comment">//那么就会抛出一个java.lang.IllegalArgumentException - 非法参数异常</span></span><br><span class="line"><span class="comment">// Illegal pattern character &#x27;q&#x27;</span></span><br><span class="line"><span class="function">String <span class="title">format</span><span class="params">(Date date)</span></span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>String类型转换成Date类型.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果构造中的pattern的格式和日期的字符串的格式不一致,那么在调用</span></span><br><span class="line"><span class="comment">//parse方法的时候就会抛出java.text.ParseException: Unparseable date: &quot;2020-09-03&quot;</span></span><br><span class="line"><span class="comment">//解析失败异常</span></span><br><span class="line"><span class="function">Date <span class="title">parse</span><span class="params">(String str)</span></span>;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="模板pattern"><a href="#模板pattern" class="headerlink" title="模板pattern"></a>模板pattern</h2><table>
+<thead>
+<tr>
+<th>Letter</th>
+<th>Date or Time Component</th>
+<th>Presentation</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>G</code></td>
+<td>Era designator</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#text">Text</a></td>
+<td><code>AD</code></td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>Year</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#year">Year</a></td>
+<td><code>1996</code>; <code>96</code></td>
+</tr>
+<tr>
+<td><code>Y</code></td>
+<td>Week year</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#year">Year</a></td>
+<td><code>2009</code>; <code>09</code></td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>Month in year (context sensitive)</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#month">Month</a></td>
+<td><code>July</code>; <code>Jul</code>; <code>07</code></td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>Month in year (standalone form)</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#month">Month</a></td>
+<td><code>July</code>; <code>Jul</code>; <code>07</code></td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Week in year</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>27</code></td>
+</tr>
+<tr>
+<td><code>W</code></td>
+<td>Week in month</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>Day in year</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>189</code></td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>Day in month</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td><code>F</code></td>
+<td>Day of week in month</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td>Day name in week</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#text">Text</a></td>
+<td><code>Tuesday</code>; <code>Tue</code></td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>Day number of week (1 = Monday, …, 7 = Sunday)</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>Am/pm marker</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#text">Text</a></td>
+<td><code>PM</code></td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td>Hour in day (0-23)</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Hour in day (1-24)</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>24</code></td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td>Hour in am/pm (0-11)</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>Hour in am/pm (1-12)</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>12</code></td>
+</tr>
+<tr>
+<td><code>m</code></td>
+<td>Minute in hour</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>30</code></td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>Second in minute</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>55</code></td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td>Millisecond</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#number">Number</a></td>
+<td><code>978</code></td>
+</tr>
+<tr>
+<td><code>z</code></td>
+<td>Time zone</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#timezone">General time zone</a></td>
+<td><code>Pacific Standard Time</code>; <code>PST</code>; <code>GMT-08:00</code></td>
+</tr>
+<tr>
+<td><code>Z</code></td>
+<td>Time zone</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#rfc822timezone">RFC 822 time zone</a></td>
+<td><code>-0800</code></td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>Time zone</td>
+<td><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/text/SimpleDateFormat.html#iso8601timezone">ISO 8601 time zone</a></td>
+<td><code>-08</code>; <code>-0800</code>; <code>-08:00</code></td>
+</tr>
+</tbody></table>
+<h2 id="日期工具类"><a href="#日期工具类" class="headerlink" title="日期工具类"></a>日期工具类</h2><blockquote>
+<p>java.util.Date</p>
+</blockquote>
+<h1 id="BigDecimal"><a href="#BigDecimal" class="headerlink" title="BigDecimal"></a>BigDecimal</h1><blockquote>
+<p>api: java.math</p>
+</blockquote>
+<h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><blockquote>
+<p><strong><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/math/BigDecimal.html#BigDecimal-double-">BigDecimal</a></strong>(double val)</p>
+<p>BigDecimal(String val);//处理小数精度的问题</p>
+</blockquote>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><blockquote>
+<ol>
+<li><p>BigDecimal add(BigDecimal augend)<br>返回 BigDecimal ，其值是 (this + augend) ，其标为 max(this.scale(), augend.scale()) 。</p>
+</li>
+<li><p>BigDecimal divide(BigDecimal divisor)</p>
+<p>除法</p>
+</li>
+<li><p>BigDecimal multiply(BigDecimal multiplicand)</p>
+<p>乘法</p>
+</li>
+<li><p>BigDecimal    subtract(BigDecimal subtrahend)</p>
+<p>减法</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="笔试题"><a href="#笔试题" class="headerlink" title="笔试题"></a>笔试题</h2><blockquote>
+<p>在java开发中如何处理小数精度丢失的问题</p>
+<p>需要使用到的是<strong>BigDecimal(String val);</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day12;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.math.BigDecimal;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 处理小数</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/4 9:27 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BigDecimalHandlerFloatDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BigDecimal d1 = <span class="keyword">new</span> BigDecimal(<span class="string">&quot;0.1&quot;</span>);</span><br><span class="line">        BigDecimal d2 = <span class="keyword">new</span> BigDecimal(String.valueOf(<span class="number">0.2</span>));</span><br><span class="line"></span><br><span class="line">        BigDecimal result = d1.add(d2);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//BigDecimal-&gt;double/String</span></span><br><span class="line">        <span class="keyword">double</span> resultDouble = result.doubleValue();</span><br><span class="line">        System.out.println(resultDouble);</span><br><span class="line"></span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="BigInteger"><a href="#BigInteger" class="headerlink" title="BigInteger"></a>BigInteger</h1><blockquote>
+<p>笔试题 - 递归算法求阶乘</p>
+<p><strong>构造:BigInteger(String val);</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BigIntegerDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(test(<span class="number">6</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BigInteger <span class="title">test</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> BigInteger.ONE;</span><br><span class="line">        BigInteger current = <span class="keyword">new</span> BigInteger(String.valueOf(n));</span><br><span class="line">        <span class="keyword">return</span> current.multiply(test(n-<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="四种内部类"><a href="#四种内部类" class="headerlink" title="四种内部类"></a>四种内部类</h1><blockquote>
+<p>看懂别人写的内部类语法即可</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>成员内部类 - 把内部类看成是外部类的一个成员</p>
+<p>a. 成员内部类不能再去定义静态成员</p>
+<p>b. 成员内部类中可以通过Outer.this.非静态属性名来访问外部类的非静态属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">外部类.内部类 对象名 = 外部类对象.new 内部类();</span><br></pre></td></tr></table></figure></li>
+<li><p>静态内部类- 把内部类看成是外部类的一个静态成员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">外部类.内部类 对象名 = <span class="keyword">new</span> 外部类.内部类();</span><br></pre></td></tr></table></figure>
+
+<p>a. 内部是可以定义静态和非静态属性的</p>
+<p>b. 内部的普通方法中是不允许访问外部类的非静态属性的.</p>
+<p>c. 内部的普通方法中是允许访问外部类的静态属性的</p>
+</li>
+<li><p>局部内部类 - 内部类是出现在外部类的方法中.</p>
+<p>a. 内部类是不允许使用访问修饰符,比如不能使用public</p>
+<p>b. 不能定义静态属性的</p>
+<p>c. 访问到外部类的静态和非静态成员的</p>
+<p>d. 生命只在所在的方法中,方法外部是没有办法拿到这个对象的(不能直接在外部new)</p>
+</li>
+<li><p>匿名内部类 - 必须掌握的</p>
+<blockquote>
+<p>好处 - 我们可以在程序中少写实现类</p>
+<p>jdk8.x中如果遇到函数式接口.推荐使用lambda表达式来替代匿名内部类的写法的.</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<h1 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h1><blockquote>
+<p>IO流使用到了”装饰器”设计模式思想</p>
+<p>装饰器模式（Decorator Pattern）<strong>允许向一个现有的对象添加新的功能，同时又不改变其结构</strong>。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。</p>
+</blockquote>
+<h1 id="UML"><a href="#UML" class="headerlink" title="UML"></a>UML</h1><blockquote>
+<p><em>Unified Modeling Language</em>- 统一建模语言</p>
+</blockquote>
+<blockquote>
+<p>BA - 需求分析师</p>
+<ol>
+<li>powerndesigner </li>
+<li>starUML</li>
+</ol>
+<p>掌握目标: 看懂箭头即可</p>
+<p> 类与类之间由弱到强关系是:   <em><strong>*没关系 &gt;** **依赖 &gt; 关联 &gt; 聚合 &gt; 组合。*</strong></em></p>
+</blockquote>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><blockquote>
+<p>虚线+箭头&lt;——</p>
+<p>可以简单的理解，就是一个类A使用到了另一个类B，而这种使用关系是具有偶然性的、、临时性的、非常弱的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(B b)</span></span>&#123;</span><br><span class="line">     <span class="comment">//自己的功能</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//B类中的功能</span></span><br><span class="line">    b.test();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h2><blockquote>
+<p>箭头 实线+箭头&lt;-</p>
+</blockquote>
+<blockquote>
+<p>A类关联了B类 - A依赖于B</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> B b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="组合关系"><a href="#组合关系" class="headerlink" title="组合关系"></a>组合关系</h2><blockquote>
+<p>属于关联的一种 - 强调的是整体和局部的关系,这种关系非常紧密.整体是可以决定局部的生命周期的.</p>
+<p>箭头 - 实线+实心菱形</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.uml.combination;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示:属于关联的一种 - 强调的是整体和局部的关系,这种关系非常紧密.</span></span><br><span class="line"><span class="comment"> *            整体是可以决定局部的生命周期的.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/4 10:34 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Baby</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Eye eye;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Hand hand;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Baby</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.eye = <span class="keyword">new</span> Eye();</span><br><span class="line">        <span class="keyword">this</span>.hand = <span class="keyword">new</span> Hand();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Baby b = <span class="keyword">new</span> Baby();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="聚合关系"><a href="#聚合关系" class="headerlink" title="聚合关系"></a>聚合关系</h2><blockquote>
+<p>属于关联的一种 - 强调的是整体和局部的关系,这种关系较紧密.整体是可以不用决定局部的生命周期的 - 局部单独存在的</p>
+<p>箭头 - 实线+空心菱形</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Cpu cpu;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Computer</span><span class="params">(Cpu cpu)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cpu = cpu;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="Throwable"><a href="#Throwable" class="headerlink" title="Throwable"></a>Throwable</h1><blockquote>
+<p>java.lang.Throwable - 异常和错误的顶级的类</p>
+<p>两个分支:</p>
+<ol>
+<li><p>java.lang.Error - 错误 - 错误一旦发生,程序员是么有办法进行扭转的 - 不需要在代码中进行处理.</p>
+<p>1-1. 子类<strong>VirtualMachineError</strong>虚拟机级别的错误</p>
+<p>​         1-1-1. 子类java.lang.<strong>StackOverflowError</strong> 堆栈溢出 -  应用程序因为递归太深没有指定出口的时候.</p>
+<p>​         1-1-2. 子类java.lang.<strong>OutOfMemoryError</strong> 内存泄漏 - [GC垃圾回收机制 - 后台自动回收垃圾对象]</p>
+</li>
+<li><p><strong>java.lang.Exception - 异常</strong> - 程序在运行的过程中发生了不正常的情况.</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="异常的分类"><a href="#异常的分类" class="headerlink" title="异常的分类"></a>异常的分类</h2><blockquote>
+<p>运行时异常[RuntimeException]都是非运行时异常的子类[Exception]</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>运行时异常 - 未检测异常</p>
+<p><code>顶级的父类java.lang.RuntimeException</code></p>
+<blockquote>
+<ol>
+<li><p>java.lang.NullPointerException - 空指针异常</p>
+</li>
+<li><p>java.util.InputMismatchException - 输入不匹配异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"><span class="keyword">int</span> n = sc.nextInt();<span class="comment">//只能获取整数.但是输入了一个字符串&quot;abc&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>java.lang.ArithmeticException - 分母为0</p>
+</li>
+<li><p>java.lang.IllegalArgumentException - 非法参数异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line">构造中的模板如果传入了一个非法模板</span><br></pre></td></tr></table></figure></li>
+<li><p>java.lang.IndexOutOfBoundsException - 下标越界异常 - 比如list.get(100);</p>
+<p>5-1. java.lang.StringIndexOutOfBoundsException - 字符串下标越界异常</p>
+<p>5-2. java.lang.ArrayIndexOutOfBoundsException - 数组下标越界异常</p>
+</li>
+<li><p>java.util.NoSuchElementException - 不存在此元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LinkedList&lt;Character&gt; list = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">System.out.println(list.getFirst());<span class="comment">//获取栈顶元素,但是栈顶没有元素</span></span><br></pre></td></tr></table></figure></li>
+<li><p>java.lang.ClassCastException - 类型转换失败异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">父类类型转换成子类类型之前,推荐先使用<span class="keyword">instanceof</span>关键字进行类型的判断</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+</li>
+<li><p>非运行时异常 - 已检测异常</p>
+<blockquote>
+<ol>
+<li><p>java.text.ParseException - 解析失败异常 - 字符串的模板和pattern不匹配</p>
+</li>
+<li><p>InterruptedException - 中断异常 - Thread.sleep(1000);</p>
+</li>
+<li><p>java.lang.CloneNotSupportedException - 不允许被clone.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当调用对象的clone方法,但是这个对象没有去实现java.lang.Cloneable接口</span><br></pre></td></tr></table></figure></li>
+<li><p>java.io.IOExcetion - IO流异常</p>
+<p>4-1. java.io.EOFException - 已经读取到文件的末尾了.</p>
+<p>4-2. java.io.FileNotFoundException - 文件找不到异常</p>
+</li>
+<li><p>java.sql.SQLException - SQL异常,比如程序中的sql语句要是写错了.</p>
+</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<h2 id="异常的处理方式"><a href="#异常的处理方式" class="headerlink" title="异常的处理方式"></a>异常的处理方式</h2><blockquote>
+<ol>
+<li><p>运行时异常不需要处理(也是可以处理的),只需要在编程的时候,注意一下验证/判断.稍微谨慎一点.</p>
+</li>
+<li><p><strong>非运行时异常 - 编译期间就需要立即对其进行处理.处理的方式有俩种.一种是积极处理 - try..catch的方式</strong></p>
+<p><strong>另外一种是消极处理.</strong></p>
+</li>
+</ol>
+</blockquote>
+<h3 id="积极处理方式"><a href="#积极处理方式" class="headerlink" title="积极处理方式"></a>积极处理方式</h3><blockquote>
+<ol>
+<li><p>语法一 - try….catch….catch….finally </p>
+<p>推荐使用到的 - 因为针对每种不同的异常进行单独的日志记录,单独的异常处理.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">   <span class="comment">//code..</span></span><br><span class="line">  <span class="comment">//code..</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类型<span class="number">1</span> e1)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类型<span class="number">2</span> e2)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">  <span class="comment">//无论是否出现异常,都会执行</span></span><br><span class="line">&#125;</span><br><span class="line">注意:上方的异常类型不能是下方的异常类型的父类.</span><br></pre></td></tr></table></figure></li>
+<li><p>语法二 - jdk7.0提供的新的写法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">  <span class="comment">//code...</span></span><br><span class="line">  <span class="comment">//code...</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类型<span class="number">1</span> | 异常类型<span class="number">2</span>)&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>语法三 - 简单粗暴</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">  <span class="comment">//....</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(异常总父类)&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h3 id="消极处理"><a href="#消极处理" class="headerlink" title="消极处理"></a>消极处理</h3><blockquote>
+<p>比如在某个方法中某些代码出现了非运行时异常,那么在自己方法的内部”不着急”去积极处理.而是把这个异常抛出去了.</p>
+<p>为了自己不处理,而是抛出去? - 因为这个方法有可能会被反复在其他地方调用 - 原则:谁调用,谁负责最终处理.</p>
+<p>原则谨记 - 不要把异常抛给main方法,等同于把异常抛给jvm,等同于一旦出现异常,程序就会崩溃.</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>直接在方法的签名[声明]上使用<strong>throws关键字+异常类型</strong>1,异常类型2</p>
+</li>
+<li><p>在方法体中使用<strong>throw+异常对象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">d</span><span class="params">(<span class="keyword">int</span> n)</span> <span class="keyword">throws</span> FileNotFoundException </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n==<span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">//System.out.println(&quot;异常的描述....&quot;);</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">//throw + 运行时异常对象,不需要在方法的签名上抛出异常 - 本身运行时异常就不需要处理呀!</span></span><br><span class="line">    <span class="comment">//throw new RuntimeException(&quot;发生异常了...&quot;);</span></span><br><span class="line">   </span><br><span class="line">    <span class="comment">//throw + 非运行时异常 配合 必须要在方法的签名上throws+非运行时异常类型</span></span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> FileNotFoundException(<span class="string">&quot;文件不存在!&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  System.out.println(<span class="string">&quot;n:&quot;</span>+n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>笔试题 - throws和throw有什么区别</p>
+</blockquote>
+<h1 id="笔试题1"><a href="#笔试题1" class="headerlink" title="笔试题1"></a>笔试题1</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">  <span class="comment">//code...</span></span><br><span class="line">  <span class="comment">//code..</span></span><br><span class="line">  <span class="keyword">return</span>;<span class="comment">//结束整个方法</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类型 e)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类型 e)&#123;</span><br><span class="line">  </span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">  <span class="comment">//无论是否出现异常,都会执行</span></span><br><span class="line">&#125;</span><br><span class="line">假设<span class="keyword">try</span>&#123;&#125;中没有任何异常发生,所有的code都会顺利执行.</span><br><span class="line"><span class="number">1.</span> <span class="keyword">finally</span>中的代码执行否? - 肯定会执行</span><br><span class="line"><span class="number">2.</span> <span class="keyword">return</span>语句是在<span class="keyword">finally</span>块之前执行还是之后执行? - 之后</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="笔试题2"><a href="#笔试题2" class="headerlink" title="笔试题2"></a>笔试题2</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day12.exception;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 笔试题</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/8/4 3:23 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FinallyDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(test());<span class="comment">//1</span></span><br><span class="line"></span><br><span class="line">        System.out.println(change());<span class="comment">//A&#123;age=200&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//finally中修改了基本数据类型</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;<span class="comment">//①</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//try可以直接和finally一起使用....</span></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//此处将i自增后的结果缓存起来了.并且这个缓存的结果就是作为最终返回出去的一个结果 - 对待基本数据类型.</span></span><br><span class="line">            <span class="keyword">return</span> ++i;</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            ++i;<span class="comment">//③</span></span><br><span class="line">            System.out.println(<span class="string">&quot;i:&quot;</span>+i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//finally修改了对象类型的属性</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> A <span class="title">change</span><span class="params">()</span></span>&#123;</span><br><span class="line">        A a = <span class="keyword">new</span> A();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            a.age = <span class="number">100</span>;</span><br><span class="line">            <span class="comment">//return是在finally之后执行</span></span><br><span class="line">            <span class="keyword">return</span> a;</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">//对待对象类型 - finally中的修改对象的属性值,是对return的结果是产生了影响的.</span></span><br><span class="line">            a.age = <span class="number">200</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age = <span class="number">18</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> StringBuilder sb = <span class="keyword">new</span> StringBuilder(<span class="string">&quot;A&#123;&quot;</span>);</span><br><span class="line">        sb.append(<span class="string">&quot;age=&quot;</span>).append(age);</span><br><span class="line">        sb.append(<span class="string">&#x27;&#125;&#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="笔试题3"><a href="#笔试题3" class="headerlink" title="笔试题3"></a>笔试题3</h1><blockquote>
+<p>final和finally和finalize三者之间的区别? - 一点关系都没有</p>
+<blockquote>
+<ol>
+<li><p>final </p>
+<p>a. 修饰的局部变量一旦赋值成功,不可改变</p>
+<p>b. 修饰的属性一旦赋值成功,不可改变</p>
+<p>c. 修饰的类不可被继承</p>
+<p>d. 修饰的方法不可被重写</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><p>finally</p>
+<p>a. 一般是和try..catch搭配使用的.try块中无论是否出现异常,finally块中代码都会执行</p>
+<p>b. finally块中一般写的是释放或者关闭资源的代码</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><p>finalize - Object类中提供的方法</p>
+<p>a. 当GC想去回收一个垃圾对象之前,会去调用这个对象的finalize方法.是由JVM去调用.</p>
+<p>b. 该方法未必一定会被调用得到.</p>
+</li>
+</ol>
+</blockquote>
+</blockquote>
+<h1 id="自定义异常"><a href="#自定义异常" class="headerlink" title="自定义异常"></a>自定义异常</h1><blockquote>
+<p>项目中其实是专门包exception - 专门自定义自己的异常[大量的]</p>
+<p>jdk内置的异常不够用,不符合实际的业务场景.</p>
+</blockquote>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><blockquote>
+<ol>
+<li>写一个异常类继承java.lang.Exception</li>
+<li>提供父类的5个构造方法即可</li>
+</ol>
+</blockquote>
+<h2 id="思考为什么要自定义异常"><a href="#思考为什么要自定义异常" class="headerlink" title="思考为什么要自定义异常"></a>思考为什么要自定义异常</h2><blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;余额小于0&quot;</span>);</span><br><span class="line">            </span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> BalanceLtZeroException(<span class="string">&quot;余额小于0!&quot;</span>);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>场景:有的时候访问某些网站的时候 - 跳转到一个友好的页面 - <strong>显示比如服务器正在维护/升级…</strong></p>
+<p>我们应该提供一个<code>异常处理器</code> - 会监控软件程序在整个项目运行的过程中发生的一切异常.</p>
+<p>一旦它发现了某个地方产生了异常,那么它就会对这些异常进行一个日志记录,然后再让程序跳转到一个友好的界面.</p>
+<p>SpringMVC/SpringBoot - <code>异常处理器</code> - 只认识异常.</p>
+</blockquote>
+<h1 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h1><blockquote>
+<ol>
+<li>重点围绕OO - 面向对象</li>
+<li>三大特性 - 封装,继承,多态</li>
+<li>抽象类和接口区别</li>
+<li>四种访问修饰符的作用权限</li>
+<li>方法的重载和方法的重写</li>
+<li>单例 - 双重检测锁</li>
+<li>简单工厂</li>
+<li>static关键字的作用 - static练习</li>
+</ol>
+</blockquote>
+<h1 id="预习"><a href="#预习" class="headerlink" title="预习"></a>预习</h1><ol start="0">
+<li><p>泛型</p>
+</li>
+<li><p><strong>IO流 - 大头</strong></p>
+</li>
+<li><p><strong>并发编程 - 多线程 - 大头中的大头 - 最难的最难的最难的</strong></p>
+</li>
+<li><p>反射技术 - 看懂框架的源码[反射技术 + 设计模式]</p>
+</li>
+<li><p>动态代理 - [jdk动态代理 + cglib动态代理]</p>
+</li>
+<li><p>枚举类型</p>
+</li>
+</ol>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>yang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/07/26/day12/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;26&#x2F;day12&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;26&#x2F;day12&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreJava/" rel="tag">coreJava</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/07/27/day13/"><i class="iconfont iconleft"></i>day13</a>
+    <a href="/2021/07/25/day11/">day11<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SimpleDateFormat"><span class="toc-text">SimpleDateFormat</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BFpattern"><span class="toc-text">模板pattern</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-text">日期工具类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BigDecimal"><span class="toc-text">BigDecimal</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%94%E8%AF%95%E9%A2%98"><span class="toc-text">笔试题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BigInteger"><span class="toc-text">BigInteger</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E7%A7%8D%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-text">四种内部类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-text">装饰器模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UML"><span class="toc-text">UML</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96"><span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E8%81%94"><span class="toc-text">关联</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E5%85%B3%E7%B3%BB"><span class="toc-text">组合关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%85%B3%E7%B3%BB"><span class="toc-text">聚合关系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Throwable"><span class="toc-text">Throwable</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">异常的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-text">异常的处理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%AF%E6%9E%81%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-text">积极处理方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%9E%81%E5%A4%84%E7%90%86"><span class="toc-text">消极处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%94%E8%AF%95%E9%A2%981"><span class="toc-text">笔试题1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%94%E8%AF%95%E9%A2%982"><span class="toc-text">笔试题2</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%94%E8%AF%95%E9%A2%983"><span class="toc-text">笔试题3</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="toc-text">自定义异常</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-text">步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="toc-text">思考为什么要自定义异常</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E4%B9%A0"><span class="toc-text">复习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%84%E4%B9%A0"><span class="toc-text">预习</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2376754897 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.baidu.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/yangmoureng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:18687993885@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
