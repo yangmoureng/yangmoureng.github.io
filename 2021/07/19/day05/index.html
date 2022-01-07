@@ -1,0 +1,651 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>day05 - YangBlog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="Date
+api:java.util.Date[C] ...">
+  <meta name="author" content="yang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '树欲静而风不止，子欲养而亲不待。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YangBlog" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">day05</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 快乐</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">day05</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>七月 19, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>8810</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h1><blockquote>
+<p>api:<strong>java.util</strong>.Date[C] - 使用这个类之前,必须要导包import</p>
+<p>这是java中提供的关于日期的处理,内置的对象类型.它本身是一个过时的类</p>
+<p>里面提供了很多已经过时的方法.</p>
+<p>目标:掌握这个类中提供的方法</p>
+</blockquote>
+<h2 id="api手册"><a href="#api手册" class="headerlink" title="api手册"></a>api手册</h2><h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><blockquote>
+<p>作用:创建这个类的对象的方式</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>观察提供的方法是静态的方法还是非静态的方法. - <strong>api手册方法摘要</strong></p>
+<p>Date类中提供的方法几乎都是非静态的方法 - <strong>考虑如何构建这个对象?</strong></p>
+</li>
+<li><p>如何构建对象 - api手册的构造方法[面向对象]</p>
+<p>简单理解构造方法 - “方法”,构造方法通过new关键字调用</p>
+<ul>
+<li><p><strong>Date();//Date d = new Date();//获取当前系统时间</strong></p>
+</li>
+<li><p>Date(int year, int month, int date);//已经过时的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Date d2 = <span class="keyword">new</span> Date(<span class="number">2021</span>-<span class="number">1900</span>,<span class="number">6</span>,<span class="number">21</span>);</span><br><span class="line">year - <span class="number">1900</span> =&gt; 实际的year</span><br><span class="line">month的范围是[<span class="number">0</span>,<span class="number">11</span>]</span><br></pre></td></tr></table></figure></li>
+<li><p>Date(long date);//根据一个毫秒数来构建一个指定的日期类型 - 重新设置一个新的Date</p>
+<p>Java中日期类型Date对象是不支持运算的.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">计算三天之后的此时此刻</span><br><span class="line"><span class="keyword">long</span> afterThreeTime = <span class="keyword">new</span> Date().getTime()+<span class="number">3L</span>*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>;</span><br><span class="line">Date afterThreeDate = <span class="keyword">new</span> Date(afterThreeTime);</span><br><span class="line">System.out.println(afterThreeDate);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><blockquote>
+<p>非静态方法 - 日期对象进行调用.</p>
+<ul>
+<li><p>long getTime();//返回当前日期的毫秒数的表现形式 - 获取当前系统时间的毫秒数.距离1970年1月1日</p>
+<p>1970年是计算机的元年</p>
+</li>
+<li><p>get/set方法 - 过时的</p>
+<ol>
+<li>void setYear(int year);// year-1900</li>
+<li>void setMonth(int month);//month的范围[0,11]</li>
+<li>void setDate(int date);//设置今天是几号</li>
+<li>void setHours(int hours);//设置小时</li>
+<li>void setMinutes(int minutes);//设置分钟</li>
+<li>void setSeconds(int seconds);//设置秒</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day05;</span><br><span class="line">      </span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line">      </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: java.util.Date 日期处理类</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/7/21 8:43 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1. 创建一个日期对象</span></span><br><span class="line">        <span class="comment">//alter + enter 快速导包</span></span><br><span class="line">        Date d = <span class="keyword">new</span> Date();<span class="comment">//空参构造方法</span></span><br><span class="line">      </span><br><span class="line">        <span class="comment">//为什么此处输出的不是内存地址??? - OO - toString();</span></span><br><span class="line">      </span><br><span class="line">        <span class="comment">//Wed Jul 21 08:45:03 CST 2021</span></span><br><span class="line">        System.out.println(d);</span><br><span class="line">      </span><br><span class="line">        <span class="comment">//2. 重载的构造方法 - 过时的构造</span></span><br><span class="line">        Date d2 = <span class="keyword">new</span> Date(<span class="number">2021</span>-<span class="number">1900</span>,<span class="number">6</span>,<span class="number">21</span>);</span><br><span class="line">        System.out.println(d2);</span><br><span class="line">      </span><br><span class="line">        <span class="comment">//3. 利用毫秒数来构建一个Date对象</span></span><br><span class="line">        Date d3 = <span class="keyword">new</span> Date(<span class="number">1626829161216L</span>);</span><br><span class="line">        System.out.println(d3);</span><br><span class="line">      </span><br><span class="line">        System.out.println(<span class="string">&quot;====常用方法===&quot;</span>);</span><br><span class="line">        <span class="comment">//4.. 获取当前日期的毫秒数</span></span><br><span class="line">        <span class="comment">//1秒 = 1000毫秒</span></span><br><span class="line">        <span class="keyword">long</span> nowTime = d.getTime();</span><br><span class="line">        System.out.println(nowTime);<span class="comment">//1626828910303</span></span><br><span class="line">      </span><br><span class="line">        <span class="comment">//练习-计算三天之后的此时此刻</span></span><br><span class="line">        <span class="keyword">long</span> afterThreeTime = <span class="keyword">new</span> Date().getTime()+<span class="number">3L</span>*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>;</span><br><span class="line">        Date afterThreeDate = <span class="keyword">new</span> Date(afterThreeTime);</span><br><span class="line">        System.out.println(afterThreeDate);</span><br><span class="line">      </span><br><span class="line">        System.out.println(<span class="string">&quot;=====set设置/get获取======&quot;</span>);</span><br><span class="line">      </span><br><span class="line">        Date now = <span class="keyword">new</span> Date();</span><br><span class="line">      </span><br><span class="line">        now.setYear(<span class="number">2021</span>-<span class="number">1900</span>);<span class="comment">//设置年份</span></span><br><span class="line">        now.setMonth(<span class="number">6</span>);<span class="comment">//设置月份[0,11]</span></span><br><span class="line">        now.setDate(<span class="number">25</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;now:&quot;</span>+now);</span><br><span class="line">              </span><br><span class="line">        <span class="keyword">int</span> year = now.getYear()+<span class="number">1900</span>;<span class="comment">//获取年份</span></span><br><span class="line">        System.out.println(<span class="string">&quot;year:&quot;</span>+year);</span><br><span class="line">              </span><br><span class="line">        System.out.println(<span class="string">&quot;month:&quot;</span>+now.getMonth());<span class="comment">//获取月份</span></span><br><span class="line">              </span><br><span class="line">        System.out.println(<span class="string">&quot;date:&quot;</span>+now.getDate());<span class="comment">//获取几号</span></span><br><span class="line">              </span><br><span class="line">        System.out.println(<span class="string">&quot;day:&quot;</span>+now.getDay()); <span class="comment">// 周几,周1-周6[1-6],周日是0</span></span><br><span class="line">              </span><br><span class="line">        System.out.println(<span class="string">&quot;hours:&quot;</span>+now.getHours());</span><br><span class="line">              </span><br><span class="line">        <span class="comment">//void setTime(long date);</span></span><br><span class="line">        <span class="comment">//构造 Date(long time);</span></span><br><span class="line">        Date dd = <span class="keyword">new</span> Date();</span><br><span class="line">        dd.setTime(<span class="number">1726830007794L</span>);</span><br><span class="line">        System.out.println(dd);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<h1 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a>Calendar</h1><blockquote>
+<p>日历类 - 超纲的内容</p>
+<p>api - java.util.Calendar</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Calendar</span></span></span><br><span class="line"><span class="class"><span class="title">abstract</span>[修饰符]修饰的类是一个抽象类 - 不能够被<span class="title">new</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">构建<span class="title">Calendar</span>对象 - <span class="title">Calendar</span> <span class="title">cal</span> </span>= <span class="keyword">new</span> Calendar();<span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="api手册-1"><a href="#api手册-1" class="headerlink" title="api手册"></a>api手册</h2><h3 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h3><blockquote>
+<ol>
+<li><p>static Calendar getInstance();</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取当前系统的日历对象</span></span><br><span class="line">Calendar cal = Calendar.getInstance();<span class="comment">//底层使用到了简单工厂的设计模式[不需要了解暂时]</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><p>关于设置日历字段</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span>	<span class="title">set</span><span class="params">(<span class="keyword">int</span> year, <span class="keyword">int</span> month, <span class="keyword">int</span> date)</span></span></span><br><span class="line"><span class="function">设置日历字段中的值 YEAR ， MONTH和 DAY_OF_MONTH 。</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">void</span>	<span class="title">set</span><span class="params">(<span class="keyword">int</span> year, <span class="keyword">int</span> month, <span class="keyword">int</span> date, <span class="keyword">int</span> hourOfDay, <span class="keyword">int</span> minute)</span></span></span><br><span class="line"><span class="function">设置日历字段中的值 YEAR ， MONTH ， DAY_OF_MONTH ， HOUR_OF_DAY和 MINUTE 。</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">void</span>	<span class="title">set</span><span class="params">(<span class="keyword">int</span> year, <span class="keyword">int</span> month, <span class="keyword">int</span> date, <span class="keyword">int</span> hourOfDay, <span class="keyword">int</span> minute, <span class="keyword">int</span> second)</span></span></span><br><span class="line"><span class="function">设置字段中的值 YEAR ， MONTH ， DAY_OF_MONTH ， HOUR_OF_DAY ， MINUTE和 SECOND 。</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Date -&gt; <span class="function">Calendar </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setTime</span><span class="params">(Date date)</span></span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>单独针对单个字段一一进行赋值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> field,<span class="keyword">int</span> value)</span></span>;</span><br><span class="line"></span><br><span class="line">只要看到field</span><br><span class="line"><span class="comment">//公开的静态的常量属性</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> YEAR = <span class="number">1</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>关于获取日历字段</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Date <span class="title">getTime</span><span class="params">()</span></span>;<span class="comment">//获取日历信息中关于日期部分的信息 - Calendar转成Date类型</span></span><br><span class="line">            </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> field)</span></span>;<span class="comment">//关于获取日历指定字段的值</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
+<ol>
+<li><p>毫秒数 -&gt; Date</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a. java.util.Date中提供了构造方法Date(<span class="keyword">long</span> time);</span><br><span class="line">b. 上述类<span class="function"><span class="keyword">void</span> <span class="title">setTime</span><span class="params">(<span class="keyword">long</span> time)</span></span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>Date -&gt; 毫秒数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">该类中<span class="function"><span class="keyword">long</span> <span class="title">getTime</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>Calendar -&gt; Date</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Calendar类中提供了<span class="function">Date <span class="title">getTime</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>Date -&gt; Calendar</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Calendar类中<span class="function"><span class="keyword">void</span> <span class="title">setTime</span><span class="params">(Date date)</span></span>;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.day05;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 日历类java.util.Calendar</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/7/21 9:30 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalendarDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//超纲 - abstract是修饰符 - 修饰类 - 抽象的类</span></span><br><span class="line">        <span class="comment">//特点 - 不能够被new[不能够被实例化,具体化]</span></span><br><span class="line">        <span class="comment">//Calendar cal = new Calendar();//error</span></span><br><span class="line"></span><br><span class="line">        Calendar cal = Calendar.getInstance();</span><br><span class="line">        <span class="comment">//System.out.println(cal);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//统一设置值</span></span><br><span class="line">        cal.set(<span class="number">2020</span>,<span class="number">6</span>,<span class="number">21</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//Calendar -&gt; Date</span></span><br><span class="line">        Date now = cal.getTime();</span><br><span class="line"></span><br><span class="line">        System.out.println(now);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//Date -&gt; Calendar</span></span><br><span class="line">        Date d = <span class="keyword">new</span> Date(<span class="number">17818237347L</span>);</span><br><span class="line">        cal.setTime(d);</span><br><span class="line"></span><br><span class="line">        System.out.println(cal.get(<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;====单个字段一一赋值====&quot;</span>);</span><br><span class="line">        <span class="comment">//void set(int field,int value);</span></span><br><span class="line"></span><br><span class="line">        Calendar cd = Calendar.getInstance();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通过字面量直接进行设置 - 可读性比较差</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取Calendar中提供的一些公开的静态的常量属性</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//System.out.println();</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//常量的好处 - 提供程序的可读性</span></span><br><span class="line">        cd.set(Calendar.YEAR,<span class="number">2021</span>);</span><br><span class="line">        cd.set(Calendar.MONTH,<span class="number">6</span>);</span><br><span class="line">        cd.set(Calendar.DAY_OF_MONTH,<span class="number">24</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(cd.getTime());<span class="comment">//Calendar-&gt;Date</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> year = cd.get(Calendar.YEAR);</span><br><span class="line">        <span class="keyword">int</span> month = cd.get(Calendar.MONTH)+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> day = cd.get(Calendar.DAY_OF_MONTH);</span><br><span class="line">        System.out.println(<span class="string">&quot;year:&quot;</span>+year);</span><br><span class="line">        System.out.println(<span class="string">&quot;month:&quot;</span>+month);</span><br><span class="line">        System.out.println(<span class="string">&quot;day:&quot;</span>+day);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取周几</span></span><br><span class="line">        <span class="keyword">int</span> week = cd.get(Calendar.DAY_OF_WEEK);</span><br><span class="line">        System.out.println(<span class="string">&quot;week:&quot;</span>+week);<span class="comment">//周日~周六,[1~7]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="获取键盘键盘输入"><a href="#获取键盘键盘输入" class="headerlink" title="获取键盘键盘输入"></a>获取键盘键盘输入</h1><blockquote>
+<ol>
+<li><p>java.util.Scanner键盘类</p>
+</li>
+<li><p>如何构建这个Scanner对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br></pre></td></tr></table></figure></li>
+<li><p>方法</p>
+<p>3-1. int nextInt();//只能获取整数</p>
+<p>3-2. double nextDouble();//获取小数</p>
+<p>3-3. String nextLine();//获取字符串</p>
+</li>
+<li><p>注意点:nextLine不要和nextInt或者nextDouble混用.</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><blockquote>
+<ol>
+<li><p>java语言属于面向对象的语言</p>
+</li>
+<li><p>面向对象本身不是一门具体的技术,符合人类思维的思想.</p>
+</li>
+<li><p>宗旨:把一个复杂的大型的业务,利用面向对象的思想进行面向对象的分析,</p>
+<p>接着面向对象的设计,最终进行面向对象的编程.</p>
+</li>
+<li><p><strong>对象是数据在内存中的”载体”</strong></p>
+</li>
+</ol>
+</blockquote>
+<h2 id="重新认识类和对象"><a href="#重新认识类和对象" class="headerlink" title="重新认识类和对象"></a>重新认识类和对象</h2><blockquote>
+<ol>
+<li><p>类是抽象的概念,对象是具体的概念</p>
+</li>
+<li><p>类是构建对象的蓝图/模板,对象是类的具体的实例化[表现]</p>
+</li>
+<li><p>类是用来描述对象的.</p>
+</li>
+<li><p>比如:</p>
+<p>​    类:水果    交通工具   学生</p>
+<p>对象:榴莲    飞机           小三</p>
+</li>
+<li><p>比如:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>username</th>
+<th>age</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td>admin</td>
+<td>18</td>
+</tr>
+<tr>
+<td>101</td>
+<td>tom</td>
+<td>17</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+</blockquote>
+<h2 id="面向对象的思想"><a href="#面向对象的思想" class="headerlink" title="面向对象的思想"></a>面向对象的思想</h2><blockquote>
+<p>核心:”一切皆对象”</p>
+<p>①分析出系统中业务的关键对象 - <strong>“找对象”</strong> - 未来页面上显示的数据</p>
+<p>②找出对象的**”属性”** - “对象拥有什么”</p>
+<p>③分析出对象的”方法” - “对象可以干什么,对象的功能”</p>
+<p>④找出对象与对象之间的关系.</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>:<span class="number">1</span> - 一个丈夫对应一个妻子,一个妻子对应一个丈夫.</span><br><span class="line">  </span><br><span class="line"><span class="number">1</span>:N - 一个客户拥有多个订单.一个订单只能属于一个客户 - <span class="number">70</span>%</span><br><span class="line"></span><br><span class="line">N:N - 一个学生可以选择多门课程,一门课程可以被多个学生来选择.</span><br><span class="line">  </span><br><span class="line">自关联 - 自己关联自己.</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>⑤最后一步才会去考虑具体怎么编码实现.可能也会考虑数据结构或者算法.</p>
+</blockquote>
+<blockquote>
+<p>“相亲业务” - </p>
+<ol>
+<li>媒婆帮你找一个”对象”</li>
+<li>你要查看”对象”的属性</li>
+<li>询问”对象”的功能</li>
+<li>分析你和”对象”是否来道🌩</li>
+<li>考虑 - 追 - 彩礼 - 结婚 - 具体怎么实现!</li>
+</ol>
+</blockquote>
+<h2 id="面向过程的思想"><a href="#面向过程的思想" class="headerlink" title="面向过程的思想"></a>面向过程的思想</h2><blockquote>
+<p>C是典型的面向过程的思想</p>
+<p>①优先考虑的就是算法和数据结构 - 考虑的就是具体怎么实现.</p>
+</blockquote>
+<h2 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h2><blockquote>
+<p>实体类就是用来描述对象的.</p>
+<p>实体类中包含<strong>属性,构造方法,getter/setter方法,toString方法.</strong></p>
+</blockquote>
+<h2 id="如何定义属性"><a href="#如何定义属性" class="headerlink" title="如何定义属性"></a>如何定义属性</h2><blockquote>
+<p>语法:</p>
+<p>修饰符 数据类型 属性名 [=初始值];</p>
+</blockquote>
+<h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><blockquote>
+<p>public 公开的</p>
+<p>private 私有的</p>
+</blockquote>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><blockquote>
+<ol>
+<li>八种基本数据类型</li>
+<li>内置对象类型以及自定义对象类型.</li>
+</ol>
+</blockquote>
+<h3 id="属性名"><a href="#属性名" class="headerlink" title="属性名"></a>属性名</h3><blockquote>
+<p>参考变量的命名 - “小驼峰”</p>
+</blockquote>
+<h2 id="三大特征-封装性"><a href="#三大特征-封装性" class="headerlink" title="三大特征 - 封装性"></a>三大特征 - 封装性</h2><blockquote>
+<p>封装 - Encapsulation - 屏蔽底层的细节,数据提供保护的机制</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>属性私有化</p>
+</li>
+<li><p>提供getter/setter方法</p>
+<p>setter方法 - set属性名[首字母变大写] - 推荐的命名规则</p>
+<p>setter方法这种设置值的好处</p>
+<p>2-1. setter方法中是可以进行参数有效性判断的.</p>
+<p>2-2. 业务需求改变了 - 属性名称改变了,使用到这个属性的具体的地方都要发生改变 - “可维护性”</p>
+<p>2-3. 并不是所有的属性的值都是通过那么太简单的计算得到的.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Orders</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">           </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">double</span> price;</span><br><span class="line">           </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line">           </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">double</span> total;</span><br><span class="line">           </span><br><span class="line">  <span class="comment">//getter/setter - 提供好了</span></span><br><span class="line">           </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getTotal</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> result = <span class="keyword">this</span>.price * <span class="keyword">this</span>.count;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">           </span><br><span class="line">&#125;</span><br><span class="line">         </span><br><span class="line">Orders o = <span class="keyword">new</span> Orders();</span><br><span class="line">o.setPrice(<span class="number">100.0</span>);</span><br><span class="line">o.setCount(<span class="number">10</span>);</span><br><span class="line">         </span><br><span class="line"><span class="comment">//o.setTotal(o.getPrice()*o.getCount());</span></span><br><span class="line">System.out.println(o.getTotal());</span><br><span class="line">         </span><br></pre></td></tr></table></figure>
+
+<p>2-4. 并不是所有的属性都需要对外进行公开的.</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h2><blockquote>
+<ol>
+<li><p>作用1 - 当前对象,区分方法中参数和实体类中的定义的属性 - 当两者同名的时候.</p>
+</li>
+<li><p>调用当前实体类中已经存在的另外一个构造方法.</p>
+<p>2-1. this()调动空参</p>
+<p>2-2. this(参数1,参数2) - 带参构造</p>
+<p>2-3. this调用构造的语句一定要在构造体的首行</p>
+</li>
+<li><p><strong>this和super语句的区别</strong></p>
+</li>
+</ol>
+</blockquote>
+<h2 id="toString方法"><a href="#toString方法" class="headerlink" title="toString方法"></a>toString方法</h2><blockquote>
+<ol>
+<li><p>当我们直接输出对象的时候,默认一定会去调用toString方法 - 如果这个对象是null,那么不会调用toString方法的</p>
+</li>
+<li><p>当自定义的实体类中没有手动提供toString方法,那么这个对象会自动去调用java.lang.Object类中的toString方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> getClass().getName() + <span class="string">&quot;@&quot;</span> + Integer.toHexString(hashCode());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>java.lang.Object - 它是所有的类的根类,基类,超类,父类.</p>
+<p>如果某个类没有明确指定它的父类,那么这个类默认会直接继承java.lang.Object类</p>
+<p>“User类是Object类的儿子” - 规定 - “<strong>子类可以调用父类中所有的公开的成员</strong>“</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li><p>Object类中提供的toString方法只能用来返回对象的内存地址 - 不满足实际的打印需求</p>
+<p>所以需要在实体类中重新重写这个toString方法.</p>
+</li>
+<li><p>当子类User类一旦重写了toString方法之后,那么就会采取”就近原则”,直接调用自己重写</p>
+<p>之后的toString方法.</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="构造方法-constructor"><a href="#构造方法-constructor" class="headerlink" title="构造方法-constructor"></a>构造方法-constructor</h1><blockquote>
+<p>作用:创建对象的时候调用构造方法,通过new关键字</p>
+<p>可以在创建对象的同时进行赋值操作,赋值的方式只有1次,setter赋值,可以多次赋值</p>
+</blockquote>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><blockquote>
+<ol>
+<li><p>当实体类中如果没有手动提供任何一个构造方法的时候,那么系统会自动分配一个</p>
+<p>空参构造.如果实体类中一旦手动提供了带参构造之后,那么系统将不会再分配一个空参构造了.</p>
+</li>
+<li><p>定义的时候,不需要返回类型的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> 类名([参数列表])&#123;</span><br><span class="line">  <span class="comment">//构造体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>构造允许重载的</p>
+</li>
+<li><p>实体类中推荐只用提供空参,全参</p>
+</li>
+</ol>
+</blockquote>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>yang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/07/19/day05/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;19&#x2F;day05&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;19&#x2F;day05&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreJava/" rel="tag">coreJava</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/07/20/day06/"><i class="iconfont iconleft"></i>day06</a>
+    <a href="/2021/07/18/day04/">day04<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Date"><span class="toc-text">Date</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#api%E6%89%8B%E5%86%8C"><span class="toc-text">api手册</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-text">常用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Calendar"><span class="toc-text">Calendar</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#api%E6%89%8B%E5%86%8C-1"><span class="toc-text">api手册</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="toc-text">常用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%94%AE%E7%9B%98%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5"><span class="toc-text">获取键盘键盘输入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-text">面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="toc-text">重新认识类和对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%80%9D%E6%83%B3"><span class="toc-text">面向对象的思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B%E7%9A%84%E6%80%9D%E6%83%B3"><span class="toc-text">面向过程的思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="toc-text">实体类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7"><span class="toc-text">如何定义属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%90%8D"><span class="toc-text">属性名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81-%E5%B0%81%E8%A3%85%E6%80%A7"><span class="toc-text">三大特征 - 封装性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">this关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#toString%E6%96%B9%E6%B3%95"><span class="toc-text">toString方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95-constructor"><span class="toc-text">构造方法-constructor</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-text">特点</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2376754897 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.baidu.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/yangmoureng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:18687993885@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

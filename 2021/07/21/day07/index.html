@@ -1,0 +1,587 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>day07 - YangBlog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="抽象类
+
+抽象类天生就是用来被子类继承的.抽象类天生就...">
+  <meta name="author" content="yang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '树欲静而风不止，子欲养而亲不待。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YangBlog" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">day07</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 快乐</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">day07</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>七月 21, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>13607</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><blockquote>
+<ol>
+<li><p>抽象类天生就是用来被子类继承的.抽象类天生就是不能够被外部进行实例化的</p>
+</li>
+<li><p>抽象类使用abstract关键字来进行修饰 </p>
+</li>
+<li><p>抽象类中允许存在构造方法,普通属性,普通方法以及抽象方法.</p>
+</li>
+<li><p>普通类是没有资格去定义抽象方法</p>
+</li>
+<li><p>抽象方法也是使用abstract来修饰的,抽象方法是指没有方法体的方法.</p>
+<p>抽象的方法天生也是用来被子类重写的.</p>
+</li>
+<li><p>抽象类是一种抽象的数据类型.</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="抽象类的继承的特点"><a href="#抽象类的继承的特点" class="headerlink" title="抽象类的继承的特点"></a>抽象类的继承的特点</h2><blockquote>
+<ol>
+<li>如果某个普通的子类继承了抽象类,那么这个子类必须要重写这个抽象父类中的所有的抽象方法.</li>
+<li>如果某个子类继承了抽象类,不想重写抽象父类中的所有的抽象方法,那么需要将这个子类也定义成抽象类.</li>
+</ol>
+</blockquote>
+<h1 id="不能一起混用的修饰符"><a href="#不能一起混用的修饰符" class="headerlink" title="不能一起混用的修饰符"></a>不能一起混用的修饰符</h1><blockquote>
+<ol>
+<li><p>final和abstract一起使用</p>
+</li>
+<li><p>private和abstract能不能一起修饰方法.</p>
+</li>
+<li><p>static和abstract不能一起用来修饰方法</p>
+<p>static是不存在多态的.</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="模板方法设计模式"><a href="#模板方法设计模式" class="headerlink" title="模板方法设计模式"></a>模板方法设计模式</h1><blockquote>
+<p>模板方法模式很常用，其目的是在一个方法中定义一个算法骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法的某些步骤。在标准的模板方法模式实现中，主要是使用继承的方式，来让父类在运行期间可以调用到子类的方法。即：<strong>处理某个流程的代码已经都具备，但是其中某个节点的代码暂时不能确定。处理步骤在父类中定义好，具体实现延迟到子类中定义 。</strong></p>
+</blockquote>
+<blockquote>
+<p>抽象的类应用 -  模板方法设计模式.</p>
+<p>模板类中只负责定义</p>
+<ol>
+<li>需要做的事情 - 不需要具体的实现,具体的实现留给各个子类去实现.</li>
+<li>做的事情的流程[步骤]</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.design.template;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/7/23 9:36 上午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">TemplateDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//规定了需要完成的事情</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;<span class="comment">//演员登台</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">()</span></span>;<span class="comment">//演员表演</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">end</span><span class="params">()</span></span>;<span class="comment">//落幕</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//提供一个不可变的方法,用来控制事情执行的顺序</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.start();</span><br><span class="line">        <span class="keyword">this</span>.play();</span><br><span class="line">        <span class="keyword">this</span>.end();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>模板方法的优点和缺点：</p>
+<p><strong>优点</strong>：</p>
+<ol>
+<li>模板方法提供了一个很好的代码复用平台。</li>
+<li>实现了反向控制，通过一个父类调用其子类的操作，通过对子类的具体实现扩展不同的行为，实现了反向控制，符合 “开闭原则”。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<p>每一个不同的实现都需要一个子类来实现，导致类的个数增加，使得系统更加庞大。</p>
+<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><blockquote>
+<ol>
+<li>属于抽象的数据类型,也是不能够被实例化的</li>
+<li>接口中不允许定义普通属性的,不允许出现构造的.</li>
+<li>jdk8.x允许在接口中使用<strong>default关键字来定义普通方法</strong>.</li>
+<li>接口也是用来定义抽象的方法的.<strong>接口中的方法都是抽象的方法.</strong></li>
+<li><strong>接口的属性都是公开的静态的常量属性.</strong></li>
+<li>定义接口的关键字是interface,编译之后也是.class字节码文件</li>
+<li>接口也是可以静态方法的.</li>
+</ol>
+</blockquote>
+<h2 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h2><blockquote>
+<p>使用I开头或者able结尾</p>
+</blockquote>
+<h2 id="多态的另外应用"><a href="#多态的另外应用" class="headerlink" title="多态的另外应用"></a>多态的另外应用</h2><blockquote>
+<p>面向接口编程</p>
+<ol>
+<li>对象的编译时类型写成接口,对象的运行时类型写成是实现类</li>
+<li>方法的参数类型写成接口,调用方法时可以传入这个接口的任意一个实现类.</li>
+<li>方法的返回类型写成接口,方法的返回结果的类型可以是这个接口的任意一个实现类.</li>
+</ol>
+</blockquote>
+<h2 id="接口的规则"><a href="#接口的规则" class="headerlink" title="接口的规则"></a>接口的规则</h2><blockquote>
+<ol>
+<li><p>接口和类 - 类是可以去实现这个接口的.</p>
+<blockquote>
+<ol>
+<li>接口天生是用来是<strong>实现类</strong>来实现的 - implements</li>
+<li>普通的类去实现某个接口的话,那么必须要实现这个接口中所有的抽象方法</li>
+<li>如果抽象的类去实现某个接口的话,那么可以选择实现或者不实现.</li>
+<li>一个接口可以拥有多个实现类.</li>
+<li>一个类可以同时实现多个接口,接口之间用逗号隔开.需要实现这些接口中所有的抽象方法.</li>
+</ol>
+</blockquote>
+</li>
+<li><p>接口和接口</p>
+<blockquote>
+<ol>
+<li>一个接口可以继承多个接口,接口是支持多重继承的.</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><blockquote>
+<p>提供了一种”契约机制”,屏蔽了底层的具体的实现,为了程序的拓展</p>
+<p>作用 - 制定开发的这个软件中的功能 - “业务方法”</p>
+</blockquote>
+<h2 id="接口的分类"><a href="#接口的分类" class="headerlink" title="接口的分类"></a>接口的分类</h2><blockquote>
+<ol>
+<li><p>业务接口 - 该接口中只定义抽象方法</p>
+</li>
+<li><p>常量接口 - 该接口中只定义了常量属性,管理系统中所有的常量属性的.jdk5.x使用了枚举类型来替代了常量接口</p>
+</li>
+<li><p>标记接口 - 什么都没有,做标记的.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IA</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Aimpl</span> <span class="keyword">implements</span> <span class="title">IA</span></span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line">Aimpl a = <span class="keyword">new</span> Aimpl();</span><br><span class="line">System.out.println(a <span class="keyword">instanceof</span> IA);<span class="comment">//true</span></span><br></pre></td></tr></table></figure></li>
+<li><p>函数式接口 - jdk8.x - 配合jdk8.x - lambda表达式</p>
+<p>里面只有一个抽象方法的接口 - @FunctionalInterface</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="设计模式概述"><a href="#设计模式概述" class="headerlink" title="设计模式概述"></a>设计模式概述</h1><h2 id="设计模式概念"><a href="#设计模式概念" class="headerlink" title="设计模式概念"></a>设计模式概念</h2><p>设计模式（Design Pattern）<strong>是一套被反复使用、多数人知晓的、经过分类的、代码设计经验的总结</strong>。</p>
+<p>使用设计模式的目的：为了<strong>代码可重用性</strong>、让代码更容易被他人理解、保证代码可靠性。 设计模式使代码<strong>编写真正工程化</strong>；设计模式是软件工程的基石脉络，如同大厦的结构一样。</p>
+<p>项目中合理地运用设计模式可以完美地解决很多问题，每种模式在现实中都有相应的原理来与之对应，<strong>每种模式都描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案</strong>，这也是设计模式能被广泛应用的原因。</p>
+<h1 id="七大原则"><a href="#七大原则" class="headerlink" title="七大原则"></a>七大原则</h1><p>为什么要提倡“Design Pattern”呢？根本原因是为了<strong>代码复用，增加可维护性</strong>。那么怎么才能实现代码复用呢？面开闭原则具有理想主义的色彩，它是面向对象设计的终极目标。<em><strong>其他几条，则可以看做是开闭原则的实现方法。</strong></em></p>
+<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p><em><strong>简介:单一职责原则（Single Responsiblity Principle SRP）</strong></em></p>
+<p><strong>接口或类只提供一种业务实现。</strong><br>单一职责原则宗旨是每个接口、类的功能，只能用来做专门的事，强调系统内业务职责唯一，避免职责扩散，做到业务统一管理.</p>
+<h2 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h2><p><em><strong>简介:总原则:开闭原则（Open Close Principle）</strong></em></p>
+<p><strong>开闭原则就是说对扩展开放，对修改关闭</strong>。在程序需要进行拓展的时候，不能去修改原有的代 码，而是要扩展原有代码，实现一个热插拔的效果。所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，<strong>我们需要使用接口和抽象类等</strong>，后面的具体设计中我们会提到这点。 单一职责原则不要存在多于一个导致类变更的原因，也就是说每个类应该实现单一的职责，如若不然，就应该把类拆分。 </p>
+<h2 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h2><p><em><strong>简介:里氏替换原则（Liskov Substitution Principle）</strong></em></p>
+<p>里氏代换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。 里氏代换原则中说，<strong>任何基类可以出现的地方，子类一定可以出现</strong>。 LSP 是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为。里氏代换原则是对“开-闭”原则的补充。实现“开-闭”原则的关键步骤就是抽象化。而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实 现抽象化的具体步骤的规范。<strong>里氏替换原则中，子类对父类的方法尽量不要重写和重载</strong>。<strong>因为父类代表了定义好的结构，通过这个规范的接口与外界交互，子类不应该随便破坏它。</strong></p>
+<p><strong>因为继承带来的侵入性，增加了耦合性，也降低了代码灵活性，父类修改代码，子类也会受到影响，此时就需要里氏替换原则。</strong></p>
+<ul>
+<li>子类必须实现父类的抽象方法，但不得重写（覆盖）父类的非抽象（已实现）方法。</li>
+<li>子类中可以增加自己特有的方法。</li>
+<li>当子类覆盖或实现父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松。</li>
+<li>当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。</li>
+</ul>
+<h2 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h2><p><em><strong>简介:依赖倒转原则（Dependence Inversion Principle）</strong></em> </p>
+<p><strong>这个是开闭原则的基础</strong>，具体内容：<strong>面向接口编程，依赖于抽象而不依赖于具体</strong>。写代码时用到具体类时，不与具体类交互，而与具体类的上层接口交互。 </p>
+<h2 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h2><p><em><strong>简介:接口隔离原则（Interface Segregation Principle</strong></em>）</p>
+<p>这个原则的意思是：<strong>每个接口中不存在实现类用不到却必须实现的方法</strong>，如果不然，就要将接口拆分。使用多个隔离的接口，比使用单个接口（多个接口方法集合到一个的接口）要好。</p>
+<h2 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h2><p><em><strong>简介:迪米特法则（最少知道原则）（Demeter Principle)</strong></em></p>
+<p>就是说：一个类对自己依赖的类知道的越少越好。也就是说无论被依赖的类多么复杂，都应该将逻辑封装方法的内部，通过 public 方法提供给外部。这样当被依赖的类变化时，才能最小的影响该类。 最少知道原则的另一个表达方式是：<em><strong>只与直接的朋友通信</strong></em>。类之间只要有耦合关系，就叫朋友关系。<em><strong>耦合分为依赖、关联、聚合、组合等</strong></em>。<em><strong>我们称出现为成员变量、方法参数、方法返回值中的类为直接朋友</strong></em>。<em><strong>局部变量、临时变量则不是直接的朋友。我们要求陌生的类不要作为局部 变量出现在类中。</strong></em> </p>
+<h2 id="合成复用原则"><a href="#合成复用原则" class="headerlink" title="合成复用原则"></a>合成复用原则</h2><p><em><strong>简介:合成复用原则（Composite Reuse Principle)</strong></em></p>
+<p>原则是尽量首先使用合成/聚合的方式，而不是使用继承。</p>
+<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><p>简单工厂模式是属于<strong>创建型模式</strong>，<strong>但不属于23种GOF设计模式之一</strong>。简单工厂模式是由一个工厂对象决定创建出哪一种产品类的实例。简单工厂模式是工厂模式家族中最简单实用的模式，可以理解为是不同工厂模式的一个特殊实现。简单工厂一般分为：<strong>普通简单工厂</strong>、<strong>多方法简单工厂</strong>、<strong>静态方法简单工厂</strong>。 </p>
+<p><strong>作用:把对象的创建和对象的使用分离</strong></p>
+<p>User user = new User();//对象的创建和对象使用没有分离</p>
+<h2 id="普通简单工厂-必须要脱手写出来的"><a href="#普通简单工厂-必须要脱手写出来的" class="headerlink" title="普通简单工厂 - 必须要脱手写出来的."></a>普通简单工厂 - 必须要脱手写出来的.</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 根据传入的参数来返回某个具体的产品[对象]</span></span><br><span class="line"><span class="keyword">package</span> tech.aistar.design.factory.simple01;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 简单工厂</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/7/23 3:19 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> QQ = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> WX = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//根据传入的参数来返回某个具体的产品</span></span><br><span class="line">    <span class="comment">//多态的应用 - 面向接口编程</span></span><br><span class="line">    <span class="comment">//3. 方法的返回类型写成接口,方法的执行结果可以是这个接口的任意一个实现类.</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sender <span class="title">getInstance</span><span class="params">(<span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">        Sender sender = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">switch</span> (type)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                <span class="comment">//对象的创建 - 复杂的过程...</span></span><br><span class="line">                sender = <span class="keyword">new</span> QQSender();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                sender = <span class="keyword">new</span> WXSender();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                System.out.println(<span class="string">&quot;参数不合法&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sender;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多方法简单工厂"><a href="#多方法简单工厂" class="headerlink" title="多方法简单工厂"></a>多方法简单工厂</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.design.factory.simple02;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 多方法工厂</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/7/23 3:32 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//有几个产品,就定义几个方法</span></span><br><span class="line">    <span class="comment">//每个方法负责生成一个产品</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Sender <span class="title">createQQ</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> QQSender();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Sender <span class="title">createWx</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> WXSender();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="静态方法简单工厂"><a href="#静态方法简单工厂" class="headerlink" title="静态方法简单工厂"></a>静态方法简单工厂</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> tech.aistar.design.factory.simple02;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 本类用来演示: 多方法工厂</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: success</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2021/7/23 3:32 下午</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//有几个产品,就定义几个方法</span></span><br><span class="line">    <span class="comment">//每个方法负责生成一个产品</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sender <span class="title">createQQ</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> QQSender();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Sender <span class="title">createWx</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> WXSender();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="简单工厂优缺点"><a href="#简单工厂优缺点" class="headerlink" title="简单工厂优缺点"></a>简单工厂优缺点</h2><p>优点：</p>
+<ul>
+<li>很明显，简单工厂的特点就是“简单粗暴”，通过一个含参的工厂方法，我们可以实例化任何产品类，上至飞机火箭，下至土豆面条，无所不能。所以简单工厂有一个别名：上帝类。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><p>任何”东西“的子类都可以被生产，负担太重。当所要生产产品种类非常多时，工厂方法的代码量可能会很庞大</p>
+</li>
+<li><p><strong>在遵循开闭原则（对拓展开放，对修改关闭）的条件下，简单工厂对于增加新的产品，无能为力。因为增加新产品只能通过修改工厂方法来实现。</strong></p>
+</li>
+</ul>
+<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><p>简单工厂模式有一个问题就是，类的创建依赖工厂类，也就是说，<strong>如果想要拓展程序，必须对工厂类进行修改，这违背了开闭原则，所以，从设计角度考虑，有一定的问题，如何解决？就用到工厂方法模式，创建一个工厂接口和创建多个工厂实现类，这样一旦需要增加新的功能， 直接增加新的工厂类就可以了，不需要修改之前的代码</strong>。</p>
+<h2 id="工厂方法模式优缺点"><a href="#工厂方法模式优缺点" class="headerlink" title="工厂方法模式优缺点"></a>工厂方法模式优缺点</h2><p>优点：</p>
+<ul>
+<li>工厂方法模式就很好的减轻了工厂类的负担，把某一类/某一种东西交由一个工厂生产；（对应简单工厂的缺点1）</li>
+<li>同时增加某一类”东西“并不需要修改工厂类，只需要添加生产这类”东西“的工厂即可，<strong>使得工厂类符合开闭原则。</strong></li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>相比简单工厂，实现略复杂。</li>
+<li>对于某些可以形成产品族的情况处理比较复杂（相对抽象工厂）。</li>
+</ul>
+<h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><p>抽象工厂模式是所有形态的工厂模式中最为抽象和最具一般性的一种形态。抽象工厂模式是指当有多个抽象角色时，使用的一种工厂模式。<strong>抽象工厂模式可以向客户端提供一个接口，使客户端在不必指定产品的具体的情况下，创建多个<em>产品族</em>中的产品对象</strong>。根据里氏替换原则，任何接受父类型的地方，都应当能够接受子类型。因此，实际上系统所需要的，仅仅是类型与这些抽象产品角色相同的一些实例，而不是这些抽象产品的实例。换言之，也就是这些抽象产品的具体子类的实例。工厂类负责创建抽象产品的具体子类的实例。</p>
+<h2 id="抽象工厂模式优缺点"><a href="#抽象工厂模式优缺点" class="headerlink" title="抽象工厂模式优缺点"></a>抽象工厂模式优缺点</h2><p>优点： </p>
+<ul>
+<li>抽象工厂模式隔离了具体类的生产，使得客户并不需要知道什么被创建。</li>
+<li>当一个产品族中的多个对象被设计成一起工作时，它能保证客户端始终只使用同一个产品族中的对象。</li>
+<li>增加新的具体工厂和产品族很方便，无须修改已有系统，符合“开闭原则”。</li>
+</ul>
+<p>​        缺点：</p>
+<ul>
+<li>增加新的产品等级结构很复杂，需要修改抽象工厂和所有的具体工厂类。</li>
+</ul>
+<h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><blockquote>
+<ol start="0">
+<li><p>循环</p>
+<p><img   class="lazyload" data-original="/2021/07/21/day07/%E8%AF%95%E9%A2%98.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</li>
+<li><p>OO题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Book[id,name,price...]</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>定义图书操作业务接口 IBookBiz</span><br><span class="line"></span><br><span class="line">有如下方法:</span><br><span class="line"><span class="comment">//添加图书</span></span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Book b)</span></span>;</span><br><span class="line"><span class="comment">//根据图书name 来删除指定图书</span></span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">deleteByName</span><span class="params">(String name)</span></span>;</span><br><span class="line"><span class="comment">//打印出所有的图书信息</span></span><br><span class="line"> <span class="function"><span class="keyword">void</span> <span class="title">outputAllBooks</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span> 定义 数组图书管理业务实现类(ArrayBookBiz) </span><br><span class="line">实现 IBookBiz接口，</span><br><span class="line">实现所有方法,</span><br><span class="line">提示，给出如下属性</span><br><span class="line">属性:</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> CAPACITY = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> count; <span class="comment">//代表有效图书数量</span></span><br><span class="line"><span class="keyword">private</span> Book[] books = <span class="keyword">new</span> Book[CAPACITY];</span><br><span class="line">方法：</span><br><span class="line">  就是实现接口中的所有方法</span><br><span class="line"></span><br><span class="line">最后，写测试类，测试这三个方法.</span><br></pre></td></tr></table></figure></li>
+<li><p>接口练习题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">接口更重要的作用：作为模块与模块之间一个协议，软件生产一直希望能够像硬件生产一样：主板可由一个厂家生产，显卡可由另一个厂家生产，用户只需要将显卡插到主板上的显卡插槽上，便可以协同工作了。（插槽——主板、显卡的标准接口已经确定，插槽就是接口）。显卡厂商去实现接口中所暴露出来的方法。主板只需要利用显卡的插槽去获取（调用）显卡的功能。</span><br><span class="line"><span class="number">1</span>、	定义一个显卡接口VideoCard，此接口中有抽象方法：</span><br><span class="line">	<span class="number">1</span>）	videoRunning()：显示显卡运行信息 ;</span><br><span class="line">	<span class="number">2</span>）	videoClosing()：显示显卡停止工作时的信息;</span><br><span class="line"><span class="number">2</span>、	定义一个芯片接口Cpu,此接口中有抽象方法：</span><br><span class="line">	<span class="number">1</span>）	cpuRunning()：显示显卡运行信息 ;</span><br><span class="line">	<span class="number">2</span>）	cpuClosing()：显示显卡停止工作时的信息;</span><br><span class="line"><span class="number">3</span>、	定义类IntelCpu：实现Cpu接口的全部功能，其中包括：</span><br><span class="line">	<span class="number">1</span>）	无参构造方法：显示：” Make an Intel<span class="string">&#x27;s CPU”.</span></span><br><span class="line"><span class="string">	2）	实现Cpu接口的所有方法</span></span><br><span class="line"><span class="string">4、	定义类DmengVideoCard：实现VideoCard接口的全部功能，其中包括：</span></span><br><span class="line"><span class="string">	1）	无参构造方法：显示：”Make a Dmeng&#x27;</span>s VideoCard”.</span><br><span class="line">	<span class="number">2</span>）	实现VideoCard接口的所有方法.</span><br><span class="line"><span class="number">5</span>、	定义类Mainboard</span><br><span class="line">	<span class="number">1</span>）	创建有参构造体，传入显卡和芯片</span><br><span class="line">	<span class="number">2</span>）	run():显示主板运行信息</span><br><span class="line">	<span class="number">3</span>）	close():显示主板停止信息</span><br><span class="line"><span class="number">6</span>、	定义一个Computer类，包含主函数main(),组装一台电脑，测试接口的应用，其中main()方法包括：</span><br><span class="line">	<span class="number">1</span>）	买一块Dmeng公司的显卡</span><br><span class="line">	<span class="number">2</span>）	买一块Intel公司的芯片</span><br><span class="line">	<span class="number">3</span>）	买一块主板:插上显卡、芯片</span><br><span class="line">	<span class="number">4</span>）	组装好后，开机运行显示显卡、芯片、主板等开机信息。</span><br><span class="line">	<span class="number">5</span>）	关机信息显示</span><br><span class="line">	<span class="number">6</span>）	创建openPC方法，打开电脑。</span><br><span class="line">	<span class="number">7</span>）	创建closePC方法，关闭电脑。</span><br></pre></td></tr></table></figure></li>
+<li><p>预习题 - <strong>static关键字</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br></pre></td><td class="code"><pre><span class="line">   <span class="number">1.</span>  </span><br><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cygnus</span></span>&#123;</span><br><span class="line">       <span class="keyword">static</span> <span class="keyword">int</span> value = <span class="number">9</span>;  </span><br><span class="line">      </span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">printValue</span><span class="params">()</span></span>&#123;</span><br><span class="line">           <span class="keyword">int</span> value = <span class="number">69</span>; </span><br><span class="line">           System.out.println(<span class="keyword">this</span>.value);</span><br><span class="line">       &#125;</span><br><span class="line">      </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">           <span class="keyword">new</span> Cygnus().printValue();</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   这个程序会有下面哪种结果？</span><br><span class="line">   A. 编译错误</span><br><span class="line">   B. 打印<span class="number">9</span></span><br><span class="line">   C. 打印<span class="number">69</span></span><br><span class="line">   D. 运行时抛出异常</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---------------------------------------------------------------------------------------</span><br><span class="line">   <span class="number">2.</span> 写出以下程序的输出结果</span><br><span class="line">      <span class="class"><span class="keyword">class</span> <span class="title">Base</span></span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">static</span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;base static&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">Base</span><span class="params">()</span></span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;base constructor&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Base</span></span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">static</span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;test static&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">        </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">Test</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">           System.out.println(<span class="string">&quot;test constructor&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">        </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">new</span> Test();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---------------------------------------------------------------------------------------</span><br><span class="line">   <span class="number">3.</span> 写出以下程序的输出结果</span><br><span class="line">      <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">static</span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;test static 1&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">static</span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;test static 2&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">    ---------------------------------------------------------------------------------------</span><br><span class="line">   <span class="number">4.</span> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line"></span><br><span class="line">   	<span class="keyword">static</span>&#123;</span><br><span class="line">   		 <span class="keyword">int</span> x=<span class="number">5</span>;</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="keyword">static</span> <span class="keyword">int</span> x,y;</span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">   	   x--;</span><br><span class="line">   	   myMethod( );</span><br><span class="line">   	   System.out.println(x+y+ ++x);</span><br><span class="line">   	&#125;</span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">myMethod</span><span class="params">( )</span></span>&#123;</span><br><span class="line">   	  y=x++ + ++x;</span><br><span class="line">   	&#125;</span><br><span class="line">   &#125;</span><br><span class="line">   A.	编译错误</span><br><span class="line">   B.	输出：<span class="number">1</span></span><br><span class="line">   C.	输出：<span class="number">2</span></span><br><span class="line">   D.	输出：<span class="number">3</span></span><br><span class="line">   E.	输出：<span class="number">7</span></span><br><span class="line">   F.	输出：<span class="number">8</span></span><br><span class="line">    ---------------------------------------------------------------------------------------</span><br><span class="line">   <span class="number">5.</span> 阅读下列程序，选择哪一个是正确的输出结果 </span><br><span class="line"></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">HelloA</span></span>&#123;</span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="title">HelloA</span><span class="params">()</span>	</span>&#123;</span><br><span class="line">           	System.out.println(<span class="string">&quot;I’m A class &quot;</span>);</span><br><span class="line">       	&#125;</span><br><span class="line">   	<span class="keyword">static</span>&#123;</span><br><span class="line">   	    	System.out.println(<span class="string">&quot;static A&quot;</span>);</span><br><span class="line">   	&#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloB</span> <span class="keyword">extends</span> <span class="title">HelloA</span></span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">HelloB</span><span class="params">()</span></span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;I’m B class&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">static</span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;static B&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">   	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">           	<span class="keyword">new</span> HelloB();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   A.	<span class="keyword">static</span> A I’m A <span class="class"><span class="keyword">class</span> <span class="title">static</span> <span class="title">B</span> <span class="title">I</span>’<span class="title">m</span> <span class="title">B</span> <span class="title">class</span></span></span><br><span class="line"><span class="class">   <span class="title">B</span>.	<span class="title">I</span>’<span class="title">m</span> <span class="title">A</span> <span class="title">class</span> <span class="title">I</span>’<span class="title">m</span> <span class="title">B</span> <span class="title">class</span> <span class="title">static</span> <span class="title">A</span> <span class="title">static</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">   <span class="title">C</span>.	<span class="title">static</span> <span class="title">A</span> <span class="title">static</span> <span class="title">B</span> <span class="title">I</span>’<span class="title">m</span> <span class="title">A</span> <span class="title">class</span> <span class="title">I</span>’<span class="title">m</span> <span class="title">B</span> <span class="title">class</span></span></span><br><span class="line"><span class="class">   <span class="title">D</span>.	<span class="title">I</span>’<span class="title">m</span> <span class="title">A</span> <span class="title">class</span> <span class="title">static</span> <span class="title">A</span> <span class="title">I</span>’<span class="title">m</span> <span class="title">B</span> <span class="title">class</span> <span class="title">static</span> <span class="title">B</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">    ---------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="class">   6. 以下代码的输出结果是？</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">   <span class="title">public</span> <span class="title">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line">       <span class="keyword">public</span> <span class="keyword">static</span> B t1 = <span class="keyword">new</span> B();</span><br><span class="line">       <span class="keyword">public</span> <span class="keyword">static</span> B t2 = <span class="keyword">new</span> B();</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;构造块&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">        </span><br><span class="line">       <span class="keyword">static</span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;静态块&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">        </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">           B t = <span class="keyword">new</span> B();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   A.	静态块 构造块 构造块 构造块</span><br><span class="line">   B.	构造块 静态块 构造块 构造块</span><br><span class="line">   C.	构造块 构造块 静态块 构造块</span><br><span class="line">   D.	构造块 构造块 构造块 静态块</span><br><span class="line">    ---------------------------------------------------------------------------------------</span><br><span class="line">   <span class="number">7.</span> 下面代码在main方法代码后可以正常使用的是（ ）</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line">       <span class="keyword">int</span> b=<span class="number">20</span>;</span><br><span class="line">       <span class="keyword">static</span> <span class="keyword">int</span> c=<span class="number">1</span>;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String arg[])</span></span>&#123;</span><br><span class="line">           Test t = <span class="keyword">new</span> Test();</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   A.	t.a</span><br><span class="line">   B.	<span class="keyword">this</span>.c</span><br><span class="line">   C.	Test.b</span><br><span class="line">   D.	Test.c</span><br><span class="line">    ---------------------------------------------------------------------------------------</span><br><span class="line">   <span class="number">8.</span> 下列程序执行后结果为( )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">func1</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> a - b;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">func1</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> a + b;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChildClass</span> </span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       A a = <span class="keyword">new</span> B();</span><br><span class="line">       B b = <span class="keyword">new</span> B();</span><br><span class="line">       System.out.println(<span class="string">&quot;Result=&quot;</span> + a.func1(<span class="number">100</span>, <span class="number">50</span>));</span><br><span class="line">       System.out.println(<span class="string">&quot;Result=&quot;</span> + b.func1(<span class="number">100</span>, <span class="number">50</span>));</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   A.	Result=150Result=<span class="number">150</span></span><br><span class="line">   B.	Result=100Result=<span class="number">100</span></span><br><span class="line">   C.	Result=100Result=<span class="number">150</span></span><br><span class="line">   D.	Result=150Result=<span class="number">100</span></span><br><span class="line">    ---------------------------------------------------------------------------------------</span><br><span class="line">   <span class="number">9.</span> 以下代码执行后输出结果为（ ）</span><br><span class="line"></span><br><span class="line">   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">       <span class="keyword">public</span> <span class="keyword">static</span> Test t1 = <span class="keyword">new</span> Test();</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;blockA&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">        </span><br><span class="line">       <span class="keyword">static</span>&#123;</span><br><span class="line">           System.out.println(<span class="string">&quot;blockB&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">        </span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">           Test t2 = <span class="keyword">new</span> Test();</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   A.	blockAblockBblockA</span><br><span class="line">   B.	blockAblockAblockB</span><br><span class="line">   C.	blockBblockBblockA</span><br><span class="line">   D.	blockBblockAblockB</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>yang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/07/21/day07/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;21&#x2F;day07&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;21&#x2F;day07&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreJava/" rel="tag">coreJava</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/07/22/day08/"><i class="iconfont iconleft"></i>day08</a>
+    <a href="/2021/07/20/day06/">day06<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">抽象类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">抽象类的继承的特点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8D%E8%83%BD%E4%B8%80%E8%B5%B7%E6%B7%B7%E7%94%A8%E7%9A%84%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">不能一起混用的修饰符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">模板方法设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-text">接口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-text">命名规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81%E7%9A%84%E5%8F%A6%E5%A4%96%E5%BA%94%E7%94%A8"><span class="toc-text">多态的另外应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E8%A7%84%E5%88%99"><span class="toc-text">接口的规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-text">应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">接口的分类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0"><span class="toc-text">设计模式概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E5%BF%B5"><span class="toc-text">设计模式概念</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99"><span class="toc-text">七大原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99"><span class="toc-text">单一职责原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99"><span class="toc-text">开闭原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99"><span class="toc-text">里氏替换原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E8%BD%AC%E5%8E%9F%E5%88%99"><span class="toc-text">依赖倒转原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99"><span class="toc-text">接口隔离原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AA%E7%B1%B3%E7%89%B9%E6%B3%95%E5%88%99"><span class="toc-text">迪米特法则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E6%88%90%E5%A4%8D%E7%94%A8%E5%8E%9F%E5%88%99"><span class="toc-text">合成复用原则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-text">简单工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82-%E5%BF%85%E9%A1%BB%E8%A6%81%E8%84%B1%E6%89%8B%E5%86%99%E5%87%BA%E6%9D%A5%E7%9A%84"><span class="toc-text">普通简单工厂 - 必须要脱手写出来的.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%96%B9%E6%B3%95%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82"><span class="toc-text">多方法简单工厂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82"><span class="toc-text">静态方法简单工厂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">简单工厂优缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="toc-text">工厂方法模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">工厂方法模式优缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-text">抽象工厂模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">抽象工厂模式优缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A"><span class="toc-text">作业</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2376754897 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.baidu.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/yangmoureng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:18687993885@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

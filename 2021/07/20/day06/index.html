@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>day06 - YangBlog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="OO练习业务类和实体类合二为一
+居然将业务方法放在了实...">
+  <meta name="author" content="yang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '树欲静而风不止，子欲养而亲不待。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YangBlog" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">day06</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 快乐</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">day06</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>七月 20, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3600</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="OO练习"><a href="#OO练习" class="headerlink" title="OO练习"></a>OO练习</h1><h2 id="业务类和实体类合二为一"><a href="#业务类和实体类合二为一" class="headerlink" title="业务类和实体类合二为一"></a>业务类和实体类合二为一</h2><blockquote>
+<p>居然将业务方法放在了实体类中 - <strong>违背了设计原则 - “单一职责原则”.不要给一个类增加太多的负担</strong></p>
+<p>实体类 - 主要是描述对象,数据在内存中的载体 - 注重的应该是数据的<strong>存储</strong></p>
+<p>业务类 - 存放的是业务方法 - 在于<strong>操作</strong>这些数据</p>
+</blockquote>
+<blockquote>
+<p>员工类[编号id,姓名name,工资salary]</p>
+<p>业务方法[crud增删改查]放在实体类中 - 不合理的.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Emp</span></span>&#123;     </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">double</span> salary;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//一个上司拥有多个下属</span></span><br><span class="line">  <span class="comment">//一个下属对应一个上司</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//自关联</span></span><br><span class="line">  <span class="keyword">private</span> Emp[] emps;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//构造,getter/setter,toString</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//给上司添加一个下属</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEmp</span><span class="params">(Emp e)</span></span>&#123;</span><br><span class="line">    <span class="comment">//数组的扩容Arrays.copyOf(数组对象,新的长度);</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//输出下属的个数</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printEmpCount</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//输出某个上司所有的下属信息</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printEmp</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//TestEmp.java</span></span><br><span class="line">Emp boss = <span class="keyword">new</span> Emp(<span class="number">1</span>,<span class="string">&quot;boss&quot;</span>,<span class="number">100.0</span>,<span class="keyword">new</span> Emp[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">Emp e1 = <span class="keyword">new</span> Emp(<span class="number">1</span>,<span class="string">&quot;boss&quot;</span>,<span class="number">100.0</span>,<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="业务类和实体类分开"><a href="#业务类和实体类分开" class="headerlink" title="业务类和实体类分开"></a>业务类和实体类分开</h2><blockquote>
+<p>业务方法应该专门抽取出来放到一个业务类中.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">double</span> balance;<span class="comment">//余额</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountBiz</span></span>&#123;</span><br><span class="line">  <span class="comment">//转钱</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">(Account acc1,Account acc2,<span class="keyword">double</span> money)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="comment">//存钱</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<h1 id="继承Inheritance"><a href="#继承Inheritance" class="headerlink" title="继承Inheritance"></a>继承Inheritance</h1><blockquote>
+<p>将多个具有共同特点的对象抽象出一个”父类”.</p>
+<p><strong>父类中存储的是各个子类共同的特点[属性]或者功能[方法]</strong></p>
+<p>继承的好处 - 提高了代码的复用性.使用多态的前提,为了代码的可拓展性.</p>
+<p>继承的缺点 - 增加了类与类之间的关系.不太符合软件的设计原则”高内聚,低耦合”</p>
+<p>​                      低耦合 - 模块与模块之间/类与类之间的关系应该越弱越好 - 没有关系</p>
+<p>​                      高内聚 - 单个模块/类能够独立完成某个业务功能的能力比较强.</p>
+<p>​                      实际开发中,可以采用设计原则**”合成复用原则”** - 来替代继承的使用.</p>
+<p>使用extends关键字来表示某个类继承某个父类</p>
+<p>比如:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">B 是 A的子类,A是B的父类,基类,超类.</span><br><span class="line"><span class="number">1.</span> A的父类就是java.lang.Object - 当某个类如果没有明确指定它的父类是谁,那么这个类默认继承Object</span><br><span class="line"><span class="number">2.</span> 子类是可以访问到父类中所有的非私有的成员</span><br><span class="line"><span class="number">3.</span> java的类只支持单继承.一个类只能继承一个父类.避免出现网状结构,保证类的层次性.</span><br><span class="line">   java中的接口是支持多重继承.一个接口可以继承多个接口.</span><br><span class="line"><span class="number">4.</span> 继承具有传播性.C extends B    B extends A</span><br><span class="line">   C间接继承于A,C也是可以访问到A中的所有的非私有的成员</span><br><span class="line"><span class="number">5.</span> 不要滥用继承,前提B is A</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h2><blockquote>
+<p>必须放在构造方法的首行</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>调用父类的构造</p>
+<p>在子类的构造中,如果没有出现任何的super语句.那么系统默认会给定super(); - 调用父类的空参构造</p>
+</li>
+<li><p>当在子类中调用了一个和父类中同名的成员的时候,需要通过super关键字来加以区分[强制调用父类中那个同名的成员]</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="多态-polymorphism"><a href="#多态-polymorphism" class="headerlink" title="多态 - polymorphism"></a>多态 - polymorphism</h1><blockquote>
+<p>对象有多种形态.发生前提是具有<strong>继承关系</strong></p>
+</blockquote>
+<blockquote>
+<p>相同的消息可能会送给多个不同的类别之<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AF%B9%E8%B1%A1">对象</a>，</p>
+<p>而系统可依据对象所属类别，引发对应类别的方法，而有不同的行为。简单来说，所谓多态意指相同的消息给予不同的对象会引发不同的动作。</p>
+</blockquote>
+<h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h2><blockquote>
+<p>进行类型的判断,只有为true的时候,才能够进行类型的转换[强制,向下]</p>
+<p>如果没有进行类型的判断,随便进行了一个强制类型转换,可能会抛出java.lang.ClassCastException类型转换失败异常</p>
+</blockquote>
+<h2 id="三种场景应用"><a href="#三种场景应用" class="headerlink" title="三种场景应用"></a>三种场景应用</h2><blockquote>
+<p>面向父类编程</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>对象的编译时类型写成父类,对象的运行时类型写成子类</p>
+<p><strong>编译时类型 对象名 = new 运行时类型();</strong></p>
+<p>对象的编译时类型决定了对象的访问能力 - “对象名只能访问到编译时类型中定义的成员”</p>
+<p>对象的运行时类型决定了对象的行为能力 - “子类中如果一旦重写了父类中的方法,那么运行期间调用的是子类重写之后的方法”</p>
+</li>
+<li><p>方法的参数类型写成父类,调用这个方法的时候,可以传入这个父类的任意一个子类对象</p>
+</li>
+<li><p>方法的返回类型写成父类,方法的返回结果可以是这个父类的任意一个子类对象  - “简单工厂设计模式”</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h1><blockquote>
+<p>不可更改,不可变</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>final修饰的变量/属性 - 不能够重新赋值</li>
+<li>final修饰的类 - 不能够被继承</li>
+<li>final修饰的方法不能够被重写.</li>
+</ol>
+</blockquote>
+<h1 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h1><blockquote>
+<p>访问修饰符 - 决定了这个成员可以在哪里能够被访问.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>所有包</th>
+<th>子类[可以不同,同包]</th>
+<th>同包</th>
+<th>本类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public 公共的,公开的</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>protected 受保护的</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>默认的</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>private 私有的</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>安全级别:private&gt;默认的&gt;protected&gt;public</strong>  </p>
+<p>可见区域:public&gt;protected&gt;默认的&gt;private</p>
+</blockquote>
+<h1 id="方法的重写"><a href="#方法的重写" class="headerlink" title="方法的重写"></a>方法的重写</h1><blockquote>
+<p>方法的重载和方法的重写有什么区别?</p>
+<p>特点:</p>
+<p>发生的前提是要有继承关系</p>
+<ol>
+<li>重写有个特殊的场景 - 子类重写之后的方法的修饰符,返回类型,方法名,参数列表和父类中高度保持一致 - <strong>重构</strong></li>
+<li>子类重写的方法的访问修饰符可以小于或者等于父类</li>
+<li>方法名必须要一样.</li>
+<li>子类重写的方法的返回类型可以小于[可以是父类方法的返回类型的子类类型]或者等于父类的那个方法</li>
+<li>参数列表必须要高度保持一致</li>
+</ol>
+</blockquote>
+<h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>设计一个形状类Shape,方法:求周长和求面积</span><br><span class="line">  形状类的子类:Rect(矩形),Circle(圆形)</span><br><span class="line">  Rect类的子类:Square(正方形)</span><br><span class="line">  不同的子类会有不同的计算周长和面积的方法</span><br><span class="line">  创建三个不同的形状对象</span><br><span class="line">  分别打印出每个对象的周长和面积</span><br><span class="line">  [girth() area() -&gt; 放在父类]</span><br><span class="line">  [每个子类需要重写这些方法!] - 不要想太多应用场景,语法!</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>某公司的雇员分为以下若干类：</span><br><span class="line">Employee：这是所有员工总的父类，</span><br><span class="line">属性：员工的姓名,员工的生日Date。</span><br><span class="line">方法：getSalary(<span class="keyword">int</span> month) </span><br><span class="line">根据参数月份来确定工资，</span><br><span class="line">如果该月员工过生日，则公司会额外奖励<span class="number">100</span>元。</span><br><span class="line"></span><br><span class="line">SalariedEmployee：</span><br><span class="line">Employee的子类，拿固定工资的员工。属性：月薪</span><br><span class="line"></span><br><span class="line">HourlyEmployee：</span><br><span class="line">Employee的子类，按小时拿工资的员工，</span><br><span class="line">属性：每小时的工资、每月工作的小时数</span><br><span class="line">每月工作超出<span class="number">160</span>小时的部分按照<span class="number">1.5</span>倍工资发放。</span><br><span class="line"></span><br><span class="line">SalesEmployee：</span><br><span class="line">Employee的子类，销售人员，工资由月销售额和提成率决定。</span><br><span class="line">属性：月销售额、提成率</span><br><span class="line"></span><br><span class="line">BasedPlusSalesEmployee：</span><br><span class="line">SalesEmployee的子类，有固定底薪的销售人员，</span><br><span class="line">工资由底薪加上销售提成部分。属性：底薪。</span><br><span class="line"></span><br><span class="line">写一个函数，打印出某月每个员工的工资数额。</span><br><span class="line"></span><br><span class="line">注意：要求把每个类都做成完全封装，不允许非私有化属性。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>yang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/07/20/day06/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;20&#x2F;day06&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;07&#x2F;20&#x2F;day06&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreJava/" rel="tag">coreJava</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/07/21/day07/"><i class="iconfont iconleft"></i>day07</a>
+    <a href="/2021/07/19/day05/">day05<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OO%E7%BB%83%E4%B9%A0"><span class="toc-text">OO练习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E7%B1%BB%E5%92%8C%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%90%88%E4%BA%8C%E4%B8%BA%E4%B8%80"><span class="toc-text">业务类和实体类合二为一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E7%B1%BB%E5%92%8C%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%88%86%E5%BC%80"><span class="toc-text">业务类和实体类分开</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%A7%E6%89%BFInheritance"><span class="toc-text">继承Inheritance</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#super%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">super关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E6%80%81-polymorphism"><span class="toc-text">多态 - polymorphism</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#instanceof"><span class="toc-text">instanceof</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E5%9C%BA%E6%99%AF%E5%BA%94%E7%94%A8"><span class="toc-text">三种场景应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#final%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">final关键字</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-text">修饰符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E5%86%99"><span class="toc-text">方法的重写</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A"><span class="toc-text">作业</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2376754897 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.baidu.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/yangmoureng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:18687993885@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
