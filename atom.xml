@@ -41,6 +41,30 @@
   </entry>
   
   <entry>
+    <title>数组排序</title>
+    <link href="http://example.com/2021/08/10/%E5%90%84%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F/"/>
+    <id>http://example.com/2021/08/10/%E5%90%84%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F/</id>
+    <published>2021-08-10T09:54:17.000Z</published>
+    <updated>2022-01-10T02:16:58.543Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h1><p><strong>简介:重点掌握冒泡,选择,快速排序</strong></p><h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>相邻的俩个进行俩俩比较.</p><p>每一轮比较完 - 确定一个最值</p><p><strong>9 3</strong> 1 7 5 2 1 </p><p>3 <strong>9 1</strong> 7 5 2 1</p><p>3 1 <strong>9 7</strong> 5 2 1</p><p>3 1 7 <strong>9 5</strong> 2 1</p><p>3 1 7 5 <strong>9 2</strong> 1</p><p>3 1 7 5 2 <strong>9 1</strong></p><p>3 1 7 5 2 1 <strong>9</strong></p><p><img src="/2021/08/10/%E5%90%84%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F/bubble.gif">      </p><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p><strong>9 3</strong> 1 7 5 2 6</p><p>arr[0] -&gt; 依次和 后面所有的元素进行比较</p><p><strong>3</strong> 9 <strong>1</strong> 7 5 2 6</p><p><strong>1</strong> 9 3 7 5 2 6</p><p>确定最值</p><p>arr[1] -&gt; 依次和后面的所有的元素进行比较</p><p><strong>1</strong> <strong>2</strong> 9 7 5 3 6</p><p><img src="/2021/08/10/%E5%90%84%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F/select.gif"> </p><h2 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h2><p>简介:<em><strong>最简单的</strong></em></p><p>将数组中剩余的值(从数组中第2个位置开始)依次直接插入到前面,<strong>保证前面的序列仍然是一个有序的序列</strong></p><p>{3,1,2,5,4,6}</p><p>{<em><strong>3</strong></em>,1,2,5,4,6}</p><p>{<em><strong>1,3</strong></em>,2,5,4,6}</p><p>{<em><strong>1,2,3</strong></em>,5,4,6}</p><p>…</p><p><img src="/2021/08/10/%E5%90%84%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F/insert.gif">  </p><h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p><img src="/2021/08/10/%E5%90%84%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F/fast.gif"> </p><p>算法思想:</p><p><strong>分治思想</strong>:比大小,再分区</p><ol><li>从数组中取出一个数,作为<strong>基准数</strong></li><li>分区:将比这个数[基准数]大或者等于的数全部放在它的右边,小于它的数全部放在它的左边</li><li>再对左右分区间重复第二步骤,直到各分区只有一个数</li></ol><p>实现思路:</p><p>挖坑填数</p><ol><li><strong>将基准数挖出形成第一个坑</strong></li><li><strong>由后向前找比它小的数,找到后挖出此数填到前一个坑中</strong></li><li><strong>由前向后找比它大或等于的数,找到后也挖出此数填到前一个坑中</strong></li><li><strong>再重复执行2,3两步骤.例如对5391672408</strong></li></ol><table><thead><tr><th>元素</th><th>5</th><th>3</th><th>9</th><th>1</th><th>6</th><th>7</th><th>2</th><th>4</th><th>0</th><th>8</th></tr></thead><tbody><tr><td>坑位</td><td>坑1</td><td></td><td>坑3</td><td></td><td>坑5</td><td>坑7</td><td>坑6</td><td>坑4</td><td>坑2</td><td></td></tr><tr><td></td><td>0</td><td>3</td><td>4</td><td>1</td><td>2</td><td>基准数5</td><td>7</td><td>6</td><td>9</td><td>8</td></tr><tr><td>坑位</td><td></td><td></td><td></td><td></td><td></td><td>pos</td><td></td><td></td><td></td><td></td></tr></tbody></table><table><thead><tr><th>元素</th><th>5[基准数]</th><th>3</th><th>9</th><th>1</th><th>6</th><th>7</th><th>2</th><th>4</th><th>0</th><th>8</th></tr></thead><tbody><tr><td>坑位</td><td>坑1</td><td></td><td>坑3</td><td></td><td>坑5</td><td>坑7</td><td>坑6</td><td>坑4</td><td>坑2</td><td></td></tr><tr><td></td><td>0</td><td>3</td><td>4</td><td>1</td><td>2</td><td>基准数5</td><td>7</td><td>6</td><td>9</td><td>8</td></tr><tr><td>坑位</td><td></td><td></td><td></td><td></td><td></td><td>第一次重合的位置</td><td></td><td></td><td></td><td></td></tr></tbody></table><p>第一轮以数组中的第一个元素5为基准数 - 经过一轮循环走完 - 以5位置为基准,左边的都是比5小的值,右边的都是大于或者等于5的数字 - <strong>关键就是找到重合的位置!!!(分区 - 递归调用)</strong></p><p>int[] arr = {5,3,9,1,6,7,2,4,0,8};</p><p>t</p><h2 id="其他排序"><a href="#其他排序" class="headerlink" title="其他排序"></a>其他排序</h2><ul><li>希尔排序</li><li>堆排序</li><li>归并排序6t</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    <category term="note" scheme="http://example.com/categories/note/"/>
+    
+    
+    <category term="coreJava" scheme="http://example.com/tags/coreJava/"/>
+    
+  </entry>
+  
+  <entry>
     <title>day16</title>
     <link href="http://example.com/2021/08/01/day16/"/>
     <id>http://example.com/2021/08/01/day16/</id>
@@ -469,26 +493,6 @@
     
     
     <category term="test" scheme="http://example.com/tags/test/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://example.com/2021/07/12/hello-world/"/>
-    <id>http://example.com/2021/07/12/hello-world/</id>
-    <published>2021-07-12T06:46:58.326Z</published>
-    <updated>1985-10-26T08:15:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla</summary>
-      
-    
-    
-    
     
   </entry>
   
