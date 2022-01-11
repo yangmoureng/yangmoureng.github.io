@@ -1,0 +1,1171 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DDL和DML - YangBlog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="DDL
+DDL[Data Definition Lan...">
+  <meta name="author" content="yang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '树欲静而风不止，子欲养而亲不待。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YangBlog" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">DDL和DML</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 快乐</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/pg4.jfif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">DDL和DML</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 12, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>23707</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h1><blockquote>
+<p>DDL[Data Definition Language] - 数据定义语言</p>
+<p>涉及到的sql命令如下:</p>
+<ol>
+<li><p><strong>create命令 - 创建</strong></p>
+<p><strong>创建表(table)</strong>,视图(view),用户(user),函数(function),存储过程(procedure),数据库[database],约束(constraints)</p>
+<p>以上构建的都是属于数据库DB的对象/单位 - DB的基本单位是table</p>
+</li>
+<li><p><strong>drop命令 - 删除</strong></p>
+<p><strong>删除表(table),视图(view),用户(user),函数(function),存储过程(procedure),数据库[database]</strong>,约束[constraints]</p>
+<p>但是不能够删除表中具体行记录,是由delete命令</p>
+</li>
+<li><p>alter命令 - 修改 - 了解即可</p>
+<p>修改列名,列的类型,修改约束.列的类型 - 使用情况很少</p>
+</li>
+<li><p>rename to - 修改表名</p>
+</li>
+<li><p>comment - 创建列的时候加上注释</p>
+</li>
+<li><p>truncate - 清空整张表</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="ORM思想"><a href="#ORM思想" class="headerlink" title="ORM思想"></a>ORM思想</h1><blockquote>
+<p><strong>Obejct-Relational-Mapping - 对象关系映射</strong></p>
+<p>需要用到OO思想[第一步找出对象,分析对象的属性,分析对象的功能.考虑对象之间的关系]来进行实体类的设计 - 数据库的设计.</p>
+<p><strong>掌握目标 - 看到实体类-表结构.看到表结构-实体类.</strong></p>
+<p>映射规则:</p>
+<ol>
+<li><p>实体名 - 表名</p>
+</li>
+<li><p>对象标识(id) - 主键(id) -primary key - [特点,非空且唯一]</p>
+</li>
+<li><p>普通属性 - 普通列[推荐俩者的名称保持一致.需要注意的是如果列是多个名称[匈牙利] - 小驼峰]</p>
+</li>
+<li><p>对象之间的关系 - 外键(foreign key) - 表与表之间是通过<strong>外键</strong>来进行关联[进行关联查询的基础]</p>
+<p><strong>通常情况下某张表的外键是指向另外一张表的主键的.</strong></p>
+</li>
+</ol>
+</blockquote>
+<h2 id="对象之间的关系"><a href="#对象之间的关系" class="headerlink" title="对象之间的关系"></a>对象之间的关系</h2><blockquote>
+<p>分析一个”小米商城”,利用OO思想,找出业务中的关键对象</p>
+<ul>
+<li><p>登录,注册 - “用户User对象” - (id,phone,password,login_time,login_ip)</p>
+</li>
+<li><p>个人中心 - 其中有一块是用来负责展示用户的详情UserInfo</p>
+</li>
+<li><p>产品</p>
+</li>
+<li><p>产品详情</p>
+</li>
+<li><p>购物车 - id,商品id,商品名称,商品单价,num,小计算,总价,备注</p>
+</li>
+<li><p>订单 - 一个用户拥有多个订单,一个订单只能属于一个用户</p>
+</li>
+<li><p>产品分类表</p>
+<p>1:N</p>
+<p>N:N</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="1-1"><a href="#1-1" class="headerlink" title="1:1"></a>1:1</h3><blockquote>
+<p>User和UserInfo: 一个用户匹配一个用户详情,一个用户详情仅属于一个用户</p>
+<p>强调的是平等性 - 表设计中,外键可以出现在任何一方表中.</p>
+<p>原则 - 能用单向关联解决的业务就不要使用双向关联.</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>java实体类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">现阶段的思想 - 实体类中没有外键的概念.</span><br><span class="line">-- 关系具有方向性</span><br><span class="line">-- 单向关联 - 关系的维护仅仅在其中一方存在.</span><br><span class="line">-- 根据第一表进行设计</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Integer id;</span><br><span class="line">              </span><br><span class="line">  <span class="keyword">private</span> String phone;</span><br><span class="line">              </span><br><span class="line">  <span class="keyword">private</span> String password;</span><br><span class="line">              </span><br><span class="line">  <span class="comment">//一个用户拥有一个用户详情对象</span></span><br><span class="line">  <span class="keyword">private</span> UserInfo userInfo;</span><br><span class="line">              </span><br><span class="line">  <span class="comment">//现阶段 - 千万不要写成 - 对象里面是没有外键的概念的</span></span><br><span class="line">  <span class="comment">//private Integer user_info_id;</span></span><br><span class="line">&#125;</span><br><span class="line">            </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Integer id;</span><br><span class="line">              </span><br><span class="line">  <span class="keyword">private</span> String header;</span><br><span class="line">              </span><br><span class="line">  <span class="keyword">private</span> Gender sex;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">-- 单向关联 - 第二张表</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Integer id;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> String phone;</span><br><span class="line">                  </span><br><span class="line">  <span class="keyword">private</span> String password;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Integer id;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> String header;</span><br><span class="line">                  </span><br><span class="line">  <span class="keyword">private</span> Gender sex;</span><br><span class="line">                  </span><br><span class="line">  <span class="keyword">private</span> User user;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-- ORM思想的精髓 - 如何进行映射以及为什么需要这种思想???</span><br><span class="line">  </span><br><span class="line">未来的操作 - java代码去连接db - 查询user表中所有的数据 -&gt; List&lt;User&gt;</span><br><span class="line">取出每一行数据 - 创建一个user对象[数据在内存中的载体.对象特殊类型的数组]</span><br><span class="line"></span><br><span class="line"><span class="comment">//db中的每一行数据 - java代码来进行获取</span></span><br><span class="line">List&lt;User&gt; users = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">循环体中&#123;</span><br><span class="line">  <span class="comment">//jdbc代码</span></span><br><span class="line">  Integer id = rs.getInt(<span class="number">1</span>);</span><br><span class="line">  String phone = rs.getString(<span class="number">2</span>);</span><br><span class="line">  String passwrod = rs.getString(<span class="number">3</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//使用对象来封装每一行数据</span></span><br><span class="line">  User user = <span class="keyword">new</span> User(id,phone,password);</span><br><span class="line">  users.add(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//未来学习了前端 - 后台list集合中的数据显示到网页上.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 双向关联 - 彼此之间相互维护</span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Integer id;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> String phone;</span><br><span class="line">                  </span><br><span class="line">  <span class="keyword">private</span> String password;</span><br><span class="line">                    </span><br><span class="line">  <span class="keyword">private</span> UserInfo userInfo;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Integer id;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> String header;</span><br><span class="line">                  </span><br><span class="line">  <span class="keyword">private</span> Gender sex;</span><br><span class="line">                  </span><br><span class="line">  <span class="keyword">private</span> User user;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>表设计</p>
+<p><img   class="lazyload" data-original="/2021/08/12/mysql-ddl-dml/onetoone01.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>​        <img   class="lazyload" data-original="/2021/08/12/mysql-ddl-dml/onetoone02.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</blockquote>
+<h3 id="1-N"><a href="#1-N" class="headerlink" title="1:N"></a>1:N</h3><blockquote>
+<p>一个用户对象和购物车对象</p>
+<p>一个用户可以拥有多个购物车对象,但是一个购物车对象只能属于一个用户.</p>
+<p><strong>外键是存储在多的一方</strong></p>
+<p><code>实体类</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">-- 单向关联<span class="number">01</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">  <span class="comment">//普通属性</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//一个用户拥有多个购物车</span></span><br><span class="line">  <span class="keyword">private</span> Set&lt;Cart&gt; carts;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cart</span></span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-- 单向关联<span class="number">02</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">  <span class="comment">//普通属性</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cart</span></span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">   </span><br><span class="line">  <span class="comment">//一个购物车只能属于一个用户</span></span><br><span class="line">  <span class="keyword">private</span> User user;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- 双向关联</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">  <span class="comment">//普通属性</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//一个用户拥有多个购物车</span></span><br><span class="line">  <span class="keyword">private</span> Set&lt;Cart&gt; carts;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cart</span></span>&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">   </span><br><span class="line">  <span class="keyword">private</span> User user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>表结构</code></p>
+<p>User表</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>phone</th>
+<th>password</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>110</td>
+<td>123</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>114</td>
+<td>123</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>115</td>
+<td>123</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>购物车Cart表</p>
+<table>
+<thead>
+<tr>
+<th>2</th>
+<th>2</th>
+<th>mi02</th>
+<th>1</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>mi01</td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>mi03</td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>mi04</td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>product_id</td>
+<td>product_name</td>
+<td>user_id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>mi05</td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</blockquote>
+<h3 id="N-N"><a href="#N-N" class="headerlink" title="N:N"></a>N:N</h3><blockquote>
+<p>需要拆分成俩个一对多</p>
+</blockquote>
+<blockquote>
+<p>一个学生可以选择多门课程,</p>
+<p>一门课程可以被多个学生去选择.</p>
+<p>比如:客户表,商品表,购买表</p>
+<p>一个客户拥有多个商品</p>
+<p>一个商品可以被多个用户购买.</p>
+<p>customer表</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>cname</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>admin</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>tom</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>product表</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>pname</th>
+<th>price</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>mac</td>
+<td>100000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>xiaomi</td>
+<td>8000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>huawei</td>
+<td>8000</td>
+</tr>
+<tr>
+<td>4</td>
+<td>联想</td>
+<td>7000</td>
+</tr>
+</tbody></table>
+</blockquote>
+<blockquote>
+<p>需要建立第三方表,来确定customer表和product表的关系 . <strong>N:N-&gt;拆分成俩个1:N</strong></p>
+<p>purcase表 - 购买表 </p>
+<p>采用的是联合主键[<strong>组合主键]</strong> </p>
+<p><strong>主键-primary key - 非空且唯一.作用:用来确定唯一元组[行]</strong></p>
+<p>所谓的”俩个1:n” - <strong>customer表和purcase表</strong>以及<strong>product表和purcase表</strong></p>
+<ol>
+<li>一个客户拥有多条购买记录[1:N]</li>
+<li>一个产品拥有多条被购买记录[1:N]</li>
+</ol>
+<p>主键列未必是单列[常见的id列] , N:N场景可以采取联合主键,主键列由俩列共同组成**(customer_id,product_id)**</p>
+<p><strong>外键列通常情况是引入另外一张表的主键列.在该表中.外键列有2列</strong></p>
+<p><strong>分别是customer_id 引用了customer表中的id列</strong></p>
+<p><strong>product_id引用了product表中的id列</strong></p>
+<table>
+<thead>
+<tr>
+<th>customer_id</th>
+<th>product_id</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td></td>
+</tr>
+</tbody></table>
+</blockquote>
+<blockquote>
+<p>另一种情况关于主键的选择.第三方表[用来维护关系的表],开发的时候,还是推荐给这张自己一个<strong>单独的主键列</strong></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>customer_id</th>
+<th>product_id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>4</td>
+</tr>
+</tbody></table>
+</blockquote>
+<h3 id="自关联"><a href="#自关联" class="headerlink" title="自关联"></a>自关联</h3><blockquote>
+<p>当前表中的外键列自关联到了自己表中的主键列</p>
+</blockquote>
+<blockquote>
+<p>s_emp</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>first_name</th>
+<th>manager_id[上司id]</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Carmen</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>Mark</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>tom</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>admin</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>jack</td>
+<td>2</td>
+</tr>
+</tbody></table>
+</blockquote>
+<h2 id="分析评论业务"><a href="#分析评论业务" class="headerlink" title="分析评论业务"></a>分析评论业务</h2><blockquote>
+<p>以”抖音”</p>
+<p>User - Viedo</p>
+<p>关注评论功能.一个用户可以评论多个视频.一个视频可以被多个用户进行评论  - N:N</p>
+</blockquote>
+<blockquote>
+<p>User表</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>phone</th>
+<th>password</th>
+<th>username</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>110</td>
+<td>123</td>
+<td>吴签</td>
+</tr>
+<tr>
+<td>2</td>
+<td>114</td>
+<td>123</td>
+<td>霍针</td>
+</tr>
+<tr>
+<td>3</td>
+<td>115</td>
+<td>123</td>
+<td>孙岩</td>
+</tr>
+</tbody></table>
+</blockquote>
+<blockquote>
+<p>Viedo表</p>
+<p>一个用户可以发布多个视频,但是一个视频只能由一个用户去发布</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>视频标题</th>
+<th>视频点赞量</th>
+<th>user_id</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>吴签</td>
+<td>100万+</td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>霍针</td>
+<td>100万+</td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>杨晓轩</td>
+<td>10+</td>
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>孙岩</td>
+<td>10+</td>
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>闫昊</td>
+<td>10+</td>
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+</blockquote>
+<blockquote>
+<p>评论表 - 重点 体现出谁评论了哪个视频即可.comment</p>
+<p>外键列是可以为空的</p>
+<p>id=5的人并不是直接对视频进行评论的 - 属于第二层评论,他是对id=1的这个人进行评论的</p>
+<p>若comment_id为null,说明这个人是直接对视频进行评论的,属于业务的第一级评论</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>视频id</th>
+<th>user_id</th>
+<th>评论内容</th>
+<th>comment_pid</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>很羡慕</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>4</td>
+<td>渣男</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>5</td>
+<td>渣男</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>2</td>
+<td>1</td>
+<td>彼此彼此</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>2</td>
+<td>5</td>
+<td>你还是人么?你这样认为</td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody></table>
+</blockquote>
+<p><img   class="lazyload" data-original="/2021/08/12/mysql-ddl-dml/reply.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+<p>除了评论还有回复….</p>
+<p>第一层 - 属于评论表的数据</p>
+<p>第二层 - 对第一级的评论继续评论</p>
+<p>第三层 - 对第二层及其以后的评论/回复 - 叫做回复.</p>
+<blockquote>
+<p>回复表</p>
+<p>一条评论可以引起多个回复 - reply</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>comment_id</th>
+<th>content</th>
+<th>replay_id</th>
+<th>user_id</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>5</td>
+<td>难道你不羡慕吗</td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>我羡慕</td>
+<td>1</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>结构:</p>
+<p>一条视频发出来id=5的视频</p>
+<p>user_id=3: 很羡慕</p>
+<p>​    user_id=5:你还是人么?你这样认为</p>
+<p>​        user_id=1回复了user_id=5:难道你不羡慕吗</p>
+<p>​        user_id=2回复了user_id=1:我羡慕</p>
+</blockquote>
+<h1 id="表设计-三大范式"><a href="#表设计-三大范式" class="headerlink" title="表设计-三大范式"></a>表设计-三大范式</h1><blockquote>
+<p>表设计一定<strong>尽可能去遵守三大方式</strong>.作用:指导db的设计更加合理化,避免数据的冗余.</p>
+<p>笔试题中简答题.</p>
+<ol>
+<li><p><strong>1NF(第一范式):保证列的原子性.列不可再分割.</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">s_emp(id,name);</span><br><span class="line">但是发现外国的name比较特殊.发现name列是可再分割的.不符合1NF.需要对name进行切割</span><br><span class="line">s_emp(id,first_name,last_name);</span><br><span class="line"></span><br><span class="line">address只需要包含省市区</span><br><span class="line">school(id,name,address);</span><br><span class="line"><span class="number">1</span>  苏州大学  		江苏省苏州市工业园区</span><br><span class="line"><span class="number">2</span>  常州大学  		江苏省常州市武进区</span><br><span class="line"><span class="number">3</span>  苏州科技学院  江苏省苏州市高新区</span><br><span class="line"></span><br><span class="line">school(id,name,province,city,area);</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>2NF(第二范式):基于1NF,不存在非关键列部分依赖于关键列.非关键列要全部依赖于关键列</strong></p>
+<p><code>关键列 - 主键列;非关键列 - 非主键列</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">-- student,course表 - 所有的信息合并到一张表了.</span><br><span class="line">--1. student信息以及course信息都会存在数据的冗余性</span><br><span class="line">-- 如何确定主键列[单列,组合形式] - 能够确定唯一的一条行记录 - sid,cid</span><br><span class="line"></span><br><span class="line">-- db设计中,并不是表的数量或者列的数量越少越好的 - 满足三大范式</span><br><span class="line">-- 关键列(sid,cid),非关键列(sname,cname)</span><br><span class="line">-- ①(sid,cid) -&gt; 唯一确定 sname</span><br><span class="line">		 实际上如果关键列中的部分列sid就可以确定了sname的值</span><br><span class="line">		 sname只需要由关键列(sid,cid)中的部分列[也就是sid列]就可以确定了.</span><br><span class="line">		 存在了非关键列sname部分依赖于关键列,违背了2NF</span><br><span class="line">-- ②(sid,cid) -&gt; 唯一确定 cname</span><br><span class="line">student_course(sid,sname,cid,cname)</span><br><span class="line">sid  sname  cid  cname</span><br><span class="line">1     tom    1    java</span><br><span class="line">1     tom    2    python</span><br><span class="line">2     admin  1    java</span><br><span class="line">2     admin  3    jack</span><br><span class="line"></span><br><span class="line">为了满足2NF</span><br><span class="line">student(sid,sname);//学生表 sid-&gt;sname</span><br><span class="line">course(cid,cname);//课程表  cid-&gt;cname</span><br><span class="line">sc(sid,cid,score);//选课表  (sid,cid)-&gt; score</span><br></pre></td></tr></table></figure></li>
+<li><p>3NF(第三范式):基于2NF.不存在非关键列传递依赖于关键列.所有的非关键列要直接依赖于关键列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">student(id,sname,uno,uname,address)</span><br><span class="line">1  tom   x1001  苏州大学 江苏省</span><br><span class="line">2  jack  x1002  社会大学 东北省</span><br><span class="line">3  james x1001  苏州大学 江苏省</span><br><span class="line">      </span><br><span class="line">关键列只有id列</span><br><span class="line">①关键列id可以直接确定一个唯一的uno的</span><br><span class="line">②uno又可以直接确定唯一的一个uname</span><br><span class="line">③给定一个学生的id,也是可以确定一个唯一的uname</span><br><span class="line">      </span><br><span class="line">id -&gt; uno -&gt; uname  =&gt; id -&gt; uname</span><br><span class="line">uname是间接被id确定下来的-uname是间接依赖[通过一个uno传递依赖]于关建列id.</span><br><span class="line">违背了3NF,存在了非关键列传递依赖于关键列.</span><br><span class="line">      </span><br><span class="line">所有的非关键列要直接依赖于关键列 - 所有的非关键列应该是直接被关键列来确定的.</span><br><span class="line">      </span><br><span class="line">修改 - 拆分</span><br><span class="line">student(id,sname,uid);//uid就是大学的id</span><br><span class="line">id -&gt; uid(引用university表中的id列)</span><br><span class="line">      </span><br><span class="line">university(id,uno,uname,adress)</span><br><span class="line">uid-&gt;uname</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名(</span><br><span class="line">  列名 数据类型[(长度)],</span><br><span class="line">  列2  数据类型[(长度)],</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">  列  数据类型[(n)]</span><br><span class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line"></span><br><span class="line">-- mysql5.7及其以上可以省略了ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line">-- 前提是my.ini文件配置好了</span><br><span class="line">-- 指定我们的数据的存储引擎InnoDB,表编码是utf8</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><blockquote>
+<p>列的数据类型就是用来限制你将来插入数据到该列的限制.该列是什么类型,就需要插入什么类型的数据</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>数字相关的</p>
+<p>a. 整数 - int和bigint</p>
+<p>b. 小数 - float,double[使用最多],decimal</p>
+<p>笔试题中:TINYINT(1个字节)或者smallint(2个字节)</p>
+</li>
+<li><p>字符串相关的 - mysql中字符串是用单引号表示的</p>
+<p>a. char(n)    -  固定长度 - 0-255 bytes[ascill]</p>
+<p>b. varchar(n) - 可变长度 - 0-65535 bytes[unicode的范围]</p>
+<p>c. text - 长文本数据</p>
+<p>笔试题中:mysql中char和varchar的区别</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">数字5代表的是该列可以存储的字符串的个数.不是代表字节数</span><br><span class="line">char(5) - 定长字符的意思是即时该列仅仅保存一个字母&#x27;a&#x27;,那么在内存中,char的实际消耗的长度就是5个 - &quot;浪费&quot;</span><br><span class="line">					对char类型的列的读写操作效率高于varchar</span><br><span class="line">					</span><br><span class="line">varchar(5) - 可变长度[最大可保存的字符串的长度],实际存储了一个字母&#x27;a&#x27;.实际也就只消耗了一个1长度 - &quot;节约了内存&quot; - 按需分配.</span><br><span class="line"></span><br><span class="line">因此,开发中尽可能字符串使用varchar,而不使用char.</span><br></pre></td></tr></table></figure></li>
+<li><p>日期</p>
+<p>a. date -&gt; 即使保存的是年月日时分秒,查询出来的也仅仅只会显示到<strong>年月日</strong></p>
+<p>b. datetime-&gt;年月日时分秒.即使保存的数据仅仅是年月日.但是查询出来的时候,可以显示年月日时分秒</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="建表demo"><a href="#建表demo" class="headerlink" title="建表demo"></a>建表demo</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">drop table tbl_product;</span><br><span class="line">create table tbl_product(</span><br><span class="line">	id int(3),</span><br><span class="line">  name varchar(20),</span><br><span class="line">  create_time date,</span><br><span class="line">  price double(10,2)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 分析括号中的参数</span><br><span class="line">-- int(3)-并不会影响该列可插入数据的一个范围.范围仍然是int型的范围</span><br><span class="line">-- 为了看出来int(3),修改一下建表语句</span><br><span class="line">-- int(13)想要看出来效果,这个列一定要加上zerofill,不足位数的用0填充</span><br><span class="line">create table tbl_product(</span><br><span class="line">	id int(13) zerofill,</span><br><span class="line">  name varchar(20),</span><br><span class="line">  create_time date,</span><br><span class="line">  price double(7,2)</span><br><span class="line">);</span><br><span class="line">mysql&gt; insert into tbl_product values(1234,&#x27;tom&#x27;,now(),123.45);</span><br><span class="line">mysql&gt; select * from tbl_product;</span><br><span class="line">+---------------+------+-------------+--------+</span><br><span class="line">| id            | name | create_time | price  |</span><br><span class="line">+---------------+------+-------------+--------+</span><br><span class="line">| 0000000001234 | tom  | 2021-08-19  | 123.45 |</span><br><span class="line">+---------------+------+-------------+--------+</span><br><span class="line">总结:int(n)此处的n不会影响插入到该列的数据的大小.那么n是配合zerofill来进行的.查询的时候,不足n位的数字全部用0填充.</span><br><span class="line"></span><br><span class="line">-- 修改表结构-测试varchar(n)中的n - 个数</span><br><span class="line">create table tbl_product(</span><br><span class="line">	id int(7),</span><br><span class="line">  name varchar(2),</span><br><span class="line">  create_time date,</span><br><span class="line">  price double(10,2)</span><br><span class="line">);</span><br><span class="line">-- 如果varchar(n)设置成了2,但是插入了&#x27;tom&#x27;,报错</span><br><span class="line">-- ERROR 1406 (22001): Data too long for column &#x27;name&#x27; at row 1</span><br><span class="line">mysql&gt; insert into tbl_product values(1,&#x27;tom&#x27;,now(),123.45);</span><br><span class="line">-- 总结:varchar(n) - 中的n是代表的是字符的个数[一个汉字就是代表一个]</span><br><span class="line"></span><br><span class="line">-- double(m,n)</span><br><span class="line">-- m代表的是总长度,n代表的是精度 - double(7,2)</span><br><span class="line">create table tbl_product(</span><br><span class="line">	id int(7),</span><br><span class="line">  name varchar(20),</span><br><span class="line">  create_time date,</span><br><span class="line">  price double(7,1)</span><br><span class="line">);</span><br><span class="line">mysql&gt; insert into tbl_product values(2,&#x27;admin&#x27;,&#x27;2021-10-01&#x27;,123456.56789);</span><br><span class="line">-- double(7,2) -&gt; 7就是总的长度,2代表的精度[四舍五入] - 123456.56789 </span><br><span class="line">-- 插入失败了 - Out of range value for column &#x27;price&#x27; at row 1</span><br><span class="line">-- 插入失败的原因是123456.57 -&gt; 这个结果已经超过了总的长度7了.</span><br><span class="line"></span><br><span class="line">-- 修改double(7,1) -&gt; 123456.56789 -&gt; 123456.6 -&gt; 仍然没有超过7这个总的长度的. - 可以被插入进去的</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show tables;</span><br><span class="line">mysql&gt; desc tables;</span><br><span class="line">-- 查看建表语句</span><br><span class="line">mysql&gt; show create table tbl_product</span><br><span class="line"></span><br><span class="line"> CREATE TABLE `tbl_product` (</span><br><span class="line">   `id` int(7) DEFAULT NULL,</span><br><span class="line">   `name` varchar(20) DEFAULT NULL,</span><br><span class="line">   `create_time` date DEFAULT NULL,</span><br><span class="line">   `price` double(3,2) DEFAULT NULL</span><br><span class="line"> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 </span><br></pre></td></tr></table></figure>
+
+<h2 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h2><blockquote>
+<ol>
+<li><p>在不考虑有外键因素的情况下,可以直接删除表的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE 表名;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="约束constraint"><a href="#约束constraint" class="headerlink" title="约束constraint"></a>约束constraint</h1><blockquote>
+<p>作用:在插入到表中列的数据进行进一步的限制</p>
+</blockquote>
+<h2 id="约束类型"><a href="#约束类型" class="headerlink" title="约束类型"></a>约束类型</h2><blockquote>
+<ol>
+<li>主键约束[primary key] - 非空且唯一.用来确定唯一的一行记录 - pk</li>
+<li>非空约束[not null] - 非空 - 该列不能为null.必须插入值或者给定一个默认值 - nn</li>
+<li>唯一约束[unique] - 唯一性 - nq</li>
+<li>外键约束[foreign key] - 表与表之间的关系是通过外键来进行维护的.外键列一般是对应某张表的主键列.可以允许为null  - fk</li>
+</ol>
+</blockquote>
+<h3 id="列级添加"><a href="#列级添加" class="headerlink" title="列级添加"></a>列级添加</h3><blockquote>
+<p>优点:比较简单,缺点:不能给约束取名字</p>
+<p>语法:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名(</span><br><span class="line">  列名 数据类型[(长度)] [约束类型1],</span><br><span class="line">  列2  数据类型[(长度)] [约束类型2],</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">  列  数据类型[(n)]</span><br><span class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">drop table tbl_product;</span><br><span class="line">create table tbl_product(</span><br><span class="line">	id int(7) primary key comment &#x27;产品的id&#x27;,</span><br><span class="line">  -- 给某列增加俩个约束,用空格隔开</span><br><span class="line">  name varchar(20) not null unique comment &#x27;产品的名称&#x27;,</span><br><span class="line">  -- 如果该列没有插入数据,则使用default给定的默认值</span><br><span class="line">  create_date date not null default now(),</span><br><span class="line">  -- 非空</span><br><span class="line">  price double(7,2) not null</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 死记住</span><br><span class="line">-- 如果上面的create_date使用的是date,给定默认值的时候,是不能直接使用now()函数的.如果想要给定默认值是now(),那么这个列必须是datetime</span><br><span class="line">-- 修改date类型列的默认值</span><br><span class="line">drop table tbl_product;</span><br><span class="line">create table tbl_product(</span><br><span class="line">	id int(7) primary key comment &#x27;产品的id&#x27;,</span><br><span class="line">  -- 给某列增加俩个约束,用空格隔开</span><br><span class="line">  name varchar(20) not null unique comment &#x27;产品的名称&#x27;,</span><br><span class="line">  -- 如果该列没有插入数据,则使用default给定的默认值</span><br><span class="line">  create_date date not null default &#x27;2019-01-01&#x27;,</span><br><span class="line">  -- 非空</span><br><span class="line">  price double(7,2) not null</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 演示primary key</span><br><span class="line">insert into tbl_product(id,name,price) values(1,&#x27;tom&#x27;,123.567);</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from tbl_product;</span><br><span class="line">+----+------+-------------+--------+</span><br><span class="line">| id | name | create_date | price  |</span><br><span class="line">+----+------+-------------+--------+</span><br><span class="line">|  1 | tom  | 2019-01-01  | 123.57 |</span><br><span class="line">+----+------+-------------+--------+</span><br><span class="line"></span><br><span class="line">-- 继续插入一个id也是1的值</span><br><span class="line">insert into tbl_product(id,name,price) values(1,&#x27;admin&#x27;,123.567);</span><br><span class="line">ERROR 1062 (23000): Duplicate entry &#x27;1&#x27; for key &#x27;PRIMARY&#x27;</span><br><span class="line">-- 违背了primary key主键约束的规则 - 重复了.</span><br><span class="line"></span><br><span class="line">-- not null</span><br><span class="line">-- 没有给price插入值,但是该列存在一个not null非空约束</span><br><span class="line">insert into tbl_product(id,name) values (2,&#x27;tom&#x27;);</span><br><span class="line">-- ERROR 1364 (HY000): Field &#x27;price&#x27; doesn&#x27;t have a default value</span><br><span class="line"></span><br><span class="line">-- unique 唯一性,表中已经存在了一行记录是tom</span><br><span class="line">insert into tbl_product(id,name,price) values(2,&#x27;tom&#x27;,12.3);</span><br><span class="line">-- name字段/列值重复了.</span><br><span class="line">ERROR 1062 (23000): Duplicate entry &#x27;tom&#x27; for key &#x27;name&#x27;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="表级添加"><a href="#表级添加" class="headerlink" title="表级添加"></a>表级添加</h3><blockquote>
+<p>优势可以给约束命名,记住列级添加是不支持给列取名称的</p>
+<p>not null非空约束以及default仅仅是支持列级添加的方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名(</span><br><span class="line">  列名 数据类型[(长度)],</span><br><span class="line">  列2  数据类型[(长度)],</span><br><span class="line">  ...</span><br><span class="line">  ...</span><br><span class="line">  列  数据类型[(n)],</span><br><span class="line">  [constraint 约束名称] 约束类型(列)</span><br><span class="line">)ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">drop table tbl_product;</span><br><span class="line">create table tbl_product(</span><br><span class="line">	id int(7) comment &#x27;产品的id&#x27;,</span><br><span class="line">  -- 给某列增加俩个约束,用空格隔开</span><br><span class="line">  name varchar(20) not null comment &#x27;产品的名称&#x27;,</span><br><span class="line">  -- 如果该列没有插入数据,则使用default给定的默认值</span><br><span class="line">  create_date date not null default &#x27;2019-01-01&#x27;,</span><br><span class="line">  -- 非空</span><br><span class="line">  price double(7,2) not null,</span><br><span class="line">  </span><br><span class="line">  -- 给列添加约束</span><br><span class="line">  -- 约束命名 - 表名_列名_约束类型缩写</span><br><span class="line">  constraint tbl_product_id_pk primary key(id),</span><br><span class="line">  constraint tbl_product_name_uq unique(name)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">insert into tbl_product values(1,&#x27;tom&#x27;,now(),1223.3);</span><br><span class="line">-- 让name违背了unique约束</span><br><span class="line">insert into tbl_product values(2,&#x27;tom&#x27;,now(),14.56);</span><br><span class="line"></span><br><span class="line">-- for key &#x27;约束名称&#x27;,如果采用的是列添加.系统会默认给定一个约束名称[就是列的名称]</span><br><span class="line">-- 默认的约束名=&#x27;name&#x27;和给定的约束名称&#x27;tbl_product_name_uq&#x27;</span><br><span class="line">-- 自定义的约束名称 - 精确定位错误的位置</span><br><span class="line">ERROR 1062 (23000): Duplicate entry &#x27;tom&#x27; for key &#x27;tbl_product_name_uq&#x27;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h2><blockquote>
+<p>foreign key - 简称fk.用来确定表之间的关系的.外键通常是是在多的一方.</p>
+<ol>
+<li><p>1:N或者1:1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">   drop table tbl_user;</span><br><span class="line">   create table tbl_user(</span><br><span class="line">     id int(7) primary key,</span><br><span class="line">     username varchar(20) not null unique</span><br><span class="line">   );</span><br><span class="line">   insert into tbl_user values(1,&#x27;tom&#x27;);</span><br><span class="line">   insert into tbl_user values(2,&#x27;admin&#x27;);</span><br><span class="line">      </span><br><span class="line">   drop table tbl_video;</span><br><span class="line">   create table tbl_video(</span><br><span class="line">   	id int(7) primary key,</span><br><span class="line">     title varchar(20),</span><br><span class="line">     likes int(7),</span><br><span class="line">     create_time datetime default now(),</span><br><span class="line">     -- 外键列命名方式 表名_另外一张表的引用列名[主键列]</span><br><span class="line">     -- 外键列的数据类型和长度和你引用的地方保持一致</span><br><span class="line">     tbl_user_id int(7),</span><br><span class="line">     -- 表级添加</span><br><span class="line">     constraint tbl_video_table_user_id_fk foreign key(tbl_user_id) references tbl_user(id)</span><br><span class="line">   );</span><br><span class="line">   -- 一旦创建了约束,插入数据的时候需要注意的是.</span><br><span class="line">   -- 外键列是允许为空的.</span><br><span class="line">   insert into tbl_video values(1,&#x27;学好myql&#x27;,100,now(),1);</span><br><span class="line">   insert into tbl_video values(2,&#x27;学好java&#x27;,100,now(),1);</span><br><span class="line">   insert into tbl_video values(3,&#x27;学习jdbc&#x27;,100,now(),2);</span><br><span class="line">      </span><br><span class="line">   -- 注意.既然已经定义了外键的约束.那么插入数据的时候,引用的外键列的值在另外一张表中一定要有行记录的</span><br><span class="line">   -- tbl_user表中是不存在id=3的行记录的</span><br><span class="line">   insert into tbl_video values(3,&#x27;mysql太简单了&#x27;,100,now(),3);</span><br><span class="line">      </span><br><span class="line">   -- 报错</span><br><span class="line">   ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`j03s`.`tbl_video`, CONSTRAINT `tbl_video_table_user_id_fk` FOREIGN KEY (`tbl_user_id`) REFERENCES `tbl_user` (`id`))</span><br><span class="line"></span><br><span class="line">2. N:N</span><br><span class="line"></span><br><span class="line">   ~~~mysql</span><br><span class="line">   -- 评论表</span><br><span class="line">   -- 一个用户可以对多个视频进行评论</span><br><span class="line">   -- 一个视频可以被多个用户进行评论</span><br><span class="line">   -- 拆分成俩个1:N</span><br><span class="line">      </span><br><span class="line">   -- 组合主键 + 列级添加</span><br><span class="line">   drop table tbl_comment;</span><br><span class="line">   create table tbl_comment(</span><br><span class="line">     -- 组合主键 - 分别给俩个列都去定义了主键列 - 抛出错误ERROR 1068 (42000): Multiple primary key defined</span><br><span class="line">     -- 认为这张表中存在俩个主键,这是不允许的.</span><br><span class="line">   	user_id int(7) references tbl_user(id),</span><br><span class="line">     video_id int(7) references tbl_video(id),</span><br><span class="line">     content varchar(50),</span><br><span class="line">     -- 组合主键的正确定义方式</span><br><span class="line">     constraint tbl_comemnt_pk primary key(user_id,video_id),</span><br><span class="line">     -- 外键的列级添加方式</span><br><span class="line">     comment_id int(7) references tbl_comemnt(id)</span><br><span class="line">   );</span><br><span class="line">      </span><br><span class="line">   -- 评论表拥有独立的主键id + 外键约束(表级添加方式)</span><br><span class="line">   drop table tbl_comment;</span><br><span class="line">   create table tbl_comment(</span><br><span class="line">   	id int(7) primary key,</span><br><span class="line">     user_id int(7),</span><br><span class="line">     video_id int(7),</span><br><span class="line">     content varchar(50),</span><br><span class="line">     comment_id int(7),</span><br><span class="line">     constraint tbl_comment_user_id_fk foreign key(user_id) references tbl_user(id),</span><br><span class="line">     constraint tbl_comment_video_id_fk foreign key(video_id) references tbl_video(id),</span><br><span class="line">     constraint tbl_comment_id_fk foreign key(comment_id) references tbl_comment(id)</span><br><span class="line">   );</span><br><span class="line">   insert into tbl_comment(id,user_id,video_id,content) values(1,1,1,&#x27;好的,我会学会mysql的&#x27;);</span><br><span class="line">   insert into tbl_comment values(2,2,1,&#x27;好的,我会学会mysql的&#x27;,1);</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="建表补充"><a href="#建表补充" class="headerlink" title="建表补充"></a>建表补充</h2><blockquote>
+<p>由一张表来构建另外一张表</p>
+<ol>
+<li><p>保留原表的表结构+数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table 表名 select语句;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">drop table video_copy;</span><br><span class="line">-- 保留原表中的所有的列的数据</span><br><span class="line">create table video_copy select * from tbl_video;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">drop table video_copy;</span><br><span class="line">create table video_copy select id,title from tbl_video;</span><br></pre></td></tr></table></figure></li>
+<li><p>保留原表的表结构 + 但是不需要原表的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">drop table video_copy;</span><br><span class="line">create table video_copy select id,title from tbl_video where 1=2;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="DML操作"><a href="#DML操作" class="headerlink" title="DML操作"></a>DML操作</h1><blockquote>
+<p>insert 插入数据</p>
+<p>delete 删除数据</p>
+<p>update 更新数据</p>
+</blockquote>
+<h2 id="插入语句"><a href="#插入语句" class="headerlink" title="插入语句"></a>插入语句</h2><blockquote>
+<ol>
+<li><p>语法一:给表中所有的列添加数据</p>
+<p><strong>插入的列值要和建表语句中列顺序以及列的类型以及列的约束高度保持一致.</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名 VALUES(列值1,列值2,列值3,..,列值N)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li> 语法二:给表中的指定列插入数据</li>
+</ol>
+   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO 表名(列名1,列名2) VALUES(列值1,列值2);</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<h2 id="insert-select"><a href="#insert-select" class="headerlink" title="insert+select"></a>insert+select</h2><blockquote>
+<p><strong>insert into 表名 select 语句;</strong></p>
+<p>把查询结果的数据插入到该表中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 统计视频的被评论的用户量,并且保存到另外一张表中 video_id,comment_num</span><br><span class="line">drop table comment_aly;</span><br><span class="line">create table comment_aly(</span><br><span class="line">	 video_id int(7),</span><br><span class="line">   comment_num int(7)</span><br><span class="line">);</span><br><span class="line">insert into comment_aly select video_id,count(user_id) from tbl_comment group by video_id;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="auto-increment"><a href="#auto-increment" class="headerlink" title="auto_increment"></a>auto_increment</h1><blockquote>
+<p>mysql中的主键的生成策略 - 自增长策略 - auto_increment[默认的是从1开始,步长为1]</p>
+<p>oracle中的主键的生成策略 - 自增长 - sequence</p>
+<p>应用场景:以后插入的时候[除非是模拟数据],id肯定是后台自动生成 - 唯一性.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">drop table comment_aly;</span><br><span class="line">create table comment_aly(</span><br><span class="line">   id int(7) primary key auto_increment,</span><br><span class="line">	 video_id int(7),</span><br><span class="line">   comment_num int(7)</span><br><span class="line">);</span><br><span class="line">insert into comment_aly(video_id,comment_num) select video_id,count(user_id) from tbl_comment group by video_id;</span><br><span class="line"></span><br><span class="line">-- mysql中提供了一个函数last_insert()</span><br><span class="line">-- 查看最后一个id的插入的数据</span><br><span class="line">mysql&gt; select last_insert_id();</span><br><span class="line"></span><br><span class="line">-- 还希望模拟数据的时候接着使用这个自增长</span><br><span class="line">-- 修改自增长的初始值.</span><br><span class="line">mysql&gt; alter table comment_aly auto_increment=6;</span><br><span class="line"></span><br><span class="line">-- 比如数据就是自己插入进去的</span><br><span class="line">insert into comment_aly(video_id,comment_num) values(1,3);</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><blockquote>
+<p>hive+hbase[分布式数据库] - 大数据</p>
+<p>数据分析业务</p>
+<ol>
+<li><p>数据的获取</p>
+<p>1-1. 爬数据 - 爬虫 - 大公司都有反爬技术[前端的js算法是公开的.万一被破解了.需要重新制定算法]</p>
+<p>爬虫工程师 = 低级的[网站没有反爬技术]和高级的[反爬]</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">验证发展历程 - 为了阻止程序模拟用户进行登录的过程.</span><br><span class="line"><span class="number">1.</span> 早期是没有验证码 - 模拟用户登录的程序不断去尝试登录的过程.</span><br><span class="line">   - 网站可能卡死</span><br><span class="line">     </span><br><span class="line"><span class="number">2.</span> 简单的文字或者数字框/弹出框 <span class="number">1</span>+<span class="number">1</span>=?  <span class="number">1</span>+<span class="number">2</span>=?</span><br><span class="line">     </span><br><span class="line"><span class="number">3.</span> 图片验证码 - 图像处理技术-识别出图像中的文字的</span><br><span class="line">   图片中文字尽可能做得非常非常非常模糊,颠倒 - 程序识别不出来.</span><br><span class="line">     </span><br><span class="line"><span class="number">4.</span> 手机验证/滑动块 - 区分程序在操作还是人操作</span><br></pre></td></tr></table></figure>
+
+<p>1-2. 日志文件 - 比如后台会记录用户的行为轨迹 - 透露出用户的爱好.</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><p>数据的清洗</p>
+<p>日志文件/爬过来的数据 [字段比较多的.需要在有<strong>业务经验</strong>的基础之上]需要对若干个字段进行进一步的筛选工作.</p>
+<p>把关心的和业务相关的字段清洗出来.</p>
+</li>
+<li><p>数据的分析</p>
+<p>找出某个分类的共性的特征.比如代码好的-睡眠时间长,敲代码时间比较长等…</p>
+</li>
+<li><p>数据的挖掘</p>
+<p>金融行业,房地产行业</p>
+<p>根据数据分析的结果来预判下一次的结果 - 建模</p>
+<p>理想状态中 -&gt; y = ax + b;</p>
+<p>现实状态中,不可能得到一个100%的模型的 - 最优模型-最优的解-模型的准确率</p>
+<p>x值,y值 -&gt; y=ax+b</p>
+<p>x     y     -&gt;    z</p>
+<p>8h   3h   - &gt; good</p>
+<p>8.5h 3.5h -&gt; good</p>
+<p>1h 30min -&gt; error</p>
+<p>…</p>
+<p>…</p>
+<p>…</p>
+<p>…</p>
+<p>x和y与z之间的关系</p>
+<p>未来接触到了新生,8.8h,10h -&gt; 可能是good[概率高于error]</p>
+</li>
+</ol>
+</blockquote>
+<h1 id="delete语句"><a href="#delete语句" class="headerlink" title="delete语句"></a>delete语句</h1><blockquote>
+<ol>
+<li><p>清空表 - delete语句不带where</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名;</span><br><span class="line"></span><br><span class="line">delete from video_copy;</span><br></pre></td></tr></table></figure></li>
+<li><p>带条件的删除 - 删除1条,不删除,删除多条</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">delete from 表名 where语句;</span><br><span class="line">   </span><br><span class="line">-- 删除video_copy表中id=2的行记录</span><br><span class="line">delete from video_copy where id=2;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="update语句"><a href="#update语句" class="headerlink" title="update语句"></a>update语句</h1><blockquote>
+<ol>
+<li><p>更新的整张表的数据 - 不带where语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">语法:</span><br><span class="line">-- 更新所有的行的单列</span><br><span class="line">update 表名 set 列名=新的列值;</span><br><span class="line"></span><br><span class="line">-- 更新所有的行的多列.</span><br><span class="line">update 表名 set 列1=新的列值1,列2=新的列值2,列n=新的列值n;</span><br><span class="line"></span><br><span class="line">-- 比如更新video_copy表中的likes</span><br><span class="line">update video_copy set likes=likes*1.1;</span><br><span class="line"></span><br><span class="line">-- 比如更新video_copy表中的likes和title</span><br><span class="line">update video_copy set likes=200,title=&#x27;java无敌&#x27;;</span><br></pre></td></tr></table></figure></li>
+<li><p>更新指定条件的行记录 - where语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">更新id=2的title</span><br><span class="line">update video_copy set title=&#x27;python不错&#x27; where id=2;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="总结约束注意点"><a href="#总结约束注意点" class="headerlink" title="总结约束注意点"></a>总结约束注意点</h1><blockquote>
+<p><strong>列添加了约束,需要注意的地方有哪些</strong></p>
+<ol>
+<li> 先删除多的一方表,再删除的一的一方的表</li>
+<li>删除行记录的时候,需要先把这个行记录在其他表中被引用的行记录要全部删除之后,才能删除自己.</li>
+<li>创建表的时候,应该先创建一的一方,然后创建多的一方</li>
+</ol>
+</blockquote>
+<h2 id="删除表-1"><a href="#删除表-1" class="headerlink" title="删除表"></a>删除表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">-- 删除表不是随意删除的 - 前提是创建了外键约束</span><br><span class="line">--  先删除多的一方表,再删除的一的一方的表</span><br><span class="line">drop table tbl_comment;</span><br><span class="line">drop table tbl_user;</span><br><span class="line">drop table tbl_video;</span><br><span class="line"></span><br><span class="line">-- 用户表</span><br><span class="line">create table tbl_user(</span><br><span class="line">  id int(7) primary key,</span><br><span class="line">  username varchar(20) not null unique</span><br><span class="line">);</span><br><span class="line">insert into tbl_user values(1,&#x27;tom&#x27;);</span><br><span class="line">insert into tbl_user values(2,&#x27;admin&#x27;);</span><br><span class="line"></span><br><span class="line">-- 视频表</span><br><span class="line">create table tbl_video(</span><br><span class="line">	id int(7) primary key,</span><br><span class="line">  title varchar(20),</span><br><span class="line">  likes int(7),</span><br><span class="line">  create_time datetime default now(),</span><br><span class="line">  -- 外键列命名方式 表名_另外一张表的引用列名[主键列]</span><br><span class="line">  -- 外键列的数据类型和长度和你引用的地方保持一致</span><br><span class="line">  tbl_user_id int(7),</span><br><span class="line">  -- 表级添加</span><br><span class="line">  constraint tbl_video_table_user_id_fk foreign key(tbl_user_id) references tbl_user(id)</span><br><span class="line">);</span><br><span class="line">-- 一旦创建了约束,插入数据的时候需要注意的是.</span><br><span class="line">-- 外键列是允许为空的.</span><br><span class="line">insert into tbl_video values(1,&#x27;学好myql&#x27;,100,now(),1);</span><br><span class="line">insert into tbl_video values(2,&#x27;学好java&#x27;,100,now(),1);</span><br><span class="line">insert into tbl_video values(3,&#x27;学习jdbc&#x27;,100,now(),2);</span><br><span class="line"></span><br><span class="line">-- 评论表</span><br><span class="line">create table tbl_comment(</span><br><span class="line">	id int(7) primary key,</span><br><span class="line">  user_id int(7),</span><br><span class="line">  video_id int(7),</span><br><span class="line">  content varchar(50),</span><br><span class="line">  comment_id int(7),</span><br><span class="line">  constraint tbl_comment_user_id_fk foreign key(user_id) references tbl_user(id),</span><br><span class="line">  constraint tbl_comment_video_id_fk foreign key(video_id) references tbl_video(id),</span><br><span class="line">  constraint tbl_comment_id_fk foreign key(comment_id) references tbl_comment(id)</span><br><span class="line">);</span><br><span class="line">insert into tbl_comment(id,user_id,video_id,content) values(1,1,1,&#x27;好的,我会学会mysql的&#x27;);</span><br><span class="line">insert into tbl_comment values(2,2,1,&#x27;好的,我会学会mysql的&#x27;,1);</span><br></pre></td></tr></table></figure>
+
+<p><code>分析删除表的顺序</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 如果删除的是tbl_user或者tbl_video都会报错</span><br><span class="line">-- 报错的原因就是由外键约束存在导致的</span><br><span class="line"></span><br><span class="line">mysql&gt; drop table tbl_user;</span><br><span class="line">ERROR 1217 (23000): Cannot delete or update a parent row: a foreign key constraint fails</span><br><span class="line">mysql&gt; drop table tbl_video;</span><br><span class="line">ERROR 1217 (23000): Cannot delete or update a parent row: a foreign key constraint fails</span><br><span class="line"></span><br><span class="line">-- 应该要先删除子记录[外键所在的表中的记录],然后再删除父记录 - 先删除多的一方表,再删除的一的一方的表</span><br><span class="line">-- 多的一方的外键引用的是一的一方的主键.</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="删除行记录"><a href="#删除行记录" class="headerlink" title="删除行记录"></a>删除行记录</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- id=2的用户是在tbl_comment中存在一条行记录的,它是被引用了.</span><br><span class="line">mysql&gt; delete from tbl_user where id=2;</span><br><span class="line">ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`j03s`.`tbl_comment`, CONSTRAINT `tbl_comment_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`id`))</span><br><span class="line"></span><br><span class="line">-- id=2的所有的评论的全部删除[删除子记录],然后再去删除id=2的用户</span><br><span class="line">mysql&gt; delete from tbl_comment where user_id=2;</span><br><span class="line"></span><br><span class="line">-- 然后才能去删除id=2的用户,已经把用户id=2这个用户的所有的评论全部删除了</span><br><span class="line">mysql&gt; delete from tbl_user where id=2;</span><br><span class="line"></span><br><span class="line">ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`j03s`.`tbl_video`, CONSTRAINT `tbl_video_table_user_id_fk` FOREIGN KEY (`tbl_user_id`) REFERENCES `tbl_user` (`id`))</span><br><span class="line"></span><br><span class="line">id=2的用户又发布了一条视频,它也在tbl_video表中被引用了.</span><br><span class="line">mysql&gt; delete from tbl_video where tbl_user_id=2;</span><br><span class="line"></span><br><span class="line">-- 等把id=2的用户的所有评论信息以及发布的视频全部删除完毕之后,才可以删除自己</span><br><span class="line">mysql&gt; delete from tbl_user where id=2;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="约束的缺点"><a href="#约束的缺点" class="headerlink" title="约束的缺点"></a>约束的缺点</h2><blockquote>
+<p>外键约束 - 保证数据的完整性和一致性.缺点 - 表之间的关系越强烈[手动创建了约束条件] - 表之间的耦合越高.</p>
+<p>在下周DB设计 - <strong>不要手动创建约束</strong> - 弱化表之间的关系 - <strong>“表的关系 - 心中”</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">驰星CRM系统 - 学生信息,项目经理信息</span><br><span class="line"></span><br><span class="line">-- 假设一个项目经理可以教多个学生</span><br><span class="line">-- dev_id是外键列</span><br><span class="line">student(id,sname,school,dev_id);</span><br><span class="line">1 杨晓轩 文正养老学院 2</span><br><span class="line">2 闫昊   八一农垦    1</span><br><span class="line">3 刘静   八一农垦    2</span><br><span class="line"></span><br><span class="line">dev(id,dev_name,age);</span><br><span class="line">1 success 18</span><br><span class="line">2 james  45</span><br><span class="line">3 小强    19</span><br><span class="line"></span><br><span class="line">如果建表的时候</span><br><span class="line">create table student(</span><br><span class="line">	//...</span><br><span class="line">  </span><br><span class="line">  foreign key(dv_id) references dev(id);</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">-- 导致的后果,不能随意删除项目经理.项目经理只要有学生信息.就不能删除项目经理.</span><br><span class="line"></span><br><span class="line">-- 现实生活中 - success上台了,james开除了...</span><br><span class="line">mysql&gt; delete from dev where id=2;//删除失败了.因为james在student表中有子记录</span><br><span class="line">-- 要想删除james,需要删除他所有的学生.实际的业务 - 肯定不允许我去删除&quot;宝贵的学生信息&quot;</span><br><span class="line"></span><br><span class="line">-- 目标 - 1. 成功删除项目经理</span><br><span class="line">--       2. 知道学生曾经是哪个老师带过的.</span><br><span class="line"></span><br><span class="line">-- 因此,在建表的时候,其实是允许数据的冗余性的.</span><br><span class="line">drop table t_student;</span><br><span class="line">drop table dev;</span><br><span class="line">create table dev(</span><br><span class="line">	id int(7) primary key auto_increment,</span><br><span class="line">  dev_name varchar(20),</span><br><span class="line">  age int(3)</span><br><span class="line">);</span><br><span class="line">insert into dev values(1,&#x27;success&#x27;,18);</span><br><span class="line">insert into dev values(2,&#x27;james&#x27;,45);</span><br><span class="line"></span><br><span class="line">create table t_student(</span><br><span class="line">	id int(7) primary key auto_increment,</span><br><span class="line">  sname varchar(20),</span><br><span class="line">  school varchar(20),</span><br><span class="line">  -- 此处没有进行约束的添加 - &quot;关系在心中即可&quot;</span><br><span class="line">  dev_id int(7),</span><br><span class="line">  -- 数据的冗余 - 防止项目经理的记录被删除</span><br><span class="line">  dev_name varchar(20)</span><br><span class="line">);</span><br><span class="line">insert into t_student values(1,&#x27;杨晓轩&#x27;,&#x27;文正养老学院&#x27;,2,&#x27;james&#x27;);</span><br><span class="line">insert into t_student values(2,&#x27;闫昊&#x27;,&#x27;八一农垦&#x27;,1,&#x27;success&#x27;);</span><br><span class="line">insert into t_student values(3,&#x27;刘静&#x27;,&#x27;八一农垦&#x27;,1,&#x27;success&#x27;);</span><br><span class="line"></span><br><span class="line">-- 虽然没有给dev_id列创建约束,业务分析可以确定该列就是用来&quot;维护俩表之间的关系的&quot;</span><br><span class="line">-- 查询学生的姓名以及项目经理的姓名以及年龄</span><br><span class="line">mysql&gt; select s.sname,d.dev_name,d.age from t_student s join dev d on s.dev_id=d.id;</span><br><span class="line"></span><br><span class="line">-- 开除james,没有约束,可以直接删除</span><br><span class="line">mysql&gt; delete from dev where id=2;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="物理删除和逻辑删除"><a href="#物理删除和逻辑删除" class="headerlink" title="物理删除和逻辑删除"></a>物理删除和逻辑删除</h1><blockquote>
+<ol>
+<li><p>物理删除就是真正意义上的delete语句</p>
+</li>
+<li><p><strong>逻辑删除 - 建议 - 比较安全.</strong></p>
+<p>因为数据是不能随意删除的.数据是需要后台进行数据分析的.<strong>用户的端的删除大部分都是逻辑删除.</strong></p>
+<p>实际上就是每张表都会增加逻辑列.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">drop table xx_del;</span><br><span class="line">create table xx_del(</span><br><span class="line">	id int(7) primary key,</span><br><span class="line">  name varchar(20),</span><br><span class="line">  status int(7)</span><br><span class="line">);</span><br><span class="line">insert into xx_del values(1,&#x27;tom&#x27;,0);</span><br><span class="line">insert into xx_del values(2,&#x27;admin&#x27;,0);</span><br><span class="line">   </span><br><span class="line">-- 首页 - 加载xx_del表中所有的信息</span><br><span class="line">-- 查询逻辑列 - 把status=0的行记录全部加载</span><br><span class="line">List&lt;XX&gt; list = &quot;select * from xx_del where status=0&quot;;</span><br><span class="line">   </span><br><span class="line">-- 删除按钮 - 删除 - 实际上是逻辑删 - 并不会执行delete语句,执行的是update语句</span><br><span class="line">update xx_del set status=1 where id=1;</span><br><span class="line">   </span><br><span class="line">-- 再去根据status=0去加载,给用户端的感觉好像是这条记录被删除了.</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>yang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/08/12/mysql-ddl-dml/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;12&#x2F;mysql-ddl-dml&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;12&#x2F;mysql-ddl-dml&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/"><i class="iconfont iconleft"></i>DTL与事务</a>
+    <a href="/2021/08/11/mysql_DQL_%E6%9F%A5%E8%AF%A2/">DQL<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DDL"><span class="toc-text">DDL</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ORM%E6%80%9D%E6%83%B3"><span class="toc-text">ORM思想</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-text">对象之间的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1"><span class="toc-text">1:1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-N"><span class="toc-text">1:N</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#N-N"><span class="toc-text">N:N</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%85%B3%E8%81%94"><span class="toc-text">自关联</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E8%AF%84%E8%AE%BA%E4%B8%9A%E5%8A%A1"><span class="toc-text">分析评论业务</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A8%E8%AE%BE%E8%AE%A1-%E4%B8%89%E5%A4%A7%E8%8C%83%E5%BC%8F"><span class="toc-text">表设计-三大范式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BB%BA%E8%A1%A8"><span class="toc-text">建表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E8%A1%A8demo"><span class="toc-text">建表demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="toc-text">删除表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A6%E6%9D%9Fconstraint"><span class="toc-text">约束constraint</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A6%E6%9D%9F%E7%B1%BB%E5%9E%8B"><span class="toc-text">约束类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E7%BA%A7%E6%B7%BB%E5%8A%A0"><span class="toc-text">列级添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E7%BA%A7%E6%B7%BB%E5%8A%A0"><span class="toc-text">表级添加</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F"><span class="toc-text">外键约束</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E8%A1%A8%E8%A1%A5%E5%85%85"><span class="toc-text">建表补充</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DML%E6%93%8D%E4%BD%9C"><span class="toc-text">DML操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E8%AF%AD%E5%8F%A5"><span class="toc-text">插入语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#insert-select"><span class="toc-text">insert+select</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#auto-increment"><span class="toc-text">auto_increment</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-text">补充</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#delete%E8%AF%AD%E5%8F%A5"><span class="toc-text">delete语句</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#update%E8%AF%AD%E5%8F%A5"><span class="toc-text">update语句</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E7%BA%A6%E6%9D%9F%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-text">总结约束注意点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8-1"><span class="toc-text">删除表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A1%8C%E8%AE%B0%E5%BD%95"><span class="toc-text">删除行记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A6%E6%9D%9F%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-text">约束的缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%88%A0%E9%99%A4%E5%92%8C%E9%80%BB%E8%BE%91%E5%88%A0%E9%99%A4"><span class="toc-text">物理删除和逻辑删除</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2376754897 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.baidu.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/yangmoureng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:18687993885@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

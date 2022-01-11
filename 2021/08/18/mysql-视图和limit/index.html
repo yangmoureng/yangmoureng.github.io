@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>视图和limt语句 - YangBlog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="limit语句
+应用场景就是 - 网页中的数据[肯定是...">
+  <meta name="author" content="yang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '树欲静而风不止，子欲养而亲不待。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YangBlog" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">视图和limt语句</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 快乐</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/pg3.jfif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">视图和limt语句</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 18, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3206</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="limit语句"><a href="#limit语句" class="headerlink" title="limit语句"></a>limit语句</h1><blockquote>
+<p>应用场景就是 - 网页中的数据[肯定是mysql中的]肯定是要进行分页的.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-- 获取表中前m行的数据.</span><br><span class="line">-- limit m</span><br><span class="line">mysql&gt; select * from s_emp limit 3;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-- limit m,n</span><br><span class="line">-- m代表的是行下标,从0开始</span><br><span class="line">-- n代表的是显示的条数</span><br><span class="line"></span><br><span class="line">-- 从第3行开始,显示5条</span><br><span class="line">mysql&gt; select * from s_emp limit 2,5;</span><br><span class="line"></span><br><span class="line">## 分页的公式</span><br><span class="line"></span><br><span class="line">场景:</span><br><span class="line"></span><br><span class="line">1. 对于用户而言,点击多少页,比如选择1页,认为是第一页.</span><br><span class="line"></span><br><span class="line">   pageNow - 当前页.   pageSize - 每页显示条数</span><br><span class="line"></span><br><span class="line">   ~~~mysql</span><br><span class="line">   limit (pageNow-1)*pageSize,pageSize</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="sql优化的部分"><a href="#sql优化的部分" class="headerlink" title="sql优化的部分"></a>sql优化的部分</h2><blockquote>
+<p>limit m,n </p>
+<p>m - 偏移量  n-显示的条数</p>
+<p>如果偏移量比较大,limit语句的查询性能就会低下.</p>
+<p>limit优化常见的两种场景</p>
+<ol>
+<li><p>假设stu表中name列没有添加索引.但是name是从业角度考虑它应该是唯一的.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select * from stu where name=&#x27;tom&#x27;;</span><br><span class="line"></span><br><span class="line">-- 肯定会进行全表扫描的. - 数据量 - 导致查询效率低下</span><br><span class="line">explain select * from stu where name=&#x27;tom&#x27;;</span><br><span class="line"></span><br><span class="line">-- 已经确认name列值肯定是唯一的 - 避免全表扫描</span><br><span class="line">select * from stu where name=&#x27;tom&#x27; limit 1;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>前提条件是id主键列是自增且连续</strong>,由于limit m,n随着m[偏移量]增加,导致查询效率低下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select * from s_emp limit 10000,2;</span><br><span class="line">   </span><br><span class="line">优化</span><br><span class="line">select * from s_emp where id&gt;10000 limit 2;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><blockquote>
+<p>视图 - “虚拟表”,类似于原表的”镜像”,之前是怎么操作table的,怎么操作视图view</p>
+<p>优势:</p>
+<ol>
+<li><p><strong>保证数据的安全性.</strong></p>
+<p>比如某张表中的隐秘数据比较多,不希望程序员看到你这个原表.比如emp(id,name,salary,birthday).</p>
+<p>隐秘数据比如有salary,birthday.为了保障数据的安全性.db[数据库管理员]可以为emp创建视图出来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create view emp_view as select id,name from emp;</span><br><span class="line">   </span><br><span class="line">接下来程序员的操作,直接对视图进行操作了[select,insert,update,delete] - &gt; 对原表也会产生影响.</span><br><span class="line">但是删除视图,是不会删除原表的.但是删除原表,视图肯定是不存在的.</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>封装一些比较繁琐的关联查询,在以后再次用到的时候.可以直接查询视图.</li>
+<li>简化我们查询数据</li>
+</ol>
+</blockquote>
+<h2 id="简单分类"><a href="#简单分类" class="headerlink" title="简单分类"></a>简单分类</h2><blockquote>
+<ol>
+<li>简单视图 - 视图来自于单张表的查询</li>
+<li>复杂视图 - 视图来自于关联查询[多张表]</li>
+</ol>
+</blockquote>
+<h2 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create view 视图名 as select语句;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">为student表创建一个简单视图</span><br><span class="line">create view stu_view as select * from student;</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop view 视图名;</span><br></pre></td></tr></table></figure>
+
+<h2 id="操作视图"><a href="#操作视图" class="headerlink" title="操作视图"></a>操作视图</h2><blockquote>
+<ol>
+<li><p>视图的查询 - DQL</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from stu_view;</span><br></pre></td></tr></table></figure></li>
+<li><p>修改原表,看是否对视图造成影响 - 会</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">update student set sname=&#x27;admin&#x27; where id=1;</span><br><span class="line">   </span><br><span class="line">select * from stu_view;</span><br><span class="line">|    1 | admin  | 1990-01-01 00:00:00 | 男   |</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><p>能不能对简单视图进行dml操作 - 可以</p>
+<p><code>对视图的dml操作同样也会对原表产生影响</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update stu_view set sname=&#x27;success&#x27; where id=1;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<h2 id="复杂视图"><a href="#复杂视图" class="headerlink" title="复杂视图"></a>复杂视图</h2><blockquote>
+<p>复杂视图代表整个视图的来源是关联表的查询  - 就是用来被查询的.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- 查询区域名以及这个区域上的员工的first_name</span><br><span class="line">drop view region_view;</span><br><span class="line">create view region_view</span><br><span class="line">as </span><br><span class="line">select r.name,e.first_name from s_region r </span><br><span class="line">join s_dept d on d.region_id = r.id</span><br><span class="line">join s_emp e on e.dept_id = d.id;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from region_view;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><code>它和简单视图的一个区别在于,复杂视图是不能够执行DML操作的</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">delete from region_view where name = &#x27;North America&#x27;;</span><br><span class="line">ERROR 1395 (HY000): Can not delete from join view &#x27;j03s.region_view&#x27;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="with-check-option"><a href="#with-check-option" class="headerlink" title="with check option"></a>with check option</h1><blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">drop view stu_view;</span><br><span class="line">create view stu_view</span><br><span class="line">as </span><br><span class="line">select id,sname from student where id=13;</span><br><span class="line"></span><br><span class="line">select * from stu_view;</span><br><span class="line"></span><br><span class="line">-- 更新视图 - 更新的是视图来源的那条sql的where中的条件列</span><br><span class="line">update stu_view set id=100 where id=13;</span><br><span class="line"></span><br><span class="line">-- 视图没有了 - 原表中已经没有了 - 视图的更新会同步给原表[对原表产生了影响了]</span><br><span class="line">mysql&gt; select * from stu_view;</span><br><span class="line">Empty set (0.00 sec)</span><br><span class="line"></span><br><span class="line">-- 不允许视图去更新自己来源的那条sql中的where条件列.</span><br><span class="line">drop view stu_view;</span><br><span class="line">create view stu_view</span><br><span class="line">as </span><br><span class="line">select id,sname from student where id=11 with check option;</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from stu_view;</span><br><span class="line">+------+--------+</span><br><span class="line">| id   | sname  |</span><br><span class="line">+------+--------+</span><br><span class="line">|   11 | 李四   |</span><br><span class="line">+------+--------+</span><br><span class="line"></span><br><span class="line">-- 检测with check option的效果 - 更新视图的时候,是不允许更新id列</span><br><span class="line">update stu_view set id=900 where id=11;</span><br><span class="line">ERROR 1369 (HY000): CHECK OPTION failed &#x27;j03s.stu_view&#x27;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="总结面试题"><a href="#总结面试题" class="headerlink" title="总结面试题"></a>总结面试题</h1><blockquote>
+<ol>
+<li><p><strong>DB,DBA,DBS,DBMS,RDBMS</strong> </p>
+</li>
+<li><p><strong>delete和truncate和drop区别</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">delete - DML</span><br><span class="line">truncate - DDL</span><br><span class="line">-- 清空表</span><br><span class="line">truncate 表名;</span><br><span class="line"></span><br><span class="line">drop  - ddl - 删除表</span><br></pre></td></tr></table></figure></li>
+<li><p>数据库优化 - sql优化</p>
+</li>
+<li><p><strong>悲观锁和乐观锁</strong></p>
+</li>
+<li><p>innodb和myisam区别</p>
+</li>
+<li><p>索引底层原理[innodb和myisam] - b+树</p>
+</li>
+<li><p>聚簇索引和非聚簇索引[辅助索引]</p>
+</li>
+<li><p>事务的隔离级别</p>
+</li>
+<li><p>脏读,<strong>不可重复读</strong>,可重复读**,幻读**</p>
+</li>
+<li><p><strong>DQL查询语句</strong> - 项目</p>
+</li>
+<li><p>存储过程和函数的区别</p>
+</li>
+<li><p>视图的优势</p>
+</li>
+<li><p>三大范式概念</p>
+</li>
+<li><p><strong>SQL按照功能分类[DCL,DTL,DML,DQL,DDL]</strong></p>
+</li>
+</ol>
+</blockquote>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>yang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/08/18/mysql-%E8%A7%86%E5%9B%BE%E5%92%8Climit/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;18&#x2F;mysql-%E8%A7%86%E5%9B%BE%E5%92%8Climit&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;18&#x2F;mysql-%E8%A7%86%E5%9B%BE%E5%92%8Climit&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/10/19/springclound/"><i class="iconfont iconleft"></i>SpringClound</a>
+    <a href="/2021/08/17/mysql-%E7%B4%A2%E5%BC%95%E4%B8%93%E9%A2%98-B+%E6%A0%91/">B+树<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#limit%E8%AF%AD%E5%8F%A5"><span class="toc-text">limit语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E4%BC%98%E5%8C%96%E7%9A%84%E9%83%A8%E5%88%86"><span class="toc-text">sql优化的部分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE"><span class="toc-text">视图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%88%86%E7%B1%BB"><span class="toc-text">简单分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BE"><span class="toc-text">创建视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A7%86%E5%9B%BE"><span class="toc-text">删除视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%A7%86%E5%9B%BE"><span class="toc-text">操作视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E8%A7%86%E5%9B%BE"><span class="toc-text">复杂视图</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#with-check-option"><span class="toc-text">with check option</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-text">总结面试题</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2376754897 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.baidu.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/yangmoureng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:18687993885@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

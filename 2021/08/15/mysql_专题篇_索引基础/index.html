@@ -1,0 +1,554 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>索引基础 - YangBlog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="数据字典
+
+用户表 - 自定义的表 - 存储用户的数据...">
+  <meta name="author" content="yang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '树欲静而风不止，子欲养而亲不待。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YangBlog" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">索引基础</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 快乐</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/pg7.jfif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">索引基础</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 15, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>13913</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="数据字典"><a href="#数据字典" class="headerlink" title="数据字典"></a>数据字典</h1><blockquote>
+<ol>
+<li><p>用户表 - 自定义的表 - 存储用户的数据</p>
+</li>
+<li><p><strong>系统表 - 数据字典 - 存储的是用户表的元信息.</strong></p>
+<p>用户表仅仅可能只是系统表中的一个字段存在着而已.</p>
+</li>
+<li><p>类似于java.lang.Class<T>,所有的类都是属于Class的对象 - <strong>类是用来描述对象</strong>.我们是可以通过Class对象的API来获取类的信息.</T></p>
+<p>Class用来描述类的类.</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><blockquote>
+<p>tbl_comment</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">use information_schema;</span><br><span class="line"></span><br><span class="line">show tables;</span><br><span class="line"></span><br><span class="line">发现里面有一个系统表 - TABLE_CONSTRAINTS - 数据字典 - 保存的是所有的表的约束信息.</span><br><span class="line"></span><br><span class="line">desc table_constraints;</span><br><span class="line">+--------------------+--------------+------+-----+---------+-------+</span><br><span class="line">| Field              | Type         | Null | Key | Default | Extra |</span><br><span class="line">+--------------------+--------------+------+-----+---------+-------+</span><br><span class="line">| CONSTRAINT_CATALOG | varchar(512) | NO   |     |         |       |</span><br><span class="line">| CONSTRAINT_SCHEMA  | varchar(64)  | NO   |     |         |       |</span><br><span class="line">| CONSTRAINT_NAME    | varchar(64)  | NO   |     |         |       |</span><br><span class="line">| TABLE_SCHEMA       | varchar(64)  | NO   |     |         |       |</span><br><span class="line">| TABLE_NAME         | varchar(64)  | NO   |     |         |       |</span><br><span class="line">| CONSTRAINT_TYPE    | varchar(64)  | NO   |     |         |       |</span><br><span class="line">+--------------------+--------------+------+-----+---------+-------+</span><br><span class="line">6 rows in set (0.01 sec)</span><br><span class="line"></span><br><span class="line">table_name,constraint_name,constraint_type</span><br><span class="line">表名          约束名称           约束类型</span><br><span class="line"></span><br><span class="line">--1. 查什么</span><br><span class="line">--2. 到哪里查</span><br><span class="line"></span><br><span class="line">-- 查看tbl_comment表中以上三个字段</span><br><span class="line">mysql&gt; select table_name,constraint_name,constraint_type from table_constraints where table_name=&#x27;tbl_comment&#x27;;</span><br><span class="line"></span><br><span class="line">+-------------+-------------------------+-----------------+</span><br><span class="line">| table_name  | constraint_name         | constraint_type |</span><br><span class="line">+-------------+-------------------------+-----------------+</span><br><span class="line">| tbl_comment | PRIMARY                 | PRIMARY KEY     |</span><br><span class="line">| tbl_comment | tbl_comment_id_fk       | FOREIGN KEY     |</span><br><span class="line">| tbl_comment | tbl_comment_user_id_fk  | FOREIGN KEY     |</span><br><span class="line">| tbl_comment | tbl_comment_video_id_fk | FOREIGN KEY     |</span><br><span class="line">+-------------+-------------------------+-----------------+</span><br><span class="line"></span><br><span class="line">-- 查看tbl_comment表中的列的名称[COLUMN_NAME],列的数据类型[COLUMN_TYPE]</span><br><span class="line">mysql&gt; select column_name,column_type from columns where table_name=&#x27;tbl_comment&#x27;;</span><br><span class="line">+-------------+-------------+</span><br><span class="line">| column_name | column_type |</span><br><span class="line">+-------------+-------------+</span><br><span class="line">| id          | int(7)      |</span><br><span class="line">| user_id     | int(7)      |</span><br><span class="line">| video_id    | int(7)      |</span><br><span class="line">| content     | varchar(50) |</span><br><span class="line">| comment_id  | int(7)      |</span><br><span class="line">+-------------+-------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="索引基础篇"><a href="#索引基础篇" class="headerlink" title="索引基础篇"></a>索引基础篇</h1><p>简介:mysql中不同的存储引擎的索引的实现方式是不同的.</p>
+<p><strong>索引最大的好处就是会提高查询效率,但是索引也是占内存空间,索引也是需要进行维护[更新 - 消耗时间]的.并不是索引建立的越多越好.</strong></p>
+<p>**5.7及其以后默认的存储引擎就是innodb,**之前默认采用的是myisam</p>
+<p>myisam和innodb有何区别</p>
+<ol>
+<li><p><strong>innodb支持事务,myisam不支持事务 [DTL命令是不支持的]</strong></p>
+</li>
+<li><p>myisam支持全文索引.但是innodb不支持全文索引.</p>
+</li>
+<li><p>innode可以支持到行锁.myisam支持到表锁.</p>
+<p>行锁的性能高于表锁.</p>
+</li>
+<li><p>innodb支持b+树索引 - 笔试索引的底层原理 = <strong>B+树相关</strong></p>
+</li>
+<li><p><strong>innodb支持外键约束的.</strong></p>
+</li>
+</ol>
+<p><img   class="lazyload" data-original="/2021/08/15/mysql_%E4%B8%93%E9%A2%98%E7%AF%87_%E7%B4%A2%E5%BC%95%E5%9F%BA%E7%A1%80/engine.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+<h2 id="索引的底层-见高级篇"><a href="#索引的底层-见高级篇" class="headerlink" title="索引的底层 - 见高级篇"></a>索引的底层 - 见高级篇</h2><ul>
+<li><p>MyISAM</p>
+<ul>
+<li><p>有单独的<strong>索引文件</strong>的,索引过多 - 索引文件变大(占空间的)</p>
+</li>
+<li><p><strong>叶子节点中保存的是索引+物理行地址的</strong></p>
+<p>索引的本质:键值对(索引列值,物理行地址)</p>
+</li>
+<li><p>先判断查询是否走了索引,先查询索引文件,找到物理行地址</p>
+<p>再由地址直接定位到数据表.</p>
+</li>
+<li><p>索引是单独的文件</p>
+</li>
+</ul>
+</li>
+<li><p>InnoDB</p>
+<ul>
+<li>索<em><strong>引文件不是一个单独的文件,它和数据文件是合二为一的.</strong></em></li>
+<li>索引和数据-&gt;数据文件中 -&gt; 聚簇索引</li>
+</ul>
+</li>
+</ul>
+<h2 id="索引算法"><a href="#索引算法" class="headerlink" title="索引算法"></a>索引算法</h2><ul>
+<li>B+Tree(索引数据结构)<ul>
+<li>聚簇索引 - mysql会自动选择主键列作为聚簇索引列<ul>
+<li>非叶节点 - 聚簇索引列的值</li>
+<li>叶节点 - 聚簇索引列值以及真实的数据.</li>
+</ul>
+</li>
+<li>非聚簇索引<ul>
+<li>非叶节点 - 非聚簇索引列的值</li>
+<li>叶节点 - 键值对(非聚簇索引列的值,主键值)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><ol>
+<li>好处:加快了查询速度(select )</li>
+<li>坏处:降低了增,删,改的速度(update/delete/insert),增大了表的文件大小(索引文件甚至可能比数据文件还大)</li>
+</ol>
+<h2 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h2><ol>
+<li><p>普通索引(index)：仅仅是加快了查询速度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给非唯一,非主键的列添加的索引.比如表中的某列字段经常被用来搜索,比如email</span><br><span class="line">create index 索引名 on 表名(列名);</span><br><span class="line">-- 删除</span><br><span class="line">alter table 表名 drop index 索引名;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>唯一索引(unique)：</strong>行上的值不能重复</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果创建列的时候,给该列添加了唯一约束unique.那么这个列默认就是唯一索引.</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>主键索引(primary key)：</strong>不能重复</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">如果某列是主键列,那么该列默认就是索引列.</span><br><span class="line">-- 删除主键索引.索引索引自动创建的.索引名是系统自动分配的,特殊的名称PRIMARY</span><br><span class="line">alter table 表名 drop primary key;</span><br><span class="line"></span><br><span class="line">-- show index from 表名;</span><br><span class="line">-- 查看数据字典 - 保存了所有表的索引信息.</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>全文索引(fulltext):仅可用于 MyISAM 表</strong>，针对较大的数据，生成全文索引很耗时空间。</p>
+</li>
+<li><p>组合索引[覆盖索引]：为了更多的提高mysql效率可建立组合索引，遵循”最左前缀“原则。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">俩列作为一个整体 - 实际上是构成了一个索引.</span><br><span class="line">where province = ? and  city = ?   </span><br><span class="line">create index pro_city_index on xx(province,city);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="索引语法"><a href="#索引语法" class="headerlink" title="索引语法"></a>索引语法</h2><h2 id="创建索引总览"><a href="#创建索引总览" class="headerlink" title="创建索引总览"></a>创建索引总览</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name(</span><br><span class="line">    [col_name data type]</span><br><span class="line">	[<span class="keyword">unique</span><span class="operator">|</span>fulltext][index<span class="operator">|</span>key] [index_name](col_name[length]) [<span class="keyword">asc</span><span class="operator">|</span><span class="keyword">desc</span>]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>unique|fulltext为可选参数，分别表示唯一索引、全文索引</li>
+<li>index和key为同义词，两者作用相同，用来指定创建索引</li>
+<li>col_name为需要创建索引的字段列，该列必须从数据表中该定义的多个列中选择</li>
+<li>index_name指定索引的名称，为可选参数，如果不指定，默认col_name为索引值</li>
+<li>length为可选参数，表示索引的长度，只有字符串类型的字段才能指定索引长度</li>
+<li>asc或desc指定升序或降序的索引值存储</li>
+</ol>
+<h2 id="索引使用方式"><a href="#索引使用方式" class="headerlink" title="索引使用方式"></a>索引使用方式</h2><ol>
+<li><p>查看某张表上的所有索引</p>
+<p>show index from tableName [\G,如果是在cmd窗口，可以换行];</p>
+</li>
+<li><p>建立索引</p>
+<p><strong>CREATE INDEX  索引名 ON 表名(列值)</strong></p>
+<p>删除索引 - <strong>alter table 表名 drop index 索引名;</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">drop table index_test;</span><br><span class="line">create table index_test(</span><br><span class="line">	id int(7) primary key,</span><br><span class="line">  a int(7),</span><br><span class="line">  b int(7),</span><br><span class="line">  c varchar(20),</span><br><span class="line">  d varchar(20)</span><br><span class="line">);</span><br><span class="line">insert into index_test values(1,100,10,&#x27;aaa&#x27;,&#x27;A&#x27;);</span><br><span class="line">insert into index_test values(2,300,30,&#x27;aba&#x27;,&#x27;BB&#x27;);</span><br><span class="line">insert into index_test values(3,200,20,&#x27;caa&#x27;,&#x27;CC&#x27;);</span><br><span class="line">insert into index_test values(4,100,10,&#x27;daa&#x27;,&#x27;DD&#x27;);</span><br><span class="line">insert into index_test values(5,500,50,&#x27;aad&#x27;,&#x27;FF&#x27;);</span><br><span class="line"></span><br><span class="line">-- 默认主键列就是属于索引列 - 主键索引</span><br><span class="line">mysql&gt; show index from index_test \G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">        Table: index_test</span><br><span class="line">   Non_unique: 0</span><br><span class="line">     Key_name: PRIMARY</span><br><span class="line"> Seq_in_index: 1</span><br><span class="line">  Column_name: id</span><br><span class="line">    Collation: A</span><br><span class="line">  Cardinality: 5</span><br><span class="line">     Sub_part: NULL</span><br><span class="line">       Packed: NULL</span><br><span class="line">         Null: </span><br><span class="line">   Index_type: BTREE</span><br><span class="line">      Comment: </span><br><span class="line">Index_comment: </span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">-- 给a列单独创建一个索引 - 普通索引 - 非聚簇索引</span><br><span class="line">create index index_test_a on index_test(a);</span><br><span class="line"></span><br><span class="line">-- 删除普通索引</span><br><span class="line">alter table index_test drop index index_test_a;</span><br><span class="line"></span><br><span class="line">-- 创建一个组合索引 - 非聚簇索引</span><br><span class="line">-- 非聚簇索引 - 非主键列索引</span><br><span class="line">-- 聚簇索引 - 主键列索引</span><br><span class="line">-- a,b当成一个整体来处理 - 实际上仍然是只有一个索引</span><br><span class="line">create index index_test_a_b on index_test(a,b);</span><br><span class="line"></span><br><span class="line">-- 给定一个索引的长度key_len,列的数据类型应该是字符串类型</span><br><span class="line">create index index_test on index_test(c(1));</span><br><span class="line">比如c列是学生的名称</span><br><span class="line">王三</span><br><span class="line">王静静</span><br><span class="line">王老二</span><br><span class="line">王八犊子</span><br><span class="line">王静二</span><br><span class="line">王静三</span><br><span class="line"></span><br><span class="line">-- 给某列创建索引的目的就是为了提高根据该列进行查询的效率</span><br><span class="line">-- 索引长度是1,区分度不够.假设的是姓王的比较多.</span><br><span class="line">-- 并没有提高多少查询效率</span><br><span class="line">-- 目录页 -&gt;    王  -&gt; 2页到10页</span><br><span class="line">select * from student where c=&#x27;王静%&#x27;;</span><br><span class="line"></span><br><span class="line">-- 长度为2</span><br><span class="line">-- 目录页</span><br><span class="line">-- 王三  - 2页</span><br><span class="line">-- 王静  - 4页~5页</span><br><span class="line">-- 王老,王八....</span><br><span class="line"></span><br><span class="line">-- create index index_test on index_test(c(2));</span><br><span class="line">-- 前俩个</span><br><span class="line">select * from student where c=&#x27;王静%&#x27;;</span><br><span class="line"></span><br><span class="line">-- 如果很多位重复,如何处理.....</span><br><span class="line"></span><br><span class="line">-- 自己了解...</span><br></pre></td></tr></table></figure>
+
+<p><em><strong>alter table 表名 add primary key(列名) –不要加索引名，因为主键只有一个</strong></em></p>
+</li>
+<li><p>删除非主键索引</p>
+<p>alter table 表名 drop index 索引名；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>删除主键索引：</p>
+<p><em><strong>alter table 表名 drop primary key;</strong></em></p>
+</li>
+</ol>
+<h2 id="查看查询是否使用到了索引"><a href="#查看查询是否使用到了索引" class="headerlink" title="查看查询是否使用到了索引"></a>查看查询是否使用到了索引</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span>explain <span class="keyword">select</span>语句;</span><br></pre></td></tr></table></figure>
+
+<h2 id="组合索引"><a href="#组合索引" class="headerlink" title="组合索引"></a>组合索引</h2><p>(5)复合索引</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create index 索引名 on 表(列1,列2,列n);</span><br></pre></td></tr></table></figure>
+
+<h2 id="索引失效情况"><a href="#索引失效情况" class="headerlink" title="索引失效情况"></a>索引失效情况</h2><blockquote>
+<p><strong>面试题 - 数据库如何进行优化 - 谈到如何解决索引失效.</strong></p>
+</blockquote>
+<p>索引type从优到差：System–&gt;**const–&gt;eq_ref–&gt;ref–&gt;ref_or_null–&gt;index_merge–&gt;unique_subquery–&gt;index_subquery–&gt;**range–&gt;index–&gt;<strong>all(全表扫描的意思)</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">drop table index_test;</span><br><span class="line">create table index_test(</span><br><span class="line">	id int(7) primary key,</span><br><span class="line">  a int(7),</span><br><span class="line">  b int(7),</span><br><span class="line">  c varchar(20),</span><br><span class="line">  d varchar(20)</span><br><span class="line">);</span><br><span class="line">insert into index_test values(1,100,10,&#x27;aaa&#x27;,&#x27;A&#x27;);</span><br><span class="line">insert into index_test values(2,300,30,&#x27;aba&#x27;,&#x27;BB&#x27;);</span><br><span class="line">insert into index_test values(3,200,20,&#x27;caa&#x27;,&#x27;CC&#x27;);</span><br><span class="line">insert into index_test values(4,100,10,&#x27;daa&#x27;,&#x27;DD&#x27;);</span><br><span class="line">insert into index_test values(5,500,50,&#x27;aad&#x27;,&#x27;FF&#x27;);</span><br><span class="line"></span><br><span class="line">-- 复合索引</span><br><span class="line">create index index_test_abc on index_test(a,b,c);</span><br><span class="line"></span><br><span class="line">-- 测试explain - 测试查询是否使用到了索引.</span><br><span class="line">-- 测试主键索引</span><br><span class="line">mysql&gt; explain select * from index_test where id = 4;</span><br><span class="line">+----+-------------+------------+------------+-------+---------------+---------+---------+-------+------+----------+-------+</span><br><span class="line">| id | select_type | table      | partitions | type  | possible_keys | key     | key_len | ref   | rows | filtered | Extra |</span><br><span class="line">+----+-------------+------------+------------+-------+---------------+---------+---------+-------+------+----------+-------+</span><br><span class="line">|  1 | SIMPLE      | index_test | NULL       | const | PRIMARY       | PRIMARY | 4       | const |    1 |   100.00 | NULL  |</span><br><span class="line">+----+-------------+------------+------------+-------+---------------+---------+---------+-------+------+----------+-------+</span><br><span class="line"></span><br><span class="line">主要就是观察type=&#x27;const&#x27;;</span><br><span class="line">所谓创建索引 - 索引高级篇.</span><br><span class="line">索引文件采取一个数据结构[b+树]用来专门存放索引.</span><br><span class="line">为何根据索引查找比较快 - 先查索引[先查目录] - 进行定位到行的操作 - myisam中.</span><br><span class="line"></span><br><span class="line">myisam中索引文件和数据文件.独立存储的,也是分开的存储.</span><br><span class="line"></span><br><span class="line">1. 数据文件[磁盘上的]也就是所谓的表文件.加载到mysql内存中[select].</span><br><span class="line">   表里面的每一行在内存中也有一个内存地址.</span><br><span class="line"></span><br><span class="line">2. 索引文件存储的是索引列的值以及该索引列对应的行记录的内存地址.</span><br><span class="line">   索引列   内存地址</span><br><span class="line">   1       0x7a</span><br><span class="line">   2       0x7b</span><br><span class="line">   3       0x7c</span><br><span class="line">   4       0x7d</span><br><span class="line">   5       0x7e</span><br><span class="line">   myisam索引 - 键值对索引[键 - 索引列值,值 - 行记录的内存地址]</span><br><span class="line">   键值对存储在B+树中.</span><br><span class="line">   select * from index_test where id = 4;</span><br><span class="line">   </span><br><span class="line">   1. 根据id=4先到索引文件中去查找了[消耗时间的]</span><br><span class="line">   2. 找到id=4对应的行记录地址[唯一的映射关系]</span><br><span class="line">   3. 直接根据行记录地址定位到具体的一行,不需要在数据文件中进行一个全表扫描了.</span><br><span class="line"></span><br><span class="line">-- 测试非索引列的查询 d</span><br><span class="line"></span><br><span class="line">mysql&gt; explain select * from index_test where d = &#x27;DD&#x27;;</span><br><span class="line">+----+-------------+------------+------------+------+---------------+------+---------+------+------+----------+-------------+</span><br><span class="line">| id | select_type | table      | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |</span><br><span class="line">+----+-------------+------------+------------+------+---------------+------+---------+------+------+----------+-------------+</span><br><span class="line">|  1 | SIMPLE      | index_test | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    5 |    20.00 | Using where |</span><br><span class="line">+----+-------------+------------+------------+------+---------------+------+---------+------+------+----------+-------------+</span><br><span class="line">1 row in set, 1 warning (0.00 sec)</span><br><span class="line"></span><br><span class="line">Type=&#x27;all&#x27; , 全表扫描 , 没有用到索引或者索引失效 , 从表里面的第一行一直扫描到最后一行 - 查询性能肯定是低下的.</span><br></pre></td></tr></table></figure>
+
+<h3 id="遵循最左原则"><a href="#遵循最左原则" class="headerlink" title="遵循最左原则"></a>遵循最左原则</h3><p>简介:<em><strong>针对的是复合索引</strong></em> - 查询语句where最左边的列一定要和创建复合索引的第一个列保持一致.</p>
+<ul>
+<li>复合索引(a,b,c) - 必须要连续.</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">-- 创建复合索引的第一个列a</span><br><span class="line">create index index_test_abc on index_test(a,b,c);</span><br><span class="line"></span><br><span class="line">-- a,b,c都是生效的-100 |   10 | daa</span><br><span class="line">explain select * from index_test where a=100 and b=10 and c=&#x27;daa&#x27;;</span><br><span class="line">-- key_len 是73,三个索引都走了.</span><br><span class="line"></span><br><span class="line">-- 比如b失效的场景,c也是失效</span><br><span class="line">explain select * from index_test where b=10;//不走索引</span><br><span class="line">explain select * from index_test where c=&#x27;daa&#x27;;//不走索引</span><br><span class="line"></span><br><span class="line">-- 不生效 - mysql5.7以后对where语句进行了优化.</span><br><span class="line">-- oracle中where语句如果跟了多个条件,执行顺序 - 从右到左</span><br><span class="line">-- mysql中where语句条件默认是从左到右的.</span><br><span class="line">-- mysql低版本中where c=&#x27;daa&#x27; and a=100;//不会走索引的</span><br><span class="line">-- mysql5.7优化,优化成where a=100 and c=&#x27;add&#x27;;//才会走索引.</span><br><span class="line"></span><br><span class="line">-- a走了索引,c没有索引 - 特殊的场景 - 底层优化了.</span><br><span class="line">explain select * from index_test where c=&#x27;daa&#x27; and a=100;</span><br><span class="line">-- key_len = 5</span><br><span class="line"></span><br><span class="line">-- a列索引生效</span><br><span class="line">explain select * from index_test where a = 100;</span><br><span class="line">-- key_len = 5</span><br><span class="line"></span><br><span class="line">-- a,b生效</span><br><span class="line">explain select * from index_test where a=100 and b=10;</span><br><span class="line">-- key_len = 10</span><br><span class="line">-- 如果仅仅是根据a列查询,key_len是5,但是此时key_len是10.说明a,b索引都生效.</span><br><span class="line"></span><br><span class="line">-- a列是走了索引,但是c列没有走索引</span><br><span class="line">-- 必须要连续.这个是时候a和c是不连续的,中间跳过了b.所以只有a是生效的,但是c是不生效的.</span><br><span class="line">explain select * from index_test where a=100 and c=&#x27;daa&#x27;;</span><br><span class="line">-- key_len=5</span><br></pre></td></tr></table></figure>
+
+<h3 id="范围之后索引列也会失效"><a href="#范围之后索引列也会失效" class="headerlink" title="范围之后索引列也会失效"></a>范围之后索引列也会失效</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- a列和b列是走了索引的,但是c列没有走索引.因为c列是范围之后的判断</span><br><span class="line">mysql&gt;explain select * from index_test where a=100 and b&gt;10 and c=&#x27;daa&#x27;;</span><br><span class="line"></span><br><span class="line">-- 如果三个索引都生效 - key_len=73</span><br><span class="line">-- 如果只有a,b走索引 - key_len=10   √</span><br></pre></td></tr></table></figure>
+
+<h3 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">like &#x27;%&#x27;出现在末尾,仍然a,b,c都是走索引</span><br><span class="line">-- key_len = 73 - a,b,c都是走了索引的</span><br><span class="line">mysql&gt; explain select * from index_test where a=100 and b=10 and c like &#x27;d%&#x27;;</span><br><span class="line"></span><br><span class="line">-- like &#x27;%&#x27;如果出现在开始,不走索引的</span><br><span class="line">-- 只有a,b是走了索引的,c是没有走索引的</span><br><span class="line">-- key_len = 10 </span><br><span class="line">mysql&gt;explain select * from index_test where a=100 and b=10 and c like&#x27;%d&#x27;;</span><br><span class="line"></span><br><span class="line">-- 只有a,b是走了索引的,c是没有走索引的</span><br><span class="line">-- key_len=10</span><br><span class="line">mysql&gt;explain select * from index_test where a=100 and b=10 and c like&#x27;%d%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="索引列使用函数"><a href="#索引列使用函数" class="headerlink" title="索引列使用函数"></a>索引列使用函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">索引列套在函数中使用,将会导致索引失效</span><br><span class="line"></span><br><span class="line">-- 进行了ALL全表扫描</span><br><span class="line">mysql&gt; explain select * from index_test where abs(id)=1;</span><br><span class="line"></span><br><span class="line">+----+-------------+------------+------------+------+---------------+------+---------+------+------+----------+-------------+</span><br><span class="line">| id | select_type | table      | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |</span><br><span class="line">+----+-------------+------------+------------+------+---------------+------+---------+------+------+----------+-------------+</span><br><span class="line">|  1 | SIMPLE      | index_test | NULL       | ALL  | NULL          | NULL | NULL    | NULL |    5 |   100.00 | Using where |</span><br><span class="line">+----+-------------+------------+------------+------+---------------+------+---------+------+------+----------+-------------+</span><br></pre></td></tr></table></figure>
+
+<h3 id="索引列参加了计算"><a href="#索引列参加了计算" class="headerlink" title="索引列参加了计算"></a>索引列参加了计算</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 导致索引列失效</span><br><span class="line">mysql&gt; explain select * from index_test where id+1=2;</span><br><span class="line"></span><br><span class="line">mysql&gt; explain select * from index_test where id = 2 - 1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="索引列参加运算符"><a href="#索引列参加运算符" class="headerlink" title="索引列参加运算符"></a>索引列参加运算符</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 给员工表的提成率列添加一个索引-普通索引</span></span><br><span class="line"><span class="keyword">create</span> index s_emp_cp <span class="keyword">on</span> s_emp(commission_pct);</span><br><span class="line"><span class="comment">-- is null(没有走索引)和is not null(走索引)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- is null - type=&#x27;ALL&#x27;</span></span><br><span class="line">mysql<span class="operator">&gt;</span>explain <span class="keyword">select</span> first_name,commission_pct <span class="keyword">from</span> s_emp <span class="keyword">where</span> commission_pct <span class="keyword">is</span> <span class="keyword">null</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span> <span class="operator">|</span> partitions <span class="operator">|</span> type <span class="operator">|</span> possible_keys <span class="operator">|</span> key  <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span> <span class="operator">|</span> filtered <span class="operator">|</span> Extra       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> s_emp <span class="operator">|</span> <span class="keyword">NULL</span>       <span class="operator">|</span> <span class="keyword">ALL</span>  <span class="operator">|</span> s_emp_cp      <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span>   <span class="number">25</span> <span class="operator">|</span>    <span class="number">80.00</span> <span class="operator">|</span> <span class="keyword">Using</span> <span class="keyword">where</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------------+-------+------------+------+---------------+------+---------+------+------+----------+-------------+</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- is not null type=&#x27;range&#x27; - 走了索引的.</span></span><br><span class="line">mysql<span class="operator">&gt;</span> explain <span class="keyword">select</span> first_name,commission_pct <span class="keyword">from</span> s_emp <span class="keyword">where</span> commission_pct <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------------+-------+------------+-------+---------------+----------+---------+------+------+----------+-----------------------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> select_type <span class="operator">|</span> <span class="keyword">table</span> <span class="operator">|</span> partitions <span class="operator">|</span> type  <span class="operator">|</span> possible_keys <span class="operator">|</span> key      <span class="operator">|</span> key_len <span class="operator">|</span> <span class="keyword">ref</span>  <span class="operator">|</span> <span class="keyword">rows</span> <span class="operator">|</span> filtered <span class="operator">|</span> Extra                 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------------+-------+------------+-------+---------------+----------+---------+------+------+----------+-----------------------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> SIMPLE      <span class="operator">|</span> s_emp <span class="operator">|</span> <span class="keyword">NULL</span>       <span class="operator">|</span> <span class="keyword">range</span> <span class="operator">|</span> s_emp_cp      <span class="operator">|</span> s_emp_cp <span class="operator">|</span> <span class="number">5</span>       <span class="operator">|</span> <span class="keyword">NULL</span> <span class="operator">|</span>    <span class="number">5</span> <span class="operator">|</span>   <span class="number">100.00</span> <span class="operator">|</span> <span class="keyword">Using</span> index <span class="keyword">condition</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+-------------+-------+------------+-------+---------------+----------+---------+------+------+----------+-----------------------+</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- in(走索引 - range)  not in(不走索引 - ALL)</span></span><br><span class="line">mysql<span class="operator">&gt;</span> explain <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> index_test <span class="keyword">where</span> id <span class="keyword">in</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> explain <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> index_test <span class="keyword">where</span> id <span class="keyword">not</span> <span class="keyword">in</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 能用关联解决的,尽量不要使用not</span></span><br><span class="line"><span class="comment">-- 找出没有选择任何一门课程的学生的信息</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="利用索引列查询出来的数据超过整张表的30"><a href="#利用索引列查询出来的数据超过整张表的30" class="headerlink" title="利用索引列查询出来的数据超过整张表的30%."></a>利用索引列查询出来的数据超过整张表的30%.</h3><blockquote>
+<p>当数据量达到百万级别.</p>
+</blockquote>
+<blockquote>
+<p>索引对应的重复的数据太多也是不适合创建索引的.</p>
+<p>city=’苏州’</p>
+</blockquote>
+<h2 id="建立索引的策略"><a href="#建立索引的策略" class="headerlink" title="建立索引的策略"></a>建立索引的策略</h2><blockquote>
+<p>a. 索引不是越多越好的 </p>
+<p>   因为索引也是需要占内容,也是需要到索引文件中去匹配索引的 - 需要消耗时间的.</p>
+<p>   更新数据的同时,我们更新索引数据.</p>
+</blockquote>
+<ol>
+<li>主键列和唯一性列                        √</li>
+<li>不经常发生改变的[在update列数据的数据的时候,也会更新索引文件]                √</li>
+<li>满足以上2个条件,经常作为查询条件的列    √</li>
+<li>重复值太多的列                        ×</li>
+<li>null值太多的列                        ×</li>
+</ol>
+<h1 id="查询效率"><a href="#查询效率" class="headerlink" title="查询效率"></a>查询效率</h1><ol>
+<li>数据库读写分离.</li>
+<li>分表分库 - 水平分割和垂直分割</li>
+<li>使用专门的搜索引擎 - es - elasticsearch/solr</li>
+<li>避免使用索引查询导致索引失效 - 规避问题.</li>
+</ol>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>yang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/08/15/mysql_%E4%B8%93%E9%A2%98%E7%AF%87_%E7%B4%A2%E5%BC%95%E5%9F%BA%E7%A1%80/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;15&#x2F;mysql_%E4%B8%93%E9%A2%98%E7%AF%87_%E7%B4%A2%E5%BC%95%E5%9F%BA%E7%A1%80&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;15&#x2F;mysql_%E4%B8%93%E9%A2%98%E7%AF%87_%E7%B4%A2%E5%BC%95%E5%9F%BA%E7%A1%80&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/08/16/mysql_%E4%B8%93%E9%A2%98%E7%AF%87_%E7%B4%A2%E5%BC%95%E9%AB%98%E7%BA%A7/"><i class="iconfont iconleft"></i>索引高级</a>
+    <a href="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/">DTL与事务<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8"><span class="toc-text">数据字典</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#demo"><span class="toc-text">demo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%9F%BA%E7%A1%80%E7%AF%87"><span class="toc-text">索引基础篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E5%BA%95%E5%B1%82-%E8%A7%81%E9%AB%98%E7%BA%A7%E7%AF%87"><span class="toc-text">索引的底层 - 见高级篇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%AE%97%E6%B3%95"><span class="toc-text">索引算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B"><span class="toc-text">索引类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E8%AF%AD%E6%B3%95"><span class="toc-text">索引语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%E6%80%BB%E8%A7%88"><span class="toc-text">创建索引总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-text">索引使用方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9F%A5%E8%AF%A2%E6%98%AF%E5%90%A6%E4%BD%BF%E7%94%A8%E5%88%B0%E4%BA%86%E7%B4%A2%E5%BC%95"><span class="toc-text">查看查询是否使用到了索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E7%B4%A2%E5%BC%95"><span class="toc-text">组合索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E6%83%85%E5%86%B5"><span class="toc-text">索引失效情况</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%B5%E5%BE%AA%E6%9C%80%E5%B7%A6%E5%8E%9F%E5%88%99"><span class="toc-text">遵循最左原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E4%B9%8B%E5%90%8E%E7%B4%A2%E5%BC%95%E5%88%97%E4%B9%9F%E4%BC%9A%E5%A4%B1%E6%95%88"><span class="toc-text">范围之后索引列也会失效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-text">模糊查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%88%97%E4%BD%BF%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-text">索引列使用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%88%97%E5%8F%82%E5%8A%A0%E4%BA%86%E8%AE%A1%E7%AE%97"><span class="toc-text">索引列参加了计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%88%97%E5%8F%82%E5%8A%A0%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">索引列参加运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E7%B4%A2%E5%BC%95%E5%88%97%E6%9F%A5%E8%AF%A2%E5%87%BA%E6%9D%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E8%B6%85%E8%BF%87%E6%95%B4%E5%BC%A0%E8%A1%A8%E7%9A%8430"><span class="toc-text">利用索引列查询出来的数据超过整张表的30%.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95%E7%9A%84%E7%AD%96%E7%95%A5"><span class="toc-text">建立索引的策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%88%E7%8E%87"><span class="toc-text">查询效率</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2376754897 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.baidu.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/yangmoureng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:18687993885@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

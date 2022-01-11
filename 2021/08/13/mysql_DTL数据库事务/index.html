@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DTL与事务 - YangBlog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="DTL
+Data Transaction Langua...">
+  <meta name="author" content="yang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '树欲静而风不止，子欲养而亲不待。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YangBlog" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">DTL与事务</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 快乐</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/pg6.jfif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">DTL与事务</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>八月 13, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6710</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="DTL"><a href="#DTL" class="headerlink" title="DTL"></a>DTL</h1><blockquote>
+<p>Data Transaction Language - 数据事务语言</p>
+<p>commit,begin,start transction,savepoint,rollback</p>
+</blockquote>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><blockquote>
+<p>只要使用客户端连接到mysql-server[mysql服务器],就会自动打开一个事务</p>
+</blockquote>
+<p>在MYSQL中,<em><strong>所有的DML(insert,update,delete)操作</strong></em>在执行之后都会有一个<strong>commit操作</strong>[隐式的]</p>
+<p><strong>commit - 提交事务</strong></p>
+<p>在ORACLE中,所有的DML(insert,update,delete)操作之后,如果没有手动commit,那么在另外一个事务中是读不到最新的更新数据的.</p>
+<p><strong>DTL,数据事务语言</strong></p>
+<p><strong>事务的定义:</strong></p>
+<p>就是指<strong>一组相关的SQL操作</strong>,我们所有的操作都是处在事务中的.</p>
+<p>执行业务的基本单位是 - 不是sql,而是事务.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">java 代码 - 转账</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transfer</span><span class="params">(<span class="keyword">int</span> srcid,<span class="keyword">int</span> targetid,<span class="keyword">double</span> money)</span></span>&#123;</span><br><span class="line">  <span class="comment">//设置不要自动提交模式</span></span><br><span class="line">  conn.setAutoCommit(<span class="keyword">false</span>);</span><br><span class="line">  Transaction tx = conn.beginTransaction();<span class="comment">//开启一个事务</span></span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="comment">//事务保证原子性  - 要么同时成功,要么同时失败.</span></span><br><span class="line">    String sql = <span class="string">&quot;update xx set balance = balance-&quot;</span>+money+<span class="string">&quot;where id=&quot;</span>+srcid;</span><br><span class="line">    <span class="comment">//TODO... 执行sql,默认会自动提交事务的 -commit;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//一旦是手动提交事务,那么上面的update操作仅仅是内存中的操作.尚未提交到db中.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//其他代码... 出现了异常  , 手动提交 - 进入到catch</span></span><br><span class="line"></span><br><span class="line">    String sql2 = <span class="string">&quot;update xx set balance = balance+&quot;</span>+money+<span class="string">&quot;where id=&quot;</span>+targetid;</span><br><span class="line">    <span class="comment">//TODO ... 执行sql默认会自动提交事务的 -commit;</span></span><br><span class="line">    </span><br><span class="line">    tx.commit();</span><br><span class="line">  &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">    <span class="comment">//..</span></span><br><span class="line">    tx.rollback();<span class="comment">//进行一个事务的回滚操作.</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>控制事务 - 就是控制事务的边界(事务的开始(begin) - 事务的结束(commit,rollback))</p>
+<p><em><strong>一个事务的结束,代表着下一个事务的开始.</strong></em></p>
+<p><strong>注意:</strong></p>
+<ol>
+<li><p>在数据库中**,执行业务的基本单位是事务,不是以某一条SQL**</p>
+</li>
+<li><p>数据库在默认情况下,事务都是打开的,也就是说它是一直</p>
+</li>
+<li><p>处在事务中的,一个事务的结束,代表着下一个事务的开启</p>
+</li>
+<li><p>执行commit或者rollback指令时,<strong>会结束当前事务</strong></p>
+<p><strong>[已经提交的事务将不能够被回滚 - 已经不处于同一个事务中了,而事务与事务之间是隔离的]</strong></p>
+</li>
+</ol>
+<p><strong>作用:用来保证数据的平稳性和可预测性.</strong></p>
+<h1 id="事务的四大特性-ACID-笔试"><a href="#事务的四大特性-ACID-笔试" class="headerlink" title="事务的四大特性(ACID): - 笔试"></a><strong>事务的四大特性(ACID):</strong> - 笔试</h1><ol>
+<li><p><strong>Atomicity,原子性</strong>,事务是不可再分割的,要么同时成功,要么同时失败.</p>
+<p>转账业务(账户+money,账户-money - 一组sql - 至于一个事务当中,并且要保证原子性.)</p>
+</li>
+<li><p><strong>Consistency,一致性</strong>,<strong>事务一旦结束,内存中的数据和数据库中的数据是保持一致的</strong></p>
+<p>example：A用户和B用户进行转账1000元，A账户减少1000和B账户增加1000的sql语句必须全部执行成功，不存在一半成功，一半失败。<br>但是无论如何执行，两个账户金额的改变加起来一定1000元，<strong>这就是一致性(数据的完整性)。</strong></p>
+</li>
+<li><p><strong>Isolation,隔离性</strong>,事务之间互不干扰,一多个用户并发访问数据库，比如同时操作一张表。数据库为每一个用户开启事务。<strong>每个事务相互独立，互不干扰。</strong></p>
+</li>
+<li><p><strong>Durability,持久性</strong>,事务一旦提交,则内存中的数据持久化[保存,序列化]到数据库中,<strong>永久保存</strong></p>
+<p>[涉及到数据库的备份和恢复的一些技术,冷备份,热备份…]</p>
+<p>DB - sqlData数据文件以及log目录[日志文件 - 记录了用户的sql操作]</p>
+</li>
+</ol>
+<h2 id="事务控制语句"><a href="#事务控制语句" class="headerlink" title="事务控制语句"></a>事务控制语句</h2><p>DTL - 事务控制语言.</p>
+<ol>
+<li><strong>BEGIN或START TRANSACTION</strong>；显式地开启一个事务；</li>
+<li><strong>COMMIT；</strong>也可以使用COMMIT WORK，不过二者是等价的。COMMIT会提交事务，并使已对数据库进行的所有修改成为永久性的；</li>
+<li><strong>ROLLBACK；</strong>有可以使用ROLLBACK WORK，不过二者是等价的。回滚会结束用户的事务，并撤销正在进行的所有未提交的修改；</li>
+<li>SAVEPOINT identifier；SAVEPOINT允许在事务中创建一个保存点，一个事务中可以有多个SAVEPOINT；</li>
+<li>RELEASE SAVEPOINT identifier；删除一个事务的保存点，当没有指定的保存点时，执行该语句会抛出一个异常；</li>
+<li>ROLLBACK TO identifier；把事务回滚到标记点；</li>
+<li>SET TRANSACTION；用来设置事务的隔离级别。InnoDB存储引擎提供事务的隔离级别有<em><strong>READ UNCOMMITTED、READ COMMITTED、REPEATABLE READ和SERIALIZABLE。</strong></em></li>
+</ol>
+<h3 id="rollback-demo-回滚所有"><a href="#rollback-demo-回滚所有" class="headerlink" title="rollback - demo - 回滚所有"></a>rollback - demo - 回滚所有</h3><blockquote>
+<p>前提 - 设置成手动提交事务</p>
+<p><code>注意:1. 如果没有设置事务点 - rollabck撤销所有的dml操作的</code></p>
+<p><img   class="lazyload" data-original="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/rollback.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</blockquote>
+<blockquote>
+<p><code>注意的是rollback只能撤销/回滚尚未提交的事务.如果一个事务已经提交了,那么是回滚不了的</code></p>
+<p><img   class="lazyload" data-original="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/r2.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</blockquote>
+<h3 id="设置事务点"><a href="#设置事务点" class="headerlink" title="设置事务点"></a>设置事务点</h3><blockquote>
+<p>命令 - savepoint 事务点名称;</p>
+<p>rollback to 事务点名称.</p>
+<p><code>效果就是会撤销到设置事务点下方的dml操作.事务点之前的dml操作将不会撤销</code></p>
+<p><img   class="lazyload" data-original="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/r3.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</blockquote>
+<h2 id="MYSQL-事务处理主要有两种方法"><a href="#MYSQL-事务处理主要有两种方法" class="headerlink" title="MYSQL 事务处理主要有两种方法"></a>MYSQL 事务处理主要有两种方法</h2><h2 id="自动开始事务"><a href="#自动开始事务" class="headerlink" title="自动开始事务"></a>自动开始事务</h2><blockquote>
+<ol>
+<li>当我们mysql客户端连接到mysql服务器 - 自动开启</li>
+<li>当执行完sql语句之后,自动会commit[事务的提交 - 意味着当前事务已经结束]</li>
+<li>一个事务的结束意味着下一个事务的开始.</li>
+<li><strong>commit/rollback - 结束事务.</strong></li>
+</ol>
+</blockquote>
+<h2 id="手动开启事务"><a href="#手动开启事务" class="headerlink" title="手动开启事务"></a>手动开启事务</h2><blockquote>
+<p>执行dml操作之后,就不会自动提交事务[commit],需要手动commit</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>用 BEGIN, ROLLBACK, COMMIT来实现</p>
+<p>1-1. <strong>BEGIN 开始一个事务</strong></p>
+<p>1-2. <strong>start transaction - 手动开始一个事务</strong></p>
+</li>
+<li><p>ROLLBACK 事务回滚</p>
+</li>
+<li><p>COMMIT 事务确认</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="demo01"><a href="#demo01" class="headerlink" title="demo01"></a>demo01</h3><blockquote>
+<p>A事务 - 执行了delete操作,但是还没有commit.</p>
+<p>但是在A事务当中,查询的时候,是可以查询到delete的效果的</p>
+<p>mysql&gt;begin;</p>
+<p><img   class="lazyload" data-original="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/tx01.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</blockquote>
+<blockquote>
+<p>但是在另外一个事务B中,是看不到A事务中尚未提交的数据的[仍然是可以看到id=2这条数据的]</p>
+<p><img   class="lazyload" data-original="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/tx02.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</blockquote>
+<p><code>对A事务进行一个commit操作</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; commit;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<p>对于B事务来讲,分俩种情况.第一种情况是B一开始的事务还未提交,看到的效果是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from video_copy;</span><br><span class="line">+----+--------------+-------+---------------------+-------------+</span><br><span class="line">| id | title        | likes | create_time         | tbl_user_id |</span><br><span class="line">+----+--------------+-------+---------------------+-------------+</span><br><span class="line">|  1 | java无敌     |   200 | 2021-08-19 13:38:38 |           1 |</span><br><span class="line">|  2 | python不错   |   200 | 2021-08-19 13:39:45 |           1 |</span><br><span class="line">+----+--------------+-------+---------------------+-------------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p><code>B事务提交,也结束了当前的事务,自动开启一个新的事务,在新的事务中重新再查一次</code>,可以看到A事务提交的结果了.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; commit;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from video_copy;</span><br><span class="line">+----+------------+-------+---------------------+-------------+</span><br><span class="line">| id | title      | likes | create_time         | tbl_user_id |</span><br><span class="line">+----+------------+-------+---------------------+-------------+</span><br><span class="line">|  1 | java无敌   |   200 | 2021-08-19 13:38:38 |           1 |</span><br><span class="line">+----+------------+-------+---------------------+-------------+</span><br><span class="line">1 row in set (0.00 sec)   </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>直接用 SET 来改变 MySQL 的自动提交模式: </p>
+<p>2-1. <strong>SET AUTOCOMMIT=0 禁止自动提交</strong></p>
+<p>2-2. SET AUTOCOMMIT=1 开启自动提交</p>
+<p>注意:设置成禁止自动提交的操作的话,这个操作仅仅是针对当前的会话窗口有效.</p>
+</li>
+</ol>
+<h1 id="多事务的并发处理机制"><a href="#多事务的并发处理机制" class="headerlink" title="多事务的并发处理机制"></a>多事务的并发处理机制</h1><p>原因:多个事务同时操作一个表中的<strong>同一行数据(争抢临界资源)</strong>,如果这些操作是.修改操作的话,就会产生并发问题,如果不处理,则会造成数据不一致的情况.</p>
+<p>数据库可能产生的并发问题包括:</p>
+<blockquote>
+<ol>
+<li><code>脏读</code></li>
+</ol>
+<p> 简介:一个事务读取到了另外一个事务中尚未提交的数据.</p>
+<blockquote>
+<p>是指一个事务正在访问数据,并且对这个数据进行修改,而这种修改<br>还没有提交到数据库中,而另一个事务也访问了这个数据,并且使用了这个数据<br>解决方法:一个事务在修改数据时,该数据不能被其他事务访问</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;所有的数据库都是拒绝脏读 - &quot;会读到脏数据&quot;.</span><br></pre></td></tr></table></figure>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li><code>不可重复读</code></li>
+</ol>
+<blockquote>
+<p>是指一个事务多次读取同一条记录,如果此时另一个事务也访问并且<br>修改了该数据,则就会出现多次读取出现数据不一致的情况,原来的<br>数据变成了不可重复读取的数据<br>解决方法:只有在修改事务完全提交过后才可以读取到数据</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><code>幻读</code></li>
+</ol>
+<blockquote>
+<p>是指一个事务修改表中的多行记录[比如查询也是可以的],但是此时另一个事务对该表格进行<br>了<strong>插入数据</strong>的操作,则第一个事务会发现表格中会出现没有被修改的行<br>就像发生了幻觉一样<br>解决方法:在一个事务提交数据之前,其他事务不能添加数据</p>
+</blockquote>
+</blockquote>
+<p><strong>不可重复读的重点是修改，同样的条件，你读取过的数据，再次读取出来发现值不一样了幻读的重点在于新增或者删除</strong></p>
+<h2 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h2><blockquote>
+<ol>
+<li>READ UNCOMMITTED</li>
+</ol>
+<blockquote>
+<p>这是事务最低的隔离级别，<strong>它允许另外一个事务可以看到这个事务未提交的数据</strong>。<br>解决第一类丢失更新的问题，但是会出现脏读、不可重复读.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>READ COMMITTED</li>
+</ol>
+<blockquote>
+<p>保<strong>证一个事务修改的数据提交后才能被另外一个事务读取</strong>，即另<strong>外一个事务不能读取该事务未提交的数据</strong>。<br>解决第一类丢失更新和脏读的问题，但会出现不可重复读.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li><strong>REPEATABLE READ</strong></li>
+</ol>
+<p>  <strong>简介:mysql默认的事务的隔离级别.</strong></p>
+<blockquote>
+<p>保证一个事务相同条件下前后两次获取的数据是一致的<br>解决第一类丢失更新，脏读、不可重复读.</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>SERIALIZABLE - 串行化</li>
+</ol>
+<blockquote>
+<p>事务被处理为顺序执行。解决所有问题 - 有点类似于<strong>锁表.</strong></p>
+</blockquote>
+<blockquote>
+<p>性能及其低下.</p>
+</blockquote>
+</blockquote>
+<p><strong>提醒：</strong><br><strong>Mysql默认的事务隔离级别为repeatable_read</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;set session transaction isolation level read uncommitted;</span><br><span class="line">mysql&gt;select @@tx_isolation;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
+<thead>
+<tr>
+<th>事务隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>读未提交(read uncommitted)</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>读已提交-(read committed)  - 不可重复读</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>可重复读(repeatable read)</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>串行化(serializable)</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody></table>
+<h1 id="事务的演示"><a href="#事务的演示" class="headerlink" title="事务的演示"></a>事务的演示</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">drop table account;</span><br><span class="line">create table account(</span><br><span class="line">	id int(7) primary key,</span><br><span class="line">  name varchar(20),</span><br><span class="line">  balance double(7,2)</span><br><span class="line">);</span><br><span class="line">insert into account values(1,&#x27;admin&#x27;,1000.00),(2,&#x27;tom&#x27;,2000.00);</span><br></pre></td></tr></table></figure>
+
+<h2 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h2><blockquote>
+<ol>
+<li><p>设置事务的隔离级别READ UNCOMMITTED - 一个事务才可以读取到另外一个事务尚未提交的数据.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set session transaction isolation level read uncommitted;</span><br></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/zd.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</li>
+</ol>
+</blockquote>
+<p>​            <code>总结-一旦事务设置成了读未提交的隔离级别.产生脏读以及不可重复读的效果</code></p>
+<p>​            <code>不可重复读 - 在同一个事务中,多次读取到的数据不一样</code></p>
+<h2 id="READ-COMMITTED"><a href="#READ-COMMITTED" class="headerlink" title="READ COMMITTED"></a>READ COMMITTED</h2><blockquote>
+<p>set session transaction isolation level read committed;</p>
+<ol>
+<li>一个事务只能读取到另外一个事务中已经提交的数据</li>
+<li>不会出现脏读了.但是仍然会出现<strong>不可重复读</strong>[一定是在同一个事务中多次读取到的结果是不一样的].</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><img   class="lazyload" data-original="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/rc.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</blockquote>
+<h2 id="REPEATABLE-READ"><a href="#REPEATABLE-READ" class="headerlink" title="REPEATABLE READ"></a><strong>REPEATABLE READ</strong></h2><blockquote>
+<p>可重复读 - 在同一个事务中,多次读取到的数据是一样的[不关心其他事务做了什么] - mysql的默认的隔离级别</p>
+<p>set session transaction isolation level repeatable read;</p>
+<p><img   class="lazyload" data-original="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/ke.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</blockquote>
+<h2 id="SERIALIZABLE"><a href="#SERIALIZABLE" class="headerlink" title="SERIALIZABLE"></a>SERIALIZABLE</h2><blockquote>
+<p>最高的隔离级别 - 效率最低的 - 类似于锁表</p>
+<p>set session transaction isolation level serializable;</p>
+<p>A事务在查看表的时候.其他事务是不能对这张表进行任何的DML[insert,update,delete]操作 .</p>
+<p><img   class="lazyload" data-original="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/tx.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</blockquote>
+<h1 id="不可重复读和幻读区别"><a href="#不可重复读和幻读区别" class="headerlink" title="不可重复读和幻读区别"></a>不可重复读和幻读区别</h1><blockquote>
+<p>set session transaction isolation level READ COMMITTED</p>
+<p><strong>读已提交 - 才可能产生不可重复读.</strong></p>
+</blockquote>
+<h2 id="不可重复读"><a href="#不可重复读" class="headerlink" title="不可重复读"></a>不可重复读</h2><blockquote>
+<p><strong>针对”update”</strong></p>
+<p><img   class="lazyload" data-original="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/rc.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</blockquote>
+<blockquote>
+<p>右边的窗口 - A事务,左边的窗口是 - B事务</p>
+<p>A事务在查看某张表[查看一次①]的同时.B事务同时在对<strong>这张表进行update操作</strong>.<strong>并且B事务手动提交了事务</strong></p>
+<p>这个时候A事务在当前事务中[自己的事务还未提交]再次查看这张表.多次读取出现不一样的数据 - 不可重复读.</p>
+</blockquote>
+<h2 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h2><blockquote>
+<p><strong>针对”insert和delete”</strong></p>
+</blockquote>
+<blockquote>
+<p><img   class="lazyload" data-original="/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/huan.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > </p>
+</blockquote>
+<p><code>左边的窗口 - A事务,右边的窗口 - B事务</code></p>
+<blockquote>
+<p>A事务在更新某张表的时候/或者查看这张表,B事务同时正在对这张表进行<strong>insert操作</strong><strong>.并且B事务手动提交了事务</strong></p>
+<p>这个时候A事务继续查看这张表[确认一下自己的更新动作是否完成],这个时候发现表中**”居然好像还有未被更新的数据”**,</p>
+<p>该条数据实际上是B事务已经插入进去的 - 对于A事务就好像产生了幻觉一样.</p>
+</blockquote>
+<h1 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>事务的四大特性[ACID]</li>
+<li>DTL命令</li>
+<li>解释四个隔离级别,默认的隔离级别是可重复读</li>
+<li>脏读,不可重复读,幻读.</li>
+</ol>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>yang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/08/13/mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;13&#x2F;mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;08&#x2F;13&#x2F;mysql_DTL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/08/15/mysql_%E4%B8%93%E9%A2%98%E7%AF%87_%E7%B4%A2%E5%BC%95%E5%9F%BA%E7%A1%80/"><i class="iconfont iconleft"></i>索引基础</a>
+    <a href="/2021/08/12/mysql-ddl-dml/">DDL和DML<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DTL"><span class="toc-text">DTL</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1"><span class="toc-text">事务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7-ACID-%E7%AC%94%E8%AF%95"><span class="toc-text">事务的四大特性(ACID): - 笔试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5"><span class="toc-text">事务控制语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rollback-demo-%E5%9B%9E%E6%BB%9A%E6%89%80%E6%9C%89"><span class="toc-text">rollback - demo - 回滚所有</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%BA%8B%E5%8A%A1%E7%82%B9"><span class="toc-text">设置事务点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MYSQL-%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E4%B8%BB%E8%A6%81%E6%9C%89%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-text">MYSQL 事务处理主要有两种方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%BC%80%E5%A7%8B%E4%BA%8B%E5%8A%A1"><span class="toc-text">自动开始事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E5%BC%80%E5%90%AF%E4%BA%8B%E5%8A%A1"><span class="toc-text">手动开启事务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#demo01"><span class="toc-text">demo01</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%B9%B6%E5%8F%91%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-text">多事务的并发处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-text">事务隔离级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%9A%84%E6%BC%94%E7%A4%BA"><span class="toc-text">事务的演示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%84%8F%E8%AF%BB"><span class="toc-text">脏读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#READ-COMMITTED"><span class="toc-text">READ COMMITTED</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REPEATABLE-READ"><span class="toc-text">REPEATABLE READ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SERIALIZABLE"><span class="toc-text">SERIALIZABLE</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB%E5%92%8C%E5%B9%BB%E8%AF%BB%E5%8C%BA%E5%88%AB"><span class="toc-text">不可重复读和幻读区别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB"><span class="toc-text">不可重复读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BB%E8%AF%BB"><span class="toc-text">幻读</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-text">总结</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=2376754897 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.baidu.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/yangmoureng "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:18687993885@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/yangmoureng">yang</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
